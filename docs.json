@@ -14,9 +14,10 @@
         "tab": "Documentation",
         "groups": [
           {
-            "group": "Getting Started",
+            "group": "Products",
             "pages": [
-              "introduction"
+              "coinfi-explorer",
+              "coinfi-wallet"
             ]
           },
           {
@@ -24,26 +25,15 @@
             "pages": [
               "coin-chain-builders/coinfi-build/coinfi-introduction/coinfi-chain-manifesto"
             ]
-          }
-        ]
-      },
-      {
-        "tab": "API Reference",
-        "groups": [
+          },
           {
             "group": "API Documentation",
             "pages": [
-              "api-reference/api-introduction",
               "api-reference/endpoint/create",
               "api-reference/endpoint/get",
               "api-reference/endpoint/delete"
             ]
-          }
-        ]
-      },
-      {
-        "tab": "Developer Resources",
-        "groups": [
+          },
           {
             "group": "ARPC",
             "pages": [
@@ -65,7 +55,25 @@
               "arpc/arpc-development/sdk/arpc-python",
               "arpc/arpc-development/sdk/arpc-rust",
               "arpc/arpc-development/sdk/arpc-golang",
-              "arpc/arpc-development/sdk/arpc-vue"
+              "arpc/arpc-development/sdk/arpc-vue",
+              "arpc/arpc-specifications/arpc-chain-specification",
+              "arpc/arpc-specifications/arpc-record",
+              "arpc/arpc-specifications/arpc-record-specification",
+              "arpc/arpc-development/sdk/zk-hpng-fullmen-rwp/zkHPNG-docs/zkhpng-viewkey",
+              "arpc/arpc-development/sdk/zk-hpng-fullmen-rwp/zkHPNG-docs/zkhpng-standard-code",
+              "arpc/arpc-development/sdk/zk-hpng-fullmen-rwp/zkHPNG-docs/zkhpng-configuration",
+              "arpc/arpc-development/sdk/zk-hpng-fullmen-rwp/zkHPNG-docs/zkhpng-introduction",
+              "arpc/arpc-development/sdk/zk-hpng-fullmen-rwp/zkHPNG-docs/zkhpng-groth16",
+              "arpc/arpc-development/sdk/zk-hpng-fullmen-rwp/fullmen-docs/fullmen-seed",
+              "arpc/arpc-development/sdk/zk-hpng-fullmen-rwp/fullmen-docs/fullmen-nonce",
+              "arpc/arpc-development/sdk/zk-hpng-fullmen-rwp/fullmen-docs/fullmen-encryption-library",
+              "arpc/arpc-development/sdk/zk-hpng-fullmen-rwp/fullmen-docs/fullmen-commitments",
+              "arpc/arpc-development/sdk/zk-hpng-fullmen-rwp/fullmen-docs/fullmen-root-commits",
+              "arpc/arpc-development/sdk/zk-hpng-fullmen-rwp/fullmen-docs/fullmen-proof",
+              "arpc/arpc-development/sdk/zk-hpng-fullmen-rwp/hpng-docs/hpng-introduction",
+              "arpc/arpc-development/sdk/zk-hpng-fullmen-rwp/hpng-docs/hpng-standard-code",
+              "arpc/arpc-development/sdk/zk-hpng-fullmen-rwp/hpng-docs/hpng-configuration",
+              "arpc/arpc-development/sdk/zk-hpng-fullmen-rwp/hashkey-specification"
             ]
           },
           {
@@ -102,6 +110,28 @@
               "coin-chain-builders/beacon-node/beacon-ignition/beacon-verified-addresses/verified-assets",
               "coin-chain-builders/beacon-node/beacon-ignition/beacon-verified-addresses/verified-contracts",
               "ecosystem-programs/dauth-referrel-program"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Guide",
+        "groups": [
+          {
+            "group": "Getting Started",
+            "pages": [
+              "introduction"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "API Reference",
+        "groups": [
+          {
+            "group": "API Documentation",
+            "pages": [
+              "api-reference/api-introduction"
             ]
           }
         ]
@@ -144,8 +174,8 @@
     ],
     "primary": {
       "type": "button",
-      "label": "Dashboard",
-      "href": "https://dashboard.mintlify.com"
+      "label": "Create Coin Wallet",
+      "href": "https://coin.fi"
     }
   },
   "footer": {

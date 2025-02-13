@@ -1,24 +1,21 @@
 {
   "$schema": "https://mintlify.com/schema.json",
   "name": "CoinFi Documentation",
+  "theme": "prism",
   "logo": {
     "dark": "/logo/dark.svg",
     "light": "/logo/light.svg"
   },
-  "favicon": "/favicon.svg",
+  "favicon": "/coinfi-icon.svg",
   "colors": {
-    "primary": "#0D9373",
-    "light": "#07C983",
-    "dark": "#0D9373",
-    "anchors": {
-      "from": "#0D9373",
-      "to": "#07C983"
-    }
+    "primary": "#1c356f",
+    "light": "#f19542",
+    "dark": "#090f2b"
   },
   "topbarLinks": [
     {
-      "name": "Support",
-      "url": "mailto:hi@mintlify.com"
+      "name": "Email CoinFi",
+      "url": "mailto:dylan@coin.fi"
     }
   ],
   "topbarCtaButton": {
@@ -36,24 +33,39 @@
     },
     {
       "name": "Developer Resources",
-      "url": "arpc/arpc-introduction/arpc-getting-started"
+      "url": "#",
+      "items": [
+        {
+          "name": "ARPC",
+          "url": "arpc/arpc-introduction/arpc-getting-started"
+        },
+        {
+          "name": "Chain Builders",
+          "url": "coin-chain-builders/coinfi-build/builders-navigation"
+        }
+      ]
     }
   ],
   "anchors": [
     {
-      "name": "Documentation",
-      "icon": "book-open-cover",
-      "url": "https://mintlify.com/docs"
+      "name": "Coin-Auth Game", 
+      "icon": "omega",
+      "url": "https://coin.fi"
     },
     {
-      "name": "Community",
-      "icon": "slack",
-      "url": "https://mintlify.com/community"
+      "name": "Community Chat",
+      "icon": "person",
+      "url": "https://t.me/+3OjsGsfY3n5iNzIx"
     },
     {
-      "name": "Blog",
-      "icon": "newspaper",
-      "url": "https://mintlify.com/blog"
+      "name": "Developer Hub",
+      "icon": "git",
+      "url": "https://github.com/enterprises/coinfi/organizations"
+    }, 
+    {
+      "name": "CoinFi Tweets",
+      "icon": "X",
+      "url": "https://x.com/CoinDotFi"
     }
   ],
   "navigation": [
@@ -61,6 +73,13 @@
       "group": "Getting Started",
       "pages": [
         "introduction"
+      ]
+    },
+    {
+      "group": "Products",
+      "pages": [
+        "coinfi-explorer",
+        "coinfi-wallet"
       ]
     },
     {
@@ -79,7 +98,7 @@
       ]
     },
     {
-      "group": "Developer Resources",
+      "group": "ARPC",
       "pages": [
         "arpc/arpc-introduction/arpc-getting-started",
         "arpc/arpc-introduction/arpc-guide-introduction",
@@ -100,6 +119,29 @@
         "arpc/arpc-development/sdk/arpc-rust",
         "arpc/arpc-development/sdk/arpc-golang",
         "arpc/arpc-development/sdk/arpc-vue",
+        "arpc/arpc-specifications/arpc-chain-specification",
+        "arpc/arpc-specifications/arpc-record",
+        "arpc/arpc-specifications/arpc-record-specification",
+        "arpc/arpc-development/sdk/zk-hpng-fullmen-rwp/zkHPNG-docs/zkhpng-viewkey",
+        "arpc/arpc-development/sdk/zk-hpng-fullmen-rwp/zkHPNG-docs/zkhpng-standard-code",
+        "arpc/arpc-development/sdk/zk-hpng-fullmen-rwp/zkHPNG-docs/zkhpng-configuration",
+        "arpc/arpc-development/sdk/zk-hpng-fullmen-rwp/zkHPNG-docs/zkhpng-introduction",
+        "arpc/arpc-development/sdk/zk-hpng-fullmen-rwp/zkHPNG-docs/zkhpng-groth16",
+        "arpc/arpc-development/sdk/zk-hpng-fullmen-rwp/fullmen-docs/fullmen-seed",
+        "arpc/arpc-development/sdk/zk-hpng-fullmen-rwp/fullmen-docs/fullmen-nonce",
+        "arpc/arpc-development/sdk/zk-hpng-fullmen-rwp/fullmen-docs/fullmen-encryption-library",
+        "arpc/arpc-development/sdk/zk-hpng-fullmen-rwp/fullmen-docs/fullmen-commitments",
+        "arpc/arpc-development/sdk/zk-hpng-fullmen-rwp/fullmen-docs/fullmen-root-commits",
+        "arpc/arpc-development/sdk/zk-hpng-fullmen-rwp/fullmen-docs/fullmen-proof",
+        "arpc/arpc-development/sdk/zk-hpng-fullmen-rwp/hpng-docs/hpng-introduction",
+        "arpc/arpc-development/sdk/zk-hpng-fullmen-rwp/hpng-docs/hpng-standard-code",
+        "arpc/arpc-development/sdk/zk-hpng-fullmen-rwp/hpng-docs/hpng-configuration",
+        "arpc/arpc-development/sdk/zk-hpng-fullmen-rwp/hashkey-specification"
+      ]
+    },
+    {
+      "group": "Chain Builders",
+      "pages": [
         "coin-chain-builders/coinfi-build/builders-navigation",
         "coin-chain-builders/coinfi-build/cosmos/main-cosmos-docs",
         "coin-chain-builders/coinfi-build/transactions/chain-transactions",

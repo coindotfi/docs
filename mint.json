@@ -81,6 +81,64 @@
         "api-reference/endpoint/create",
         "api-reference/endpoint/delete"
       ]
+    },
+    {
+      "group": "Coin Chain Builders",
+      "pages": [
+        {
+          "group": "Application Development",
+          "pages": [
+            "coin-chain-builders/application-overview",
+            "coin-chain-builders/smart-contracts",
+            "coin-chain-builders/solidity-guide",
+            "coin-chain-builders/precompiled-contracts"
+          ]
+        },
+        {
+          "group": "Transactions",
+          "pages": [
+            "coin-chain-builders/transactions",
+            "coin-chain-builders/transaction-fees",
+            "coin-chain-builders/fee-estimation",
+            "coin-chain-builders/transaction-statuses"
+          ]
+        },
+        {
+          "group": "Sequencer Operations",
+          "pages": [
+            "coin-chain-builders/sequencer-overview",
+            "coin-chain-builders/sequencer-node-prerequisites",
+            "coin-chain-builders/sequencer-node-setup",
+            "coin-chain-builders/rewards"
+          ]
+        }
+      ]
+    },
+    {
+      "group": "aRPC",
+      "pages": [
+        "arpc/getting-started",
+        "arpc/blockchain-networks",
+        "arpc/arpc-specification",
+        "arpc/ibc-bridge",
+        "arpc/contract-addresses",
+        "arpc/core-concepts",
+        "arpc/beacon-layer",
+        "arpc/application-chain-layer",
+        "arpc/qotp-protocol",
+        "arpc/quantum-one-time-aamm",
+        "arpc/security-model",
+        "arpc/zkm-trustless-universal-settlement",
+        "arpc/testing",
+        "arpc/local-development"
+      ]
+    },
+    {
+      "group": "AuthPlayground",
+      "pages": [
+        "authplayground/password-playground",
+        "authplayground/auth-explorer"
+      ]
     }
   ],
   "footerSocials": {

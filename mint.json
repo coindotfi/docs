@@ -1,6 +1,6 @@
 {
   "$schema": "https://mintlify.com/schema.json",
-  "name": "Starter Kit",
+  "name": "CoinFi Documentation",
   "logo": {
     "dark": "/logo/dark.svg",
     "light": "/logo/light.svg"
@@ -22,17 +22,21 @@
     }
   ],
   "topbarCtaButton": {
-    "name": "Dashboard",
-    "url": "https://dashboard.mintlify.com"
+    "name": "Create Coin Wallet",
+    "url": "https://coin.fi"
   },
   "tabs": [
     {
-      "name": "Documentation",
+      "name": "Guide",
       "url": "introduction"
     },
     {
       "name": "API Reference",
-      "url": "api-reference/introduction"
+      "url": "api-reference/api-introduction"
+    },
+    {
+      "name": "Developer Resources",
+      "url": "arpc/arpc-introduction/arpc-getting-started"
     }
   ],
   "anchors": [
@@ -54,106 +58,79 @@
   ],
   "navigation": [
     {
-      "group": "Get Started",
+      "group": "Getting Started",
       "pages": [
-        "introduction",
-        "quickstart",
-        "development"
+        "introduction"
       ]
     },
     {
-      "group": "Essentials",
+      "group": "Manifesto",
       "pages": [
-        "essentials/markdown",
-        "essentials/code",
-        "essentials/images",
-        "essentials/settings",
-        "essentials/navigation",
-        "essentials/reusable-snippets"
+        "coin-chain-builders/coinfi-build/coinfi-introduction/coinfi-chain-manifesto"
       ]
     },
     {
-      "group": "Coin Chain Builders",
+      "group": "API Documentation",
       "pages": [
-        {
-          "group": "Application Development",
-          "pages": [
-            "coin-chain-builders/application-overview",
-            "coin-chain-builders/smart-contracts",
-            "coin-chain-builders/solidity-guide",
-            "coin-chain-builders/precompiled-contracts",
-            "coin-chain-builders/coinfi-build/builders-navigation",
-            "coin-chain-builders/coinfi-build/cosmos/main-cosmos-docs"
-          ]
-        },
-        {
-          "group": "Transactions",
-          "pages": [
-            "coin-chain-builders/transactions",
-            "coin-chain-builders/transaction-fees",
-            "coin-chain-builders/fee-estimation",
-            "coin-chain-builders/transaction-statuses"
-          ]
-        },
-        {
-          "group": "Sequencer Operations",
-          "pages": [
-            "coin-chain-builders/sequencer-overview",
-            "coin-chain-builders/sequencer-node-prerequisites",
-            "coin-chain-builders/sequencer-node-setup",
-            "coin-chain-builders/rewards"
-          ]
-        }
+        "api-reference/api-introduction",
+        "api-reference/endpoint/create",
+        "api-reference/endpoint/get",
+        "api-reference/endpoint/delete"
       ]
     },
     {
-      "group": "aRPC",
+      "group": "Developer Resources",
       "pages": [
-        "arpc/getting-started",
-        "arpc/blockchain-networks",
-        "arpc/arpc-specification",
-        "arpc/ibc-bridge",
-        "arpc/contract-addresses",
-        "arpc/core-concepts",
-        "arpc/beacon-layer",
-        "arpc/application-chain-layer",
-        "arpc/qotp-protocol",
-        "arpc/quantum-one-time-aamm",
-        "arpc/security-model",
-        "arpc/zkm-trustless-universal-settlement",
-        "arpc/testing",
-        "arpc/local-development",
-        {
-          "group": "aRPC SDKs",
-          "pages": [
-            "arpc/arpc-development/sdk/arpc-javascript",
-            "arpc/arpc-development/sdk/arpc-python",
-            "arpc/arpc-development/sdk/arpc-rust",
-            "arpc/arpc-development/sdk/arpc-golang",
-            "arpc/arpc-development/sdk/arpc-vue",
-            {
-              "group": "zk-hpng Fullmen",
-              "pages": [
-                "arpc/arpc-development/sdk/zk-hpng-fullmen-rwp/hashkey-specification",
-                "arpc/arpc-development/sdk/zk-hpng-fullmen-rwp/zkHPNG/zkhpng-viewkey",
-                "arpc/arpc-development/sdk/zk-hpng-fullmen-rwp/FULLMEN/fullmen-proof",
-                "arpc/arpc-development/sdk/zk-hpng-fullmen-rwp/FULLMEN/fullmen-root-commits",
-                "arpc/arpc-development/sdk/zk-hpng-fullmen-rwp/FULLMEN/fullmen-commitments",
-                "arpc/arpc-development/sdk/zk-hpng-fullmen-rwp/FULLMEN/fullmen-encryption-library",
-                "arpc/arpc-development/sdk/zk-hpng-fullmen-rwp/FULLMEN/fullmen-nonce",
-                "arpc/arpc-development/sdk/zk-hpng-fullmen-rwp/FULLMEN/fullmen-seed",
-                "arpc/arpc-development/sdk/zk-hpng-fullmen-rwp/zkHPNG/zkhpng-standard-code"
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "group": "AuthPlayground",
-      "pages": [
-        "authplayground/password-playground",
-        "authplayground/auth-explorer"
+        "arpc/arpc-introduction/arpc-getting-started",
+        "arpc/arpc-introduction/arpc-guide-introduction",
+        "arpc/arpc-concepts/arpc-core-concepts",
+        "arpc/arpc-concepts/arpc-beacon-layer",
+        "arpc/arpc-concepts/arpc-app-chain-layer",
+        "arpc/arpc-concepts/arpc-qotp-protocol",
+        "arpc/arpc-concepts/arpc-quantum-ot-aamm",
+        "arpc/arpc-networks/arpc-blockchain-networks",
+        "arpc/arpc-networks/arpc-fuel-fire-bridge",
+        "arpc/arpc-networks/arpc-supported-networks",
+        "arpc/arpc-security/arpc-security-model",
+        "arpc/arpc-security/arpc-zk-trustless-universal-settlement",
+        "arpc/arpc-development/arpc-local-development",
+        "arpc/arpc-development/arpc-testing",
+        "arpc/arpc-development/sdk/arpc-javascript",
+        "arpc/arpc-development/sdk/arpc-python",
+        "arpc/arpc-development/sdk/arpc-rust",
+        "arpc/arpc-development/sdk/arpc-golang",
+        "arpc/arpc-development/sdk/arpc-vue",
+        "coin-chain-builders/coinfi-build/builders-navigation",
+        "coin-chain-builders/coinfi-build/cosmos/main-cosmos-docs",
+        "coin-chain-builders/coinfi-build/transactions/chain-transactions",
+        "coin-chain-builders/coinfi-build/coinfi-introduction/chain-introduction",
+        "coin-chain-builders/coinfi-build/cosmos/building-applications/app-go-genesis",
+        "coin-chain-builders/coinfi-build/cosmos/building-applications/application-mempool",
+        "coin-chain-builders/coinfi-build/cosmos/building-applications/application-upgrade",
+        "coin-chain-builders/coinfi-build/cosmos/building-applications/security-handbook",
+        "coin-chain-builders/coinfi-build/cosmos/building-applications/system-tests",
+        "coin-chain-builders/coinfi-build/cosmos/building-applications/upgrade-tutorials",
+        "coin-chain-builders/coinfi-build/cosmos/building-applications/what-is-runtime",
+        "coin-chain-builders/coinfi-build/modules/dauth/dauth-keeper",
+        "coin-chain-builders/coinfi-build/modules/dauth/dauth-module-introduction",
+        "coin-chain-builders/coinfi-build/modules/dauth/dauth-state",
+        "coin-chain-builders/coinfi-build/modules/dauth/dauth-types",
+        "coin-chain-builders/coinfi-build/modules/dauth/dauth-client",
+        "coin-chain-builders/coinfi-build/modules/aamm/aamm-client",
+        "coin-chain-builders/coinfi-build/modules/aamm/aamm-keeper",
+        "coin-chain-builders/coinfi-build/modules/aamm/aamm-module-introduction",
+        "coin-chain-builders/coinfi-build/modules/aamm/aamm-state",
+        "coin-chain-builders/coinfi-build/modules/aamm/aamm-types",
+        "coin-chain-builders/beacon-node/beacon-ignition/beacon-node-prerequisites",
+        "coin-chain-builders/beacon-node/beacon-ignition/beacon-node-setup",
+        "coin-chain-builders/beacon-node/beacon-ignition/mainnet-beacon",
+        "coin-chain-builders/beacon-node/beacon-ignition/testnet-beacon",
+        "coin-chain-builders/beacon-node/fuel-fire/beacon-records",
+        "coin-chain-builders/beacon-node/fuel-fire/fuel-fire-overview",
+        "coin-chain-builders/beacon-node/beacon-about",
+        "coin-chain-builders/beacon-node/beacon-ignition/beacon-verified-addresses/verified-assets",
+        "coin-chain-builders/beacon-node/beacon-ignition/beacon-verified-addresses/verified-contracts",
+        "ecosystem-programs/dauth-referrel-program"
       ]
     }
   ],

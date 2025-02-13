@@ -1,7 +1,7 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "CoinFi",
+  "name": "Starter Kit",
   "colors": {
     "primary": "#0D9373",
     "light": "#07C983",
@@ -41,7 +41,9 @@
                   "coin-chain-builders/application-overview",
                   "coin-chain-builders/smart-contracts",
                   "coin-chain-builders/solidity-guide",
-                  "coin-chain-builders/precompiled-contracts"
+                  "coin-chain-builders/precompiled-contracts",
+                  "coin-chain-builders/coinfi-build/builders-navigation",
+                  "coin-chain-builders/coinfi-build/cosmos/main-cosmos-docs"
                 ]
               },
               {
@@ -81,6 +83,30 @@
               "arpc/zkm-trustless-universal-settlement",
               "arpc/testing",
               "arpc/local-development"
+            ]
+          },
+          {
+            "group": "aRPC SDKs",
+            "pages": [
+              "arpc/arpc-development/sdk/arpc-javascript",
+              "arpc/arpc-development/sdk/arpc-python",
+              "arpc/arpc-development/sdk/arpc-rust",
+              "arpc/arpc-development/sdk/arpc-golang",
+              "arpc/arpc-development/sdk/arpc-vue",
+              {
+                "group": "zk-hpng Fullmen",
+                "pages": [
+                  "arpc/arpc-development/sdk/zk-hpng-fullmen-rwp/hashkey-specification",
+                  "arpc/arpc-development/sdk/zk-hpng-fullmen-rwp/zkHPNG/zkhpng-viewkey",
+                  "arpc/arpc-development/sdk/zk-hpng-fullmen-rwp/FULLMEN/fullmen-proof",
+                  "arpc/arpc-development/sdk/zk-hpng-fullmen-rwp/FULLMEN/fullmen-root-commits",
+                  "arpc/arpc-development/sdk/zk-hpng-fullmen-rwp/FULLMEN/fullmen-commitments",
+                  "arpc/arpc-development/sdk/zk-hpng-fullmen-rwp/FULLMEN/fullmen-encryption-library",
+                  "arpc/arpc-development/sdk/zk-hpng-fullmen-rwp/FULLMEN/fullmen-nonce",
+                  "arpc/arpc-development/sdk/zk-hpng-fullmen-rwp/FULLMEN/fullmen-seed",
+                  "arpc/arpc-development/sdk/zk-hpng-fullmen-rwp/zkHPNG/zkhpng-standard-code"
+                ]
+              }
             ]
           },
           {
@@ -160,4 +186,4 @@
       "linkedin": "https://linkedin.com/company/mintlify"
     }
   }
-}
+} 

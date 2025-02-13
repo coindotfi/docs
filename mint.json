@@ -1,6 +1,6 @@
 {
   "$schema": "https://mintlify.com/schema.json",
-  "name": "CoinFi",
+  "name": "Starter Kit",
   "logo": {
     "dark": "/logo/dark.svg",
     "light": "/logo/light.svg"
@@ -27,8 +27,12 @@
   },
   "tabs": [
     {
+      "name": "Documentation",
+      "url": "introduction"
+    },
+    {
       "name": "API Reference",
-      "url": "api-reference"
+      "url": "api-reference/introduction"
     }
   ],
   "anchors": [
@@ -69,20 +73,6 @@
       ]
     },
     {
-      "group": "API Documentation",
-      "pages": [
-        "api-reference/introduction"
-      ]
-    },
-    {
-      "group": "Endpoint Examples",
-      "pages": [
-        "api-reference/endpoint/get",
-        "api-reference/endpoint/create",
-        "api-reference/endpoint/delete"
-      ]
-    },
-    {
       "group": "Coin Chain Builders",
       "pages": [
         {
@@ -91,7 +81,9 @@
             "coin-chain-builders/application-overview",
             "coin-chain-builders/smart-contracts",
             "coin-chain-builders/solidity-guide",
-            "coin-chain-builders/precompiled-contracts"
+            "coin-chain-builders/precompiled-contracts",
+            "coin-chain-builders/coinfi-build/builders-navigation",
+            "coin-chain-builders/coinfi-build/cosmos/main-cosmos-docs"
           ]
         },
         {
@@ -130,7 +122,31 @@
         "arpc/security-model",
         "arpc/zkm-trustless-universal-settlement",
         "arpc/testing",
-        "arpc/local-development"
+        "arpc/local-development",
+        {
+          "group": "aRPC SDKs",
+          "pages": [
+            "arpc/arpc-development/sdk/arpc-javascript",
+            "arpc/arpc-development/sdk/arpc-python",
+            "arpc/arpc-development/sdk/arpc-rust",
+            "arpc/arpc-development/sdk/arpc-golang",
+            "arpc/arpc-development/sdk/arpc-vue",
+            {
+              "group": "zk-hpng Fullmen",
+              "pages": [
+                "arpc/arpc-development/sdk/zk-hpng-fullmen-rwp/hashkey-specification",
+                "arpc/arpc-development/sdk/zk-hpng-fullmen-rwp/zkHPNG/zkhpng-viewkey",
+                "arpc/arpc-development/sdk/zk-hpng-fullmen-rwp/FULLMEN/fullmen-proof",
+                "arpc/arpc-development/sdk/zk-hpng-fullmen-rwp/FULLMEN/fullmen-root-commits",
+                "arpc/arpc-development/sdk/zk-hpng-fullmen-rwp/FULLMEN/fullmen-commitments",
+                "arpc/arpc-development/sdk/zk-hpng-fullmen-rwp/FULLMEN/fullmen-encryption-library",
+                "arpc/arpc-development/sdk/zk-hpng-fullmen-rwp/FULLMEN/fullmen-nonce",
+                "arpc/arpc-development/sdk/zk-hpng-fullmen-rwp/FULLMEN/fullmen-seed",
+                "arpc/arpc-development/sdk/zk-hpng-fullmen-rwp/zkHPNG/zkhpng-standard-code"
+              ]
+            }
+          ]
+        }
       ]
     },
     {

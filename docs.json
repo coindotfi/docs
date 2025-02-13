@@ -7,14 +7,15 @@
     "light": "#f19542",
     "dark": "#090f2b"
   },
-  "favicon": "logo/coinfi-icon.svg",
+  "favicon": "/logo/coinfi-icon.svg",
   "navigation": {
     "tabs": [
       {
-        "tab": "Documentation",
+        "tab": "Overview",
         "groups": [
           {
             "group": "Products",
+            "icon": "box",
             "pages": [
               "coinfi-explorer",
               "coinfi-wallet"
@@ -22,94 +23,9 @@
           },
           {
             "group": "Manifesto",
+            "icon": "pen",
             "pages": [
               "coin-chain-builders/coinfi-build/coinfi-introduction/coinfi-chain-manifesto"
-            ]
-          },
-          {
-            "group": "API Documentation",
-            "pages": [
-              "api-reference/endpoint/create",
-              "api-reference/endpoint/get",
-              "api-reference/endpoint/delete"
-            ]
-          },
-          {
-            "group": "ARPC",
-            "pages": [
-              "arpc/arpc-introduction/arpc-getting-started",
-              "arpc/arpc-introduction/arpc-guide-introduction",
-              "arpc/arpc-concepts/arpc-core-concepts",
-              "arpc/arpc-concepts/arpc-beacon-layer",
-              "arpc/arpc-concepts/arpc-app-chain-layer",
-              "arpc/arpc-concepts/arpc-qotp-protocol",
-              "arpc/arpc-concepts/arpc-quantum-ot-aamm",
-              "arpc/arpc-networks/arpc-blockchain-networks",
-              "arpc/arpc-networks/arpc-fuel-fire-bridge",
-              "arpc/arpc-networks/arpc-supported-networks",
-              "arpc/arpc-security/arpc-security-model",
-              "arpc/arpc-security/arpc-zk-trustless-universal-settlement",
-              "arpc/arpc-development/arpc-local-development",
-              "arpc/arpc-development/arpc-testing",
-              "arpc/arpc-development/sdk/arpc-javascript",
-              "arpc/arpc-development/sdk/arpc-python",
-              "arpc/arpc-development/sdk/arpc-rust",
-              "arpc/arpc-development/sdk/arpc-golang",
-              "arpc/arpc-development/sdk/arpc-vue",
-              "arpc/arpc-specifications/arpc-chain-specification",
-              "arpc/arpc-specifications/arpc-record",
-              "arpc/arpc-specifications/arpc-record-specification",
-              "arpc/arpc-development/sdk/zk-hpng-fullmen-rwp/zkHPNG-docs/zkhpng-viewkey",
-              "arpc/arpc-development/sdk/zk-hpng-fullmen-rwp/zkHPNG-docs/zkhpng-standard-code",
-              "arpc/arpc-development/sdk/zk-hpng-fullmen-rwp/zkHPNG-docs/zkhpng-configuration",
-              "arpc/arpc-development/sdk/zk-hpng-fullmen-rwp/zkHPNG-docs/zkhpng-introduction",
-              "arpc/arpc-development/sdk/zk-hpng-fullmen-rwp/zkHPNG-docs/zkhpng-groth16",
-              "arpc/arpc-development/sdk/zk-hpng-fullmen-rwp/fullmen-docs/fullmen-seed",
-              "arpc/arpc-development/sdk/zk-hpng-fullmen-rwp/fullmen-docs/fullmen-nonce",
-              "arpc/arpc-development/sdk/zk-hpng-fullmen-rwp/fullmen-docs/fullmen-encryption-library",
-              "arpc/arpc-development/sdk/zk-hpng-fullmen-rwp/fullmen-docs/fullmen-commitments",
-              "arpc/arpc-development/sdk/zk-hpng-fullmen-rwp/fullmen-docs/fullmen-root-commits",
-              "arpc/arpc-development/sdk/zk-hpng-fullmen-rwp/fullmen-docs/fullmen-proof",
-              "arpc/arpc-development/sdk/zk-hpng-fullmen-rwp/hpng-docs/hpng-introduction",
-              "arpc/arpc-development/sdk/zk-hpng-fullmen-rwp/hpng-docs/hpng-standard-code",
-              "arpc/arpc-development/sdk/zk-hpng-fullmen-rwp/hpng-docs/hpng-configuration",
-              "arpc/arpc-development/sdk/zk-hpng-fullmen-rwp/hashkey-specification"
-            ]
-          },
-          {
-            "group": "Chain Builders",
-            "pages": [
-              "coin-chain-builders/coinfi-build/builders-navigation",
-              "coin-chain-builders/coinfi-build/cosmos/main-cosmos-docs",
-              "coin-chain-builders/coinfi-build/transactions/chain-transactions",
-              "coin-chain-builders/coinfi-build/coinfi-introduction/chain-introduction",
-              "coin-chain-builders/coinfi-build/cosmos/building-applications/app-go-genesis",
-              "coin-chain-builders/coinfi-build/cosmos/building-applications/application-mempool",
-              "coin-chain-builders/coinfi-build/cosmos/building-applications/application-upgrade",
-              "coin-chain-builders/coinfi-build/cosmos/building-applications/security-handbook",
-              "coin-chain-builders/coinfi-build/cosmos/building-applications/system-tests",
-              "coin-chain-builders/coinfi-build/cosmos/building-applications/upgrade-tutorials",
-              "coin-chain-builders/coinfi-build/cosmos/building-applications/what-is-runtime",
-              "coin-chain-builders/coinfi-build/modules/dauth/dauth-keeper",
-              "coin-chain-builders/coinfi-build/modules/dauth/dauth-module-introduction",
-              "coin-chain-builders/coinfi-build/modules/dauth/dauth-state",
-              "coin-chain-builders/coinfi-build/modules/dauth/dauth-types",
-              "coin-chain-builders/coinfi-build/modules/dauth/dauth-client",
-              "coin-chain-builders/coinfi-build/modules/aamm/aamm-client",
-              "coin-chain-builders/coinfi-build/modules/aamm/aamm-keeper",
-              "coin-chain-builders/coinfi-build/modules/aamm/aamm-module-introduction",
-              "coin-chain-builders/coinfi-build/modules/aamm/aamm-state",
-              "coin-chain-builders/coinfi-build/modules/aamm/aamm-types",
-              "coin-chain-builders/beacon-node/beacon-ignition/beacon-node-prerequisites",
-              "coin-chain-builders/beacon-node/beacon-ignition/beacon-node-setup",
-              "coin-chain-builders/beacon-node/beacon-ignition/mainnet-beacon",
-              "coin-chain-builders/beacon-node/beacon-ignition/testnet-beacon",
-              "coin-chain-builders/beacon-node/fuel-fire/beacon-records",
-              "coin-chain-builders/beacon-node/fuel-fire/fuel-fire-overview",
-              "coin-chain-builders/beacon-node/beacon-about",
-              "coin-chain-builders/beacon-node/beacon-ignition/beacon-verified-addresses/verified-assets",
-              "coin-chain-builders/beacon-node/beacon-ignition/beacon-verified-addresses/verified-contracts",
-              "ecosystem-programs/dauth-referrel-program"
             ]
           }
         ]
@@ -119,6 +35,7 @@
         "groups": [
           {
             "group": "Getting Started",
+            "icon": "play",
             "pages": [
               "introduction"
             ]
@@ -129,9 +46,242 @@
         "tab": "API Reference",
         "groups": [
           {
-            "group": "API Documentation",
+            "group": "API Overview",
+            "icon": "info",
             "pages": [
               "api-reference/api-introduction"
+            ]
+          },
+          {
+            "group": "Endpoints",
+            "icon": "code",
+            "pages": [
+              "api-reference/endpoint/create",
+              "api-reference/endpoint/get",
+              "api-reference/endpoint/delete"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Developer Resources",
+        "groups": [
+          {
+            "group": "ARPC",
+            "icon": "book-open",
+            "pages": [
+              {
+                "group": "Concepts",
+                "icon": "slack",
+                "pages": [
+                  "arpc/arpc-concepts/arpc-app-chain-layer",
+                  "arpc/arpc-concepts/arpc-beacon-layer",
+                  "arpc/arpc-concepts/arpc-core-concepts",
+                  "arpc/arpc-concepts/arpc-qotp-protocol",
+                  "arpc/arpc-concepts/arpc-quantum-ot-aamm"
+                ]
+              },
+              {
+                "group": "Introduction",
+                "icon": "info",
+                "pages": [
+                  "arpc/arpc-introduction/arpc-getting-started",
+                  "arpc/arpc-introduction/arpc-guide-introduction"
+                ]
+              },
+              {
+                "group": "Networks",
+                "icon": "network-wired",
+                "pages": [
+                  "arpc/arpc-networks/arpc-blockchain-networks",
+                  "arpc/arpc-networks/arpc-fuel-fire-bridge",
+                  "arpc/arpc-networks/arpc-supported-networks"
+                ]
+              },
+              {
+                "group": "Security",
+                "icon": "shield",
+                "pages": [
+                  "arpc/arpc-security/arpc-security-model",
+                  "arpc/arpc-security/arpc-zk-trustless-universal-settlement"
+                ]
+              },
+              {
+                "group": "Development",
+                "icon": "code",
+                "pages": [
+                  "arpc/arpc-development/arpc-local-development",
+                  "arpc/arpc-development/arpc-testing",
+                  {
+                    "group": "SDKs",
+                    "icon": "terminal",
+                    "pages": [
+                      "arpc/arpc-development/sdk/arpc-javascript",
+                      "arpc/arpc-development/sdk/arpc-python",
+                      "arpc/arpc-development/sdk/arpc-rust",
+                      "arpc/arpc-development/sdk/arpc-golang",
+                      "arpc/arpc-development/sdk/arpc-vue"
+                    ]
+                  }
+                ]
+              },
+              {
+                "group": "Specifications",
+                "icon": "book",
+                "pages": [
+                  "arpc/arpc-specifications/arpc-chain-specification",
+                  "arpc/arpc-specifications/arpc-record",
+                  "arpc/arpc-specifications/arpc-record-specification"
+                ]
+              },
+              {
+                "group": "ZK HPNG Fullmen RWP",
+                "icon": "layers",
+                "pages": [
+                  {
+                    "group": "zkHPNG Docs",
+                    "icon": "file-code",
+                    "pages": [
+                      "arpc/arpc-development/sdk/zk-hpng-fullmen-rwp/zkHPNG-docs/zkhpng-viewkey",
+                      "arpc/arpc-development/sdk/zk-hpng-fullmen-rwp/zkHPNG-docs/zkhpng-standard-code",
+                      "arpc/arpc-development/sdk/zk-hpng-fullmen-rwp/zkHPNG-docs/zkhpng-configuration",
+                      "arpc/arpc-development/sdk/zk-hpng-fullmen-rwp/zkHPNG-docs/zkhpng-introduction",
+                      "arpc/arpc-development/sdk/zk-hpng-fullmen-rwp/zkHPNG-docs/zkhpng-groth16"
+                    ]
+                  },
+                  {
+                    "group": "Fullmen Docs",
+                    "icon": "file-alt",
+                    "pages": [
+                      "arpc/arpc-development/sdk/zk-hpng-fullmen-rwp/fullmen-docs/fullmen-seed",
+                      "arpc/arpc-development/sdk/zk-hpng-fullmen-rwp/fullmen-docs/fullmen-nonce",
+                      "arpc/arpc-development/sdk/zk-hpng-fullmen-rwp/fullmen-docs/fullmen-encryption-library",
+                      "arpc/arpc-development/sdk/zk-hpng-fullmen-rwp/fullmen-docs/fullmen-commitments",
+                      "arpc/arpc-development/sdk/zk-hpng-fullmen-rwp/fullmen-docs/fullmen-root-commits",
+                      "arpc/arpc-development/sdk/zk-hpng-fullmen-rwp/fullmen-docs/fullmen-proof"
+                    ]
+                  },
+                  {
+                    "group": "HPNG Docs",
+                    "icon": "file",
+                    "pages": [
+                      "arpc/arpc-development/sdk/zk-hpng-fullmen-rwp/hpng-docs/hpng-introduction",
+                      "arpc/arpc-development/sdk/zk-hpng-fullmen-rwp/hpng-docs/hpng-standard-code",
+                      "arpc/arpc-development/sdk/zk-hpng-fullmen-rwp/hpng-docs/hpng-configuration"
+                    ]
+                  },
+                  {
+                    "group": "Other",
+                    "icon": "question",
+                    "pages": [
+                      "arpc/arpc-development/sdk/zk-hpng-fullmen-rwp/hashkey-specification"
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "group": "Chain Builders",
+            "icon": "cubes",
+            "pages": [
+              {
+                "group": "CoinFi Build",
+                "icon": "build",
+                "pages": [
+                  "coin-chain-builders/coinfi-build/builders-navigation",
+                  "coin-chain-builders/coinfi-build/coinfi-introduction/chain-introduction",
+                  "coin-chain-builders/coinfi-build/transactions/chain-transactions"
+                ]
+              },
+              {
+                "group": "Cosmos",
+                "icon": "layers",
+                "pages": [
+                  "coin-chain-builders/coinfi-build/cosmos/main-cosmos-docs",
+                  {
+                    "group": "Building Applications",
+                    "icon": "code",
+                    "pages": [
+                      "coin-chain-builders/coinfi-build/cosmos/building-applications/app-go-genesis",
+                      "coin-chain-builders/coinfi-build/cosmos/building-applications/application-mempool",
+                      "coin-chain-builders/coinfi-build/cosmos/building-applications/application-upgrade",
+                      "coin-chain-builders/coinfi-build/cosmos/building-applications/security-handbook",
+                      "coin-chain-builders/coinfi-build/cosmos/building-applications/system-tests",
+                      "coin-chain-builders/coinfi-build/cosmos/building-applications/upgrade-tutorials",
+                      "coin-chain-builders/coinfi-build/cosmos/building-applications/what-is-runtime"
+                    ]
+                  }
+                ]
+              },
+              {
+                "group": "Modules",
+                "icon": "puzzle-piece",
+                "pages": [
+                  {
+                    "group": "Dauth",
+                    "icon": "user-check",
+                    "pages": [
+                      "coin-chain-builders/coinfi-build/modules/dauth/dauth-keeper",
+                      "coin-chain-builders/coinfi-build/modules/dauth/dauth-module-introduction",
+                      "coin-chain-builders/coinfi-build/modules/dauth/dauth-state",
+                      "coin-chain-builders/coinfi-build/modules/dauth/dauth-types",
+                      "coin-chain-builders/coinfi-build/modules/dauth/dauth-client"
+                    ]
+                  },
+                  {
+                    "group": "AAMM",
+                    "icon": "sliders-h",
+                    "pages": [
+                      "coin-chain-builders/coinfi-build/modules/aamm/aamm-client",
+                      "coin-chain-builders/coinfi-build/modules/aamm/aamm-keeper",
+                      "coin-chain-builders/coinfi-build/modules/aamm/aamm-module-introduction",
+                      "coin-chain-builders/coinfi-build/modules/aamm/aamm-state",
+                      "coin-chain-builders/coinfi-build/modules/aamm/aamm-types"
+                    ]
+                  }
+                ]
+              },
+              {
+                "group": "Beacon Node",
+                "icon": "broadcast-tower",
+                "pages": [
+                  {
+                    "group": "Beacon Ignition",
+                    "icon": "rocket",
+                    "pages": [
+                      "coin-chain-builders/beacon-node/beacon-ignition/beacon-node-prerequisites",
+                      "coin-chain-builders/beacon-node/beacon-ignition/beacon-node-setup",
+                      "coin-chain-builders/beacon-node/beacon-ignition/mainnet-beacon",
+                      "coin-chain-builders/beacon-node/beacon-ignition/testnet-beacon",
+                      {
+                        "group": "Verified Addresses",
+                        "icon": "check",
+                        "pages": [
+                          "coin-chain-builders/beacon-node/beacon-ignition/beacon-verified-addresses/verified-assets",
+                          "coin-chain-builders/beacon-node/beacon-ignition/beacon-verified-addresses/verified-contracts"
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "group": "Fuel Fire",
+                    "icon": "fire",
+                    "pages": [
+                      "coin-chain-builders/beacon-node/fuel-fire/beacon-records",
+                      "coin-chain-builders/beacon-node/fuel-fire/fuel-fire-overview"
+                    ]
+                  },
+                  "coin-chain-builders/beacon-node/beacon-about"
+                ]
+              },
+              {
+                "group": "Ecosystem",
+                "icon": "globe",
+                "pages": [
+                  "ecosystem-programs/dauth-referrel-program"
+                ]
+              }
             ]
           }
         ]
@@ -174,7 +324,7 @@
     "links": [
       {
         "label": "Email CoinFi",
-        "href": "mailto:dylan@coin.fi"
+        "href": "mailto:simon@coin.fi"
       }
     ],
     "primary": {

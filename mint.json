@@ -3,10 +3,10 @@
   "name": "CoinFi Documentation",
   "theme": "prism",
   "logo": {
-    "dark": "/logo/dark.svg",
-    "light": "/logo/light.svg"
+    "dark": "/logo/dark-coinfi.svg",
+    "light": "/logo/light-coinfi.svg"
   },
-  "favicon": "/coinfi-icon.svg",
+  "favicon": "/logo/coinfi-icon.svg",
   "colors": {
     "primary": "#1c356f",
     "light": "#f19542",
@@ -15,7 +15,7 @@
   "topbarLinks": [
     {
       "name": "Email CoinFi",
-      "url": "mailto:dylan@coin.fi"
+      "url": "mailto:simon@coin.fi"
     }
   ],
   "topbarCtaButton": {

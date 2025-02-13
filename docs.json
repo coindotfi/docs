@@ -7,7 +7,7 @@
     "light": "#f19542",
     "dark": "#090f2b"
   },
-  "favicon": "/coinfi-icon.svg",
+  "favicon": "logo/coinfi-icon.svg",
   "navigation": {
     "tabs": [
       {
@@ -163,8 +163,8 @@
     }
   },
   "logo": {
-    "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg"
+    "light": "/logo/light-coinfi.svg",
+    "dark": "/logo/dark-coinfi.svg"
   },
   "appearance": {
     "default": "light",

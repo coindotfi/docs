@@ -11,7 +11,7 @@
   "navigation": {
     "tabs": [
       {
-        "tab": "Overview",
+        "tab": "Documentation",
         "groups": [
           {
             "group": "Products",
@@ -27,45 +27,29 @@
             "pages": [
               "coin-chain-builders/coinfi-build/coinfi-introduction/coinfi-chain-manifesto"
             ]
-          }
-        ]
-      },
-      {
-        "tab": "Guide",
-        "groups": [
-          {
-            "group": "Getting Started",
-            "icon": "play",
-            "pages": [
-              "introduction"
-            ]
-          }
-        ]
-      },
-      {
-        "tab": "API Reference",
-        "groups": [
-          {
-            "group": "API Overview",
-            "icon": "info",
-            "pages": [
-              "api-reference/api-introduction"
-            ]
           },
           {
-            "group": "Endpoints",
+            "group": "API Documentation",
             "icon": "code",
             "pages": [
-              "api-reference/endpoint/create",
-              "api-reference/endpoint/get",
-              "api-reference/endpoint/delete"
+              {
+                "group": "API Overview",
+                "icon": "info",
+                "pages": [
+                  "api-reference/api-introduction"
+                ]
+              },
+              {
+                "group": "Endpoints",
+                "icon": "code",
+                "pages": [
+                  "api-reference/endpoint/create",
+                  "api-reference/endpoint/get",
+                  "api-reference/endpoint/delete"
+                ]
+              }
             ]
-          }
-        ]
-      },
-      {
-        "tab": "Developer Resources",
-        "groups": [
+          },
           {
             "group": "ARPC",
             "icon": "book-open",
@@ -285,32 +269,20 @@
             ]
           }
         ]
+      },
+      {
+        "tab": "Guide",
+        "groups": [
+          {
+            "group": "Getting Started",
+            "icon": "play",
+            "pages": [
+              "introduction"
+            ]
+          }
+        ]
       }
-    ],
-    "global": {
-      "anchors": [
-        {
-          "anchor": "Coin-Auth Game",
-          "href": "https://coin.fi",
-          "icon": "omega"
-        },
-        {
-          "anchor": "Community Chat",
-          "href": "https://t.me/+3OjsGsfY3n5iNzIx",
-          "icon": "person"
-        },
-        {
-          "anchor": "Developer Hub",
-          "href": "https://github.com/enterprises/coinfi/organizations",
-          "icon": "git"
-        },
-        {
-          "anchor": "CoinFi Tweets",
-          "href": "https://x.com/CoinDotFi",
-          "icon": "X"
-        }
-      ]
-    }
+    ]
   },
   "logo": {
     "light": "/logo/light-coinfi.svg",

@@ -286,30 +286,30 @@
     "global": {
       "anchors": [
         {
-          "anchor": "Coin-Auth Game",
-          "href": "https://coin.fi",
-          "icon": "omega"
+          "name": "Coin-Auth Game",
+          "icon": "omega",
+          "url": "https://coin.fi"
         },
         {
-          "anchor": "Community Chat",
-          "href": "https://t.me/+3OjsGsfY3n5iNzIx",
-          "icon": "person"
+          "name": "Community Chat",
+          "icon": "telegram",
+          "url": "https://t.me/+3OjsGsfY3n5iNzIx"
         },
         {
-          "anchor": "Developer Hub",
-          "href": "https://github.com/enterprises/coinfi/organizations",
-          "icon": "git"
+          "name": "Developer Hub",
+          "icon": "code",
+          "url": "https://github.com/enterprises/coinfi/organizations"
         },
         {
-          "anchor": "CoinFi Tweets",
-          "href": "https://x.com/CoinDotFi",
-          "icon": "X"
+          "name": "CoinFi Tweets",
+          "icon": "x-twitter",
+          "url": "https://x.com/CoinDotFi"
         }
       ]
     }
   },
   "logo": {
-    "light": " /logo/dark-coin.svg",
+    "light": "/logo/dark-coin.svg",
     "dark": "/logo/light-coins.svg"
   },
   "appearance": {

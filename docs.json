@@ -334,8 +334,8 @@
     }
   },
   "logo": {
-    "light": "logo/png-coinfi-dark.png",
-    "dark": "logo/png-coinfi-light.png"
+    "light": "logo/200x200-coinfi-dark.png",
+    "dark": "logo/200x200-coinfi-light.png"
   },
   "appearance": {
     "default": "light",

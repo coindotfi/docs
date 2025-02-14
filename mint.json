@@ -3,8 +3,8 @@
   "name": "CoinFi Documentation",
   "theme": "venus",
   "logo": {
-    "dark": "logo/png-coinfi-light.png",
-    "light": "logo/png-coinfi-dark.png"
+    "dark": "logo/200x200-coinfi-light.png",
+    "light": "logo/200x200-coinfi-dark.png"
   },
   "favicon": "/logo/coinfi-icon.svg",
   "colors": {

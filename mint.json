@@ -594,7 +594,7 @@
         },
         {
           "group": "Security",
-          "icon": "M",
+          "icon": "infinity",
           "pages": [
             "arpc/arpc-security/arpc-security-model",
             "arpc/arpc-security/arpc-zk-trustless-universal-settlement"
@@ -602,7 +602,7 @@
         },
         {
           "group": "Development",
-          "icon": "P",
+          "icon": "empty-set",
           "pages": [
             "arpc/arpc-development/arpc-local-development",
             "arpc/arpc-development/arpc-testing",
@@ -621,7 +621,7 @@
         },
         {
           "group": "Specifications",
-          "icon": "X",
+          "icon": "lambda",
           "pages": [
             "arpc/arpc-specifications/arpc-chain-specification",
             "arpc/arpc-specifications/arpc-record",
@@ -630,7 +630,7 @@
         },
         {
           "group": "ZK HPNG Fullmen RWP",
-          "icon": "pi",
+          "icon": "function",
           "pages": [
             {
               "group": "zkHPNG Docs",
@@ -681,7 +681,7 @@
       "pages": [
         {
           "group": "CoinFi Build",
-          "icon": "build",
+          "icon": "laptop-binary",
           "pages": [
             "coin-chain-builders/coinfi-build/builders-navigation",
             "coin-chain-builders/coinfi-build/coinfi-introduction/chain-introduction",
@@ -690,7 +690,8 @@
         },
         {
           "group": "Cosmos",
-          "icon": "layers",
+          "icon": "cat-space",
+          "iconType": "solid",
           "pages": [
             "coin-chain-builders/coinfi-build/cosmos/main-cosmos-docs",
             {
@@ -710,7 +711,8 @@
         },
         {
           "group": "Modules",
-          "icon": "puzzle-piece",
+          "icon": "modx",
+          "iconType": "solid",
           "pages": [
             {
               "group": "Dauth",
@@ -738,7 +740,8 @@
         },
         {
           "group": "Beacon Node",
-          "icon": "broadcast-tower",
+          "icon": "lighthouse",
+          "iconType": "solid",
           "pages": [
             {
               "group": "Beacon Ignition",
@@ -771,7 +774,7 @@
         },
         {
           "group": "Ecosystem",
-          "icon": "globe",
+          "icon": "leaf-heart",
           "pages": [
             "ecosystem-programs/dauth-referrel-program"
           ]

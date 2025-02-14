@@ -334,8 +334,8 @@
     }
   },
   "logo": {
-    "light": " /logo/dark-coin.svg",
-    "dark": "/logo/light-coins.svg"
+    "light": "logo/png-coinfi-dark.png",
+    "dark": "logo/png-coinfi-light.png"
   },
   "appearance": {
     "default": "light",

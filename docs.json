@@ -1,6 +1,6 @@
 {
   "$schema": "https://mintlify.com/docs.json",
-  "theme": "mint",
+  "theme": "palm",
   "name": "CoinFi Documentation",
   "colors": {
     "primary": "#1c356f",
@@ -285,8 +285,8 @@
     ]
   },
   "logo": {
-    "light": "/logo/light-coinfi.svg",
-    "dark": "/logo/dark-coinfi.svg"
+    "light": " /logo/dark-coin.svg",
+    "dark": "/logo/light-coins.svg"
   },
   "appearance": {
     "default": "light",

@@ -1,10 +1,10 @@
 {
   "$schema": "https://mintlify.com/schema.json",
   "name": "CoinFi Documentation",
-  "theme": "prism",
+  "theme": "venus",
   "logo": {
-    "dark": "/logo/dark-coinfi.svg",
-    "light": "/logo/light-coinfi.svg"
+    "dark": "/logo/light-coins.svg",
+    "light": " /logo/dark-coin.svg"
   },
   "favicon": "/logo/coinfi-icon.svg",
   "colors": {
@@ -22,6 +22,28 @@
     "name": "Create Coin Wallet",
     "url": "https://coin.fi"
   },
+  "anchors": [
+    {
+      "name": "Coin-Auth Game",
+      "icon": "omega",
+      "url": "https://coin.fi"
+    },
+    {
+      "name": "Community Chat",
+      "icon": "telegram",
+      "url": "https://t.me/+3OjsGsfY3n5iNzIx"
+    },
+    {
+      "name": "Developer Hub",
+      "icon": "code",
+      "url": "https://github.com/enterprises/coinfi/organizations"
+    },
+    {
+      "name": "CoinFi Tweets",
+      "icon": "x-twitter",
+      "url": "https://x.com/CoinDotFi"
+    }
+  ],
   "tabs": [
     {
       "name": "Overview",
@@ -496,7 +518,7 @@
     },
     {
       "group": "Products",
-      "icon": "box",
+      "icon": "#",
       "pages": [
         "coinfi-explorer",
         "coinfi-wallet"
@@ -515,14 +537,16 @@
       "pages": [
         {
           "group": "API Overview",
-          "icon": "info",
+          "icon": "worm",
+          "iconType": "solid",
           "pages": [
             "api-reference/api-introduction"
           ]
         },
         {
           "group": "Endpoints",
-          "icon": "code",
+          "icon": "fishing-rod",
+          "iconType": "solid",
           "pages": [
             "api-reference/endpoint/create",
             "api-reference/endpoint/get",
@@ -530,14 +554,25 @@
           ]
         }
       ]
+     
     },
     {
       "group": "ARPC",
-      "icon": "book-open",
+      "icon": "#",
       "pages": [
         {
+          "group": "Introduction",
+          "icon": "theta",
+          "iconType": "solid",
+          "pages": [
+            "arpc/arpc-introduction/arpc-getting-started",
+            "arpc/arpc-introduction/arpc-guide-introduction"
+          ]
+        },
+        {
           "group": "Concepts",
-          "icon": "slack",
+          "icon": "pi",
+          "iconType": "solid",
           "pages": [
             "arpc/arpc-concepts/arpc-app-chain-layer",
             "arpc/arpc-concepts/arpc-beacon-layer",
@@ -547,16 +582,10 @@
           ]
         },
         {
-          "group": "Introduction",
-          "icon": "info",
-          "pages": [
-            "arpc/arpc-introduction/arpc-getting-started",
-            "arpc/arpc-introduction/arpc-guide-introduction"
-          ]
-        },
-        {
           "group": "Networks",
-          "icon": "network-wired",
+          "icon": "sigma",
+          "iconType": "solid",
+          
           "pages": [
             "arpc/arpc-networks/arpc-blockchain-networks",
             "arpc/arpc-networks/arpc-fuel-fire-bridge",
@@ -565,7 +594,7 @@
         },
         {
           "group": "Security",
-          "icon": "shield",
+          "icon": "infinity",
           "pages": [
             "arpc/arpc-security/arpc-security-model",
             "arpc/arpc-security/arpc-zk-trustless-universal-settlement"
@@ -573,7 +602,7 @@
         },
         {
           "group": "Development",
-          "icon": "code",
+          "icon": "empty-set",
           "pages": [
             "arpc/arpc-development/arpc-local-development",
             "arpc/arpc-development/arpc-testing",
@@ -592,7 +621,7 @@
         },
         {
           "group": "Specifications",
-          "icon": "book",
+          "icon": "lambda",
           "pages": [
             "arpc/arpc-specifications/arpc-chain-specification",
             "arpc/arpc-specifications/arpc-record",
@@ -601,7 +630,7 @@
         },
         {
           "group": "ZK HPNG Fullmen RWP",
-          "icon": "layers",
+          "icon": "function",
           "pages": [
             {
               "group": "zkHPNG Docs",
@@ -652,7 +681,7 @@
       "pages": [
         {
           "group": "CoinFi Build",
-          "icon": "build",
+          "icon": "laptop-binary",
           "pages": [
             "coin-chain-builders/coinfi-build/builders-navigation",
             "coin-chain-builders/coinfi-build/coinfi-introduction/chain-introduction",
@@ -661,7 +690,8 @@
         },
         {
           "group": "Cosmos",
-          "icon": "layers",
+          "icon": "cat-space",
+          "iconType": "solid",
           "pages": [
             "coin-chain-builders/coinfi-build/cosmos/main-cosmos-docs",
             {
@@ -681,7 +711,8 @@
         },
         {
           "group": "Modules",
-          "icon": "puzzle-piece",
+          "icon": "modx",
+          "iconType": "solid",
           "pages": [
             {
               "group": "Dauth",
@@ -709,7 +740,8 @@
         },
         {
           "group": "Beacon Node",
-          "icon": "broadcast-tower",
+          "icon": "lighthouse",
+          "iconType": "solid",
           "pages": [
             {
               "group": "Beacon Ignition",
@@ -742,7 +774,7 @@
         },
         {
           "group": "Ecosystem",
-          "icon": "globe",
+          "icon": "leaf-heart",
           "pages": [
             "ecosystem-programs/dauth-referrel-program"
           ]
@@ -759,4 +791,5 @@
     "default": "light",
     "isHidden": false
   }
+  
 }

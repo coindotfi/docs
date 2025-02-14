@@ -6,15 +6,15 @@ description: "Welcome to CoinFi - Building the future of quantum-safe blockchain
 <Frame>
   <img
     className="block dark:hidden"
-    src="/logo/dark-coinfi.svg"
+    src="/logo/coin-rain.svg"
     alt="CoinFi Platform"
-    width="300"
+    
   />
   <img
     className="hidden dark:block"
-    src="/logo/light-coinfi.svg" 
+    src="/logo/white-coin-rain.svg" 
     alt="CoinFi Platform"
-    width="300"
+    
   />
 </Frame>
 
@@ -30,12 +30,16 @@ CoinFi is pioneering quantum-resistant blockchain technology to secure the next 
 
 <CardGroup cols={2}>
   <Card
-    title="Quantum One Time Pad Game"
-    icon="shield"
+    title="Coin Auth"
     href="https://coin.fi/"
     color="#1c356f"
   >
     <div className="mt-2">
+     <img
+        height="200"
+        src="logo/color-coin.svg"
+        className="mb-4"
+      />
       **Post-Quantum Security for Your Assets**
       - Quantum-resistant encryption
       - Earn rewards through learning
@@ -44,7 +48,7 @@ CoinFi is pioneering quantum-resistant blockchain technology to secure the next 
   </Card>
   <Card
     title="CoinFi Explorer" 
-    icon="magnifying-glass-chart"
+    icon="chart-line"
     href="https://console.coin.ga/coinfi/fuel-explorer"
     color="#f19542"
   >
@@ -62,7 +66,7 @@ CoinFi is pioneering quantum-resistant blockchain technology to secure the next 
 <CardGroup cols={3}>
   <Card
     title="API Reference"
-    icon="code"
+    icon={<img src="logo/blue-coinfi.svg" alt="API Reference Icon" />}
     href="/api-reference/api-introduction"
     color="#00B0BB"
   >
@@ -72,27 +76,27 @@ CoinFi is pioneering quantum-resistant blockchain technology to secure the next 
     </div>
   </Card>
   <Card
-    title="SDK Access"
-    icon="puzzle-piece"
+    title="CoinAuth SDK"
+    icon={<img src="logo/wheel-of-color.svg" alt="API Reference Icon" />}
     href="/arpc/arpc-development/sdk/arpc-javascript"
     color="#00DB65"
   >
     <div className="mt-2">
-      Powerful SDKs for your preferred stack:
-      - 🟨 JavaScript/TypeScript - Web2/Web3 zkHPNG-Fullmen-RWP Prover/Verifier Library
-      - 🐍 Python - FastAPI, and Pyodide support
-      - 🦀 Rust - System Lvl QOTP Support
-      - 🐹 Golang - CometBFT & Tendermint Support
+      Choose your stack:
+      - 🟨 JavaScript
+      - 🐍 Python
+      - 🦀 Rust
+      - 🐹 Golang
     </div>
   </Card>
   <Card
-    title="Documentation"
-    icon="book-open"
+    title="aRPC Documentation"
+    icon="omega"
     href="/arpc/arpc-introduction/arpc-guide-introduction"
-    color="#1c356f"
+    color="#f19542"
   >
     <div className="mt-2">
-      Comprehensive guides and tutorials for all skill levels
+      This is the aRPC documentation for authentication wallets, remote attestations, and all things related to quantum signing.
     </div>
   </Card>
 </CardGroup>
@@ -101,30 +105,40 @@ CoinFi is pioneering quantum-resistant blockchain technology to secure the next 
 
 <CardGroup cols={2}>
   <Card
-    title="CoinFi Wallet"
-    icon={<img src="logo/light-coinfi.svg" alt="CoinFi-icon-Logo" />}
     href="https://coin.fi"
     color="#f19542"
   >
-    <div className="mt-2">
-      **Next-Gen Asset Management**
-      - Multi-chain support
-      - Hardware wallet integration
-      - DeFi protocol access
-      <Badge text="Q2 2024" className="mt-2"/>
+    <div className="p-4">
+      <img 
+        height="200" 
+        src="logo/coin-wallet-2.svg"
+        className="mb-4" 
+      />
+      <div>
+        **Next-Gen Asset Management**
+        - Multi-chain support
+        - Hardware wallet integration 
+        - DeFi protocol access
+        <Badge text="Q2 2024" className="mt-2"/>
+      </div>
     </div>
   </Card>
   <Card
-    title="Join the Community"
-    icon={<img src="logo/coinfi-icon.svg" alt="CoinFi-icon-Logo" />}
     href="https://t.me/+3OjsGsfY3n5iNzIx"
     color="#1c356f"
   >
-    <div className="mt-2">
-      **Be Part of the Revolution**
-      - Active developer community
-      - Regular tech meetups
-      - Early access to features
+    <div className="p-4">
+      <img
+        height="200"
+        src="logo/coin-chain-3.svg"
+        className="mb-4"
+      />
+      <div>
+        **Be Part of the Revolution**
+        - Active developer community
+        - Regular tech meetups
+        - Early access to features
+      </div>
     </div>
   </Card>
 </CardGroup>

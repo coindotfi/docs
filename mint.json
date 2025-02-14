@@ -521,7 +521,8 @@
       "icon": "#",
       "pages": [
         "coinfi-explorer",
-        "coinfi-wallet"
+        "coinfi-wallet", 
+        "coinfi-aamm"
       ]
     },
     {

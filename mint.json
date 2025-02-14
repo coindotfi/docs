@@ -6,7 +6,7 @@
     "dark": "logo/200x200-coinfi-light.png",
     "light": "logo/200x200-coinfi-dark.png"
   },
-  "favicon": "/logo/coinfi-icon.svg",
+  "favicon": "/logo/32x32-favicon-coinfi-orange.png",
   "colors": {
     "primary": "#1c356f",
     "light": "#f19542",
@@ -36,12 +36,12 @@
     {
       "name": "Developer Hub",
       "icon": "code",
-      "url": "https://github.com/enterprises/coinfi/organizations"
+      "url": "https://github.com/coindotfi"
     },
     {
       "name": "CoinFi Tweets",
       "icon": "x-twitter",
-      "url": "https://x.com/CoinDotFi"
+      "url": "https://x.com/coindotfi"
     }
   ],
   "tabs": [
@@ -784,9 +784,9 @@
     }
   ],
   "footerSocials": {
-    "x": "https://x.com/mintlify",
-    "github": "https://github.com/mintlify",
-    "linkedin": "https://linkedin.com/company/mintlify"
+    "x": "https://x.com/coindotfi",
+    "github": "https://github.com/coindotfi",
+    "linkedin": "https://www.linkedin.com/company/coindotfi/"
   },
   "modeToggle": {
     "default": "light",

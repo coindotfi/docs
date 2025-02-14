@@ -22,6 +22,28 @@
     "name": "Create Coin Wallet",
     "url": "https://coin.fi"
   },
+  "anchors": [
+    {
+      "name": "Coin-Auth Game",
+      "icon": "omega",
+      "url": "https://coin.fi"
+    },
+    {
+      "name": "Community Chat",
+      "icon": "person",
+      "url": "https://t.me/+3OjsGsfY3n5iNzIx"
+    },
+    {
+      "name": "Developer Hub",
+      "icon": "git",
+      "url": "https://github.com/enterprises/coinfi/organizations"
+    },
+    {
+      "name": "CoinFi Tweets",
+      "icon": "X",
+      "url": "https://x.com/CoinDotFi"
+    }
+  ],
   "tabs": [
     {
       "name": "Overview",
@@ -530,6 +552,7 @@
           ]
         }
       ]
+     
     },
     {
       "group": "ARPC",
@@ -759,4 +782,5 @@
     "default": "light",
     "isHidden": false
   }
+  
 }

@@ -282,7 +282,31 @@
           }
         ]
       }
-    ]
+    ],
+    "global": {
+      "anchors": [
+        {
+          "anchor": "Coin-Auth Game",
+          "href": "https://coin.fi",
+          "icon": "omega"
+        },
+        {
+          "anchor": "Community Chat",
+          "href": "https://t.me/+3OjsGsfY3n5iNzIx",
+          "icon": "person"
+        },
+        {
+          "anchor": "Developer Hub",
+          "href": "https://github.com/enterprises/coinfi/organizations",
+          "icon": "git"
+        },
+        {
+          "anchor": "CoinFi Tweets",
+          "href": "https://x.com/CoinDotFi",
+          "icon": "X"
+        }
+      ]
+    }
   },
   "logo": {
     "light": " /logo/dark-coin.svg",

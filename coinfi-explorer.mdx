@@ -1,29 +1,30 @@
 ---
-title: "CoinFi Explorer"
+title: "Notary | Authenticatication RPC + Record Explorer"
 description: "Discover detailed insights within the CoinFi ecosystem."
-sidebarTitle: "Notary"
+sidebarTitle: "Notary, honeypot phishing attacks"
 ---
 
 <div
   style={{
-    maxWidth: "180px",
-    maxHeight: "100px",
+    width: "180px",
+    height: "50px",
     padding: "11px",
     borderRadius: "20px",
     backgroundColor: "#F7931A",
     border: "3px solid white",
-    textAlign: "center-right",
-    fontFamily: "Arial, object-sans"
+    // We'll use 'relative' positioning in case we want to tweak the layout inside.
+    position: "relative",
+    fontFamily: "Arial, sans-serif"
   }}
 >
   <div
     id="player-controls"
     style={{
+      // Arrange buttons + time in a row, evenly spaced
       display: "flex",
-      justifyContent: "center-bottom",
-      alignItems: "center-bottom",
-      gap: "15px",
-      flexWrap: "wrap"
+      alignItems: "center",
+      justifyContent: "space-between",
+      height: "100%"
     }}
   >
     <button
@@ -32,8 +33,9 @@ sidebarTitle: "Notary"
         fontSize: "30px",
         cursor: "pointer",
         color: "#FFD7A8",
-        
-       
+        background: "none",
+        border: "none",
+        outline: "none"
       }}
     >
       ►
@@ -44,8 +46,9 @@ sidebarTitle: "Notary"
         fontSize: "30px",
         cursor: "pointer",
         color: "#FFD7A8",
-        
-        
+        background: "none",
+        border: "none",
+        outline: "none"
       }}
     >
       ↺
@@ -56,6 +59,9 @@ sidebarTitle: "Notary"
         fontSize: "30px",
         cursor: "pointer",
         color: "#FFD7A8",
+        background: "none",
+        border: "none",
+        outline: "none"
       }}
     >
       ↻
@@ -65,13 +71,14 @@ sidebarTitle: "Notary"
       style={{
         color: "#FFD7A8",
         fontSize: "15px",
-        textAlign: "center-bottom"
+        marginLeft: "8px"
       }}
     >
       00:00
     </div>
   </div>
 </div>
+
 <div
   id="video-container"
   style={{
@@ -79,7 +86,6 @@ sidebarTitle: "Notary"
     width: "1px",
     height: "1px",
     overflow: "hidden"
-    
   }}
 ></div>
 
@@ -170,4 +176,22 @@ sidebarTitle: "Notary"
 
 # CoinFi Explorer
 
-Dive deep into the CoinFi Explorer to uncover market trends, analyze asset data, and stay up to date with the latest ecosystem innovations.
+Discover the power of our CoinFi Explorer. Visit the [CoinFi Fuel Explorer](https://console.coin.ga/coinfi/fuel-explorer) to delve into the mechanics behind phishing attacks in the Web3 ecosystem.
+
+## Uncovering Phishing Threats
+
+Phishing attacks jeopardize everyday wallet users, infrastructure providers, and crypto-based financial systems by deceiving them into revealing sensitive credentials. This exploitation often leads to wallet breaches and unauthorized transactions.
+
+## Innovative Wallet Security with Coin.fi Notary
+
+Coin.fi Notary transforms traditional security by moving beyond the sole reliance on public and private keys. It harnesses the Rosario Wang Proof—a witness accumulator similar to Zero Knowledge Proofs—backed by a natural private account abstraction layer (sometimes described as a cybernetic cryptographic function of the mind). This innovative approach makes it exceedingly difficult for attackers to guess a user's wallet password, even under full surveillance.
+
+## Robust Anti-Phishing Measures
+
+- **Enhanced Infrastructure:** A rigorous, research-backed authorization tactic now supported by global institutions.
+- **Distributed Verification:** Quantum One Time Passkeys are recorded on the ARPC blockchain, operating as the beacon node for real-time, authenticated transactions.
+- **Comprehensive Logging:** Every passkey attempt—whether via biometric verification or traditional wallet logins—is recorded to enable immediate detection and defense.
+- **Swift Breach Response:** In the event of a breach, the system helps expose attackers and alerts authorities (including the FBI) to safeguard your funds and assets.
+
+**Not your password, not your $COIN!**
+

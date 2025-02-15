@@ -1,9 +1,102 @@
 ---
 title: "CoinFi Explorer"
 description: "Discover detailed insights within the CoinFi ecosystem."
-sidebarTitle: "CoinFi Explorer"
+sidebarTitle: "Notary"
 ---
+
+{/*
+  This file uses the YouTube IFrame Player API to embed a hidden YouTube video
+  that plays audio once the user clicks a "Play Audio" button. This approach
+  is more likely to pass browser autoplay restrictions, because the click is
+  considered a user gesture, which usually permits audio playback.
+*/}
+
+<div
+  id="video-audio-player"
+  style={{
+    marginBottom: "20px"
+  }}
+>
+  <button
+    id="play-audio-button"
+    style={{
+      padding: "10px 20px",
+      fontSize: "16px",
+      cursor: "pointer",
+      backgroundColor: "#0070f3",
+      color: "#fff",
+      border: "none",
+      borderRadius: "4px"
+    }}
+  >
+    ▶ Play Audio
+  </button>
+</div>
+
+{/*
+  The hidden container where the YouTube player will be injected.
+  We set it to 1x1 to effectively hide the video while playing its audio.
+*/}
+<div
+  id="video-container"
+  style={{
+    position: "absolute",
+    width: "1px",
+    height: "1px",
+    overflow: "hidden"
+  }}
+></div>
+
+<script
+  type="text/javascript"
+  dangerouslySetInnerHTML={{
+    __html: `
+      // 1. Load the IFrame Player API code asynchronously.
+      var tag = document.createElement('script');
+      tag.src = "https://www.youtube.com/iframe_api";
+      var firstScriptTag = document.getElementsByTagName('script')[0];
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+      // 2. Create a variable to hold our player instance.
+      var player;
+
+      // 3. This function is called by the YouTube IFrame Player API when it's ready.
+      function onYouTubeIframeAPIReady() {
+        // Create a new player in the #video-container div, hidden at 1x1 size.
+        player = new YT.Player('video-container', {
+          height: '1',
+          width: '1',
+          // The videoId is everything after "watch?v=", ignoring additional parameters.
+          // For "https://www.youtube.com/watch?v=ZsDqTQs3_G0", the ID is "ZsDqTQs3_G0".
+          videoId: 'ZsDqTQs3_G0',
+          // 'enablejsapi': 1 is required to control playback via JavaScript.
+          playerVars: {
+            enablejsapi: 1,
+            playsinline: 1,
+            mute: 0,     // We'll unmute in code to attempt audio playback
+            autoplay: 0  // We start paused, and then play via user gesture
+          },
+          events: {
+            'onReady': onPlayerReady
+          }
+        });
+      }
+
+      // 4. This function is called when the player is ready.
+      //    We attach a click listener to the "Play Audio" button to unmute and play the video.
+      function onPlayerReady(event) {
+        var playButton = document.getElementById('play-audio-button');
+        playButton.addEventListener('click', function(){
+          // Unmute and start playing the video when the button is clicked.
+          // The button click is considered a valid user gesture, so audio should play.
+          player.unMute();
+          player.playVideo();
+        });
+      }
+    `
+  }}
+/>
 
 # CoinFi Explorer
 
-Dive deep into the CoinFi Explorer to uncover market trends, analyze asset data, and stay up to date with the latest ecosystem innovations. 
+Dive deep into the CoinFi Explorer to uncover market trends, analyze asset data, and stay up to date with the latest ecosystem innovations.

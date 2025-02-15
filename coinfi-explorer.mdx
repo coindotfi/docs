@@ -6,36 +6,99 @@ sidebarTitle: "Notary"
 
 {/*
   This file uses the YouTube IFrame Player API to embed a hidden YouTube video
-  that plays audio once the user clicks a "Play Audio" button. This approach
-  is more likely to pass browser autoplay restrictions, because the click is
-  considered a user gesture, which usually permits audio playback.
+  and offers enhanced controls with an improved UI/UX.
+
+  Controls include:
+  - Play/Pause (toggles between play and pause, updating the button text accordingly)
+  - Rewind 10s (jumps back 10 seconds)
+  - Restart (seeks to the beginning)
+
+  A small, transparent time display shows the current time and total duration.
+
+  Color palette used for light/dark mode:
+  - #a5eafd (rgba(165,234,253,255))
+  - #42d4f0 (rgba(66,212,240,255))
+  - #001d70 (rgba(0,29,112,255))
 */}
 
 <div
-  id="video-audio-player"
+  id="player-controls"
   style={{
+    display: "flex",
+    alignItems: "center",
+    gap: "12px",
+    flexWrap: "wrap",
     marginBottom: "20px"
   }}
 >
   <button
-    id="play-audio-button"
+    id="play-pause-button"
     style={{
       padding: "10px 20px",
       fontSize: "16px",
       cursor: "pointer",
-      backgroundColor: "#0070f3",
+      backgroundColor: "#42d4f0",
       color: "#fff",
       border: "none",
-      borderRadius: "4px"
+      borderRadius: "12px",
+      boxShadow: "0 2px 4px rgba(0,0,0,0.15)",
+      flex: "none"
     }}
   >
-    ▶ Play Audio
+    ▶ Play
   </button>
+  <button
+    id="rewind-button"
+    style={{
+      padding: "10px 20px",
+      fontSize: "16px",
+      cursor: "pointer",
+      backgroundColor: "#a5eafd",
+      color: "#001d70",
+      border: "none",
+      borderRadius: "12px",
+      boxShadow: "0 2px 4px rgba(0,0,0,0.15)",
+      flex: "none"
+    }}
+  >
+    ⟲ Rewind 10s
+  </button>
+  <button
+    id="restart-button"
+    style={{
+      padding: "10px 20px",
+      fontSize: "16px",
+      cursor: "pointer",
+      backgroundColor: "#a5eafd",
+      color: "#001d70",
+      border: "none",
+      borderRadius: "12px",
+      boxShadow: "0 2px 4px rgba(0,0,0,0.15)",
+      flex: "none"
+    }}
+  >
+    ↺ Restart
+  </button>
+  <div
+    id="time-display"
+    style={{
+      padding: "6px 10px",
+      backgroundColor: "rgba(165,234,253,0.3)",
+      color: "#001d70",
+      borderRadius: "8px",
+      fontSize: "12px",
+      minWidth: "80px",
+      textAlign: "center",
+      flex: "none"
+    }}
+  >
+    00:00 / 00:00
+  </div>
 </div>
 
 {/*
-  The hidden container where the YouTube player will be injected.
-  We set it to 1x1 to effectively hide the video while playing its audio.
+  Hidden container for the YouTube player.
+  The player is set to 1×1 pixel to effectively hide the video while playing its audio.
 */}
 <div
   id="video-container"
@@ -51,30 +114,26 @@ sidebarTitle: "Notary"
   type="text/javascript"
   dangerouslySetInnerHTML={{
     __html: `
-      // 1. Load the IFrame Player API code asynchronously.
+      // Load the YouTube IFrame Player API asynchronously.
       var tag = document.createElement('script');
       tag.src = "https://www.youtube.com/iframe_api";
       var firstScriptTag = document.getElementsByTagName('script')[0];
       firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-      // 2. Create a variable to hold our player instance.
-      var player;
+      var player; // Holds the YouTube player instance.
+      var isPlaying = false; // Track playing state.
 
-      // 3. This function is called by the YouTube IFrame Player API when it's ready.
+      // Called automatically by the YouTube API when it's ready.
       function onYouTubeIframeAPIReady() {
-        // Create a new player in the #video-container div, hidden at 1x1 size.
         player = new YT.Player('video-container', {
           height: '1',
           width: '1',
-          // The videoId is everything after "watch?v=", ignoring additional parameters.
-          // For "https://www.youtube.com/watch?v=ZsDqTQs3_G0", the ID is "ZsDqTQs3_G0".
-          videoId: 'ZsDqTQs3_G0',
-          // 'enablejsapi': 1 is required to control playback via JavaScript.
+          videoId: 'ZsDqTQs3_G0', // Replace with your desired video ID.
           playerVars: {
             enablejsapi: 1,
             playsinline: 1,
-            mute: 0,     // We'll unmute in code to attempt audio playback
-            autoplay: 0  // We start paused, and then play via user gesture
+            mute: 1,        // Start muted to help bypass autoplay restrictions.
+            autoplay: 0
           },
           events: {
             'onReady': onPlayerReady
@@ -82,17 +141,57 @@ sidebarTitle: "Notary"
         });
       }
 
-      // 4. This function is called when the player is ready.
-      //    We attach a click listener to the "Play Audio" button to unmute and play the video.
-      function onPlayerReady(event) {
-        var playButton = document.getElementById('play-audio-button');
-        playButton.addEventListener('click', function(){
-          // Unmute and start playing the video when the button is clicked.
-          // The button click is considered a valid user gesture, so audio should play.
-          player.unMute();
-          player.playVideo();
+      // Called when the player is ready.
+      function onPlayerReady() {
+        var playPauseBtn = document.getElementById('play-pause-button');
+        var rewindBtn = document.getElementById('rewind-button');
+        var restartBtn = document.getElementById('restart-button');
+
+        // Toggle Play/Pause on click.
+        playPauseBtn.addEventListener('click', function() {
+          if (!isPlaying) {
+            player.unMute();
+            player.playVideo();
+            playPauseBtn.textContent = '❚❚ Pause';
+            isPlaying = true;
+          } else {
+            player.pauseVideo();
+            playPauseBtn.textContent = '▶ Play';
+            isPlaying = false;
+          }
+        });
+
+        // Rewind 10 seconds.
+        rewindBtn.addEventListener('click', function() {
+          var currentTime = player.getCurrentTime();
+          var newTime = Math.max(currentTime - 10, 0);
+          player.seekTo(newTime, true);
+        });
+
+        // Restart the video.
+        restartBtn.addEventListener('click', function() {
+          player.seekTo(0, true);
         });
       }
+
+      // Update the time display every second.
+      function updateTime() {
+        if (player && typeof player.getCurrentTime === 'function') {
+          var currentTime = player.getCurrentTime();
+          var duration = player.getDuration();
+          // Helper to format seconds as mm:ss.
+          function formatTime(time) {
+            var minutes = Math.floor(time / 60);
+            var seconds = Math.floor(time % 60);
+            return (minutes < 10 ? "0" + minutes : minutes) + ":" + (seconds < 10 ? "0" + seconds : seconds);
+          }
+          var timeDisplay = document.getElementById('time-display');
+          if(timeDisplay) {
+            timeDisplay.textContent = formatTime(currentTime) + " / " + formatTime(duration);
+          }
+        }
+      }
+      setInterval(updateTime, 1000);
     `
   }}
 />

@@ -17,16 +17,52 @@
             "group": "Products",
             "icon": "#",
             "pages": [
-              "coinfi-explorer",
-              "coinfi-wallet",
-              "coinfi-aamm"
+              {
+                "group": "CoinFi Explorer",
+                "icon": {
+                  "name": "compass",
+                  "style": "solid"
+                },
+                "pages": [
+                  "coinfi-explorer"
+                ]
+              },
+              {
+                "group": "CoinFi Wallet",
+                "icon": {
+                  "name": "wallet",
+                  "style": "solid"
+                },
+                "pages": [
+                  "coinfi-wallet"
+                ]
+              },
+              {
+                "group": "CoinFi AAMM",
+                "icon": {
+                  "name": "sliders-h",
+                  "style": "solid"
+                },
+                "pages": [
+                  "coinfi-aamm"
+                ]
+              }
             ]
           },
           {
             "group": "Manifesto",
             "icon": "pen",
             "pages": [
-              "coin-chain-builders/coinfi-build/coinfi-introduction/coinfi-chain-manifesto"
+              {
+                "group": "CoinFi Chain Manifesto",
+                "icon": {
+                  "name": "scroll",
+                  "style": "solid"
+                },
+                "pages": [
+                  "coin-chain-builders/coinfi-build/coinfi-introduction/coinfi-chain-manifesto"
+                ]
+              }
             ]
           },
           {
@@ -334,8 +370,8 @@
     }
   },
   "logo": {
-    "light": "logo/200x200-coinfi-dark.png",
-    "dark": "logo/200x200-coinfi-light.png"
+    "light": "/logo/200x200-coinfi-dark.png",
+    "dark": "/logo/200x200-coinfi-light.png"
   },
   "appearance": {
     "default": "light",

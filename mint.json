@@ -3,8 +3,8 @@
   "name": "CoinFi Documentation",
   "theme": "venus",
   "logo": {
-    "dark": "logo/200x200-coinfi-light.png",
-    "light": "logo/200x200-coinfi-dark.png"
+    "dark": "/logo/200x200-coinfi-light.png",
+    "light": "/logo/200x200-coinfi-dark.png"
   },
   "favicon": "/logo/32x32-favicon-coinfi-orange.png",
   "colors": {
@@ -55,7 +55,7 @@
         },
         {
           "name": "Manifesto",
-          "url": "coin-chain-builders/coinfi-build/coinfi-introduction/coinfi-chain-manifesto"
+          "url": "https://coin.fi/manifesto"
         }
       ]
     },
@@ -520,16 +520,44 @@
       "group": "Products",
       "icon": "#",
       "pages": [
-        "coinfi-explorer",
-        "coinfi-wallet", 
-        "coinfi-aamm"
+        {
+          "group": "CoinFi Explorer",
+          "icon": "chart-line",
+          "iconType": "thin",
+          "pages": [
+            "coinfi-explorer"
+          ]
+        },
+        {
+          "group": "CoinFi Wallet",
+          "icon": "cent-sign",
+          "iconType": "solid",
+          "pages": [
+            "coinfi-wallet"
+          ]
+        },
+        {
+          "group": "CoinFi AAMM",
+          "icon": "atom-simple",
+          "iconType": "thin",
+          "pages": [
+            "coinfi-aamm"
+          ]
+        }
       ]
     },
     {
       "group": "Manifesto",
-      "icon": "pen",
+      "icon": "#",
       "pages": [
-        "coin-chain-builders/coinfi-build/coinfi-introduction/coinfi-chain-manifesto"
+        {
+          "group": "CoinFi Chain Manifesto",
+          "icon": "scroll-old",
+          "iconType": "solid",
+          "pages": [
+            "coin-chain-builders/coinfi-build/coinfi-introduction/coinfi-chain-manifesto"
+          ]
+        }
       ]
     },
     {
@@ -555,7 +583,6 @@
           ]
         }
       ]
-     
     },
     {
       "group": "ARPC",
@@ -792,5 +819,4 @@
     "default": "light",
     "isHidden": false
   }
-  
 }

@@ -1,4 +1,20 @@
 ---
-title: 'Get Plants'
-openapi: 'GET /plants'
+title: "GET Transactions"
+openapi: "GET /transactions"
 ---
+
+This endpoint retrieves a list of transactions from the CoinFi blockchain.
+
+### Request Details
+
+- **URL:** `https://api.coinfi.zone/transactions`
+- **Method:** `GET`
+- **Query Parameter:** `limit` (optional) – defines the maximum number of transactions to return.
+
+### Example Request
+
+```sh
+curl -X GET "https://api.coinfi.zone/transactions?limit=10" -H "Accept: application/json"
+```
+
+The response will include a JSON object that contains an array of transaction objects.

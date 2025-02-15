@@ -4,102 +4,74 @@ description: "Discover detailed insights within the CoinFi ecosystem."
 sidebarTitle: "Notary"
 ---
 
-{/*
-  This file uses the YouTube IFrame Player API to embed a hidden YouTube video
-  and offers enhanced controls with an improved UI/UX.
-
-  Controls include:
-  - Play/Pause (toggles between play and pause, updating the button text accordingly)
-  - Rewind 10s (jumps back 10 seconds)
-  - Restart (seeks to the beginning)
-
-  A small, transparent time display shows the current time and total duration.
-
-  Color palette used for light/dark mode:
-  - #a5eafd (rgba(165,234,253,255))
-  - #42d4f0 (rgba(66,212,240,255))
-  - #001d70 (rgba(0,29,112,255))
-*/}
-
 <div
-  id="player-controls"
   style={{
-    display: "flex",
-    alignItems: "center",
-    gap: "12px",
-    flexWrap: "wrap",
-    marginBottom: "20px"
+    maxWidth: "180px",
+    maxHeight: "100px",
+    padding: "11px",
+    borderRadius: "20px",
+    backgroundColor: "#F7931A",
+    border: "3px solid white",
+    textAlign: "center-right",
+    fontFamily: "Arial, object-sans"
   }}
 >
-  <button
-    id="play-pause-button"
-    style={{
-      padding: "10px 20px",
-      fontSize: "16px",
-      cursor: "pointer",
-      backgroundColor: "#42d4f0",
-      color: "#fff",
-      border: "none",
-      borderRadius: "12px",
-      boxShadow: "0 2px 4px rgba(0,0,0,0.15)",
-      flex: "none"
-    }}
-  >
-    ▶ Play
-  </button>
-  <button
-    id="rewind-button"
-    style={{
-      padding: "10px 20px",
-      fontSize: "16px",
-      cursor: "pointer",
-      backgroundColor: "#a5eafd",
-      color: "#001d70",
-      border: "none",
-      borderRadius: "12px",
-      boxShadow: "0 2px 4px rgba(0,0,0,0.15)",
-      flex: "none"
-    }}
-  >
-    ⟲ Rewind 10s
-  </button>
-  <button
-    id="restart-button"
-    style={{
-      padding: "10px 20px",
-      fontSize: "16px",
-      cursor: "pointer",
-      backgroundColor: "#a5eafd",
-      color: "#001d70",
-      border: "none",
-      borderRadius: "12px",
-      boxShadow: "0 2px 4px rgba(0,0,0,0.15)",
-      flex: "none"
-    }}
-  >
-    ↺ Restart
-  </button>
   <div
-    id="time-display"
+    id="player-controls"
     style={{
-      padding: "6px 10px",
-      backgroundColor: "rgba(165,234,253,0.3)",
-      color: "#001d70",
-      borderRadius: "8px",
-      fontSize: "12px",
-      minWidth: "80px",
-      textAlign: "center",
-      flex: "none"
+      display: "flex",
+      justifyContent: "center-bottom",
+      alignItems: "center-bottom",
+      gap: "15px",
+      flexWrap: "wrap"
     }}
   >
-    00:00 / 00:00
+    <button
+      id="play-pause-button"
+      style={{
+        fontSize: "30px",
+        cursor: "pointer",
+        color: "#FFD7A8",
+        
+       
+      }}
+    >
+      ►
+    </button>
+    <button
+      id="rewind-button"
+      style={{
+        fontSize: "30px",
+        cursor: "pointer",
+        color: "#FFD7A8",
+        
+        
+      }}
+    >
+      ↺
+    </button>
+    <button
+      id="restart-button"
+      style={{
+        fontSize: "30px",
+        cursor: "pointer",
+        color: "#FFD7A8",
+      }}
+    >
+      ↻
+    </button>
+    <div
+      id="time-display"
+      style={{
+        color: "#FFD7A8",
+        fontSize: "15px",
+        textAlign: "center-bottom"
+      }}
+    >
+      00:00
+    </div>
   </div>
 </div>
-
-{/*
-  Hidden container for the YouTube player.
-  The player is set to 1×1 pixel to effectively hide the video while playing its audio.
-*/}
 <div
   id="video-container"
   style={{
@@ -107,6 +79,7 @@ sidebarTitle: "Notary"
     width: "1px",
     height: "1px",
     overflow: "hidden"
+    
   }}
 ></div>
 
@@ -120,8 +93,8 @@ sidebarTitle: "Notary"
       var firstScriptTag = document.getElementsByTagName('script')[0];
       firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-      var player; // Holds the YouTube player instance.
-      var isPlaying = false; // Track playing state.
+      var player;
+      var isPlaying = false;
 
       // Called automatically by the YouTube API when it's ready.
       function onYouTubeIframeAPIReady() {
@@ -152,11 +125,11 @@ sidebarTitle: "Notary"
           if (!isPlaying) {
             player.unMute();
             player.playVideo();
-            playPauseBtn.textContent = '❚❚ Pause';
+            playPauseBtn.textContent = '❚❚';
             isPlaying = true;
           } else {
             player.pauseVideo();
-            playPauseBtn.textContent = '▶ Play';
+            playPauseBtn.textContent = '►';
             isPlaying = false;
           }
         });
@@ -178,16 +151,15 @@ sidebarTitle: "Notary"
       function updateTime() {
         if (player && typeof player.getCurrentTime === 'function') {
           var currentTime = player.getCurrentTime();
-          var duration = player.getDuration();
-          // Helper to format seconds as mm:ss.
+          // Format seconds as mm:ss.
           function formatTime(time) {
             var minutes = Math.floor(time / 60);
             var seconds = Math.floor(time % 60);
             return (minutes < 10 ? "0" + minutes : minutes) + ":" + (seconds < 10 ? "0" + seconds : seconds);
           }
           var timeDisplay = document.getElementById('time-display');
-          if(timeDisplay) {
-            timeDisplay.textContent = formatTime(currentTime) + " / " + formatTime(duration);
+          if (timeDisplay) {
+            timeDisplay.textContent = formatTime(currentTime);
           }
         }
       }

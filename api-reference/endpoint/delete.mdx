@@ -1,4 +1,20 @@
 ---
-title: 'Delete Plant'
-openapi: 'DELETE /plants/{id}'
+title: "Cancel Transaction"
+openapi: "DELETE /transactions/{id}"
 ---
+
+This endpoint cancels a pending transaction by providing its ID. Use it to cancel a transaction that has not yet been fully processed on the blockchain.
+
+### Request Details
+
+- **URL:** `https://api.coinfi.zone/transactions/{id}`
+- **Method:** `DELETE`
+- **Path Parameter:** `id` – the unique identifier of the transaction to cancel.
+
+### Example Request
+
+```sh
+curl -X DELETE "https://api.coinfi.zone/transactions/12345" -H "Accept: application/json"
+```
+
+Replace `12345` with the actual transaction ID you wish to cancel.

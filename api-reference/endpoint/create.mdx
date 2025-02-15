@@ -1,4 +1,34 @@
 ---
-title: 'Create Plant'
-openapi: 'POST /plants'
+title: "Submit Transaction"
+openapi: "POST /transactions"
 ---
+
+This endpoint allows you to submit a new transaction to the CoinFi blockchain.
+
+### Request Details
+
+- **URL:** `https://api.coinfi.zone/transactions`
+- **Method:** `POST`
+- **Content-Type:** `application/json`
+
+### Required Fields
+
+- `from`: Sender address
+- `to`: Receiver address
+- `amount`: Transaction amount (as a string)
+- `nonce`: Transaction nonce (integer)
+- `signature`: Digital signature of the transaction
+
+### Example Request
+
+```sh
+curl -X POST "https://api.coinfi.zone/transactions" -H "Content-Type: application/json" -d '{
+  "from": "sender_address",
+  "to": "receiver_address",
+  "amount": "50",
+  "nonce": 123456,
+  "signature": "signature_string"
+}'
+```
+
+Make sure your payload includes all required fields, and verify that the signature is generated correctly.

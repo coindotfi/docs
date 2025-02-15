@@ -1,187 +1,64 @@
 ---
-title: "Beginner's Guide to the CoinFi API"
-description: "Expert documentation for CoinFi's quantum-resistant blockchain API and advanced SDK integration."
-sidebarTitle: "CoinFi API"
+title: "CoinFi Blockchain RPC Documentation"
+description: "Expert-level comprehensive reference for CoinFi blockchain and RPC endpoints. Follow these examples to interact with the secure, Cosmos-based CoinFi network using Curl commands."
+sidebarTitle: "CoinFi RPC API"
 ---
+
 <img src="/logo/coinfi-api-orange.png" alt="CoinFi API" />
 
+# CoinFi Blockchain RPC Documentation
 
-<Note>
-  Welcome to the CoinFi API documentation. This guide provides a comprehensive reference for interacting with our secure, quantum-safe blockchain platform. Whether you're developing decentralized applications, managing digital assets, or working with smart contracts via our SDK, you'll find everything you need here.
-</Note>
+Welcome to the **CoinFi Blockchain RPC Documentation**. This expert-level guide provides a comprehensive list of `curl` commands and examples to interact directly with our Cosmos-based CoinFi network. You can use these examples when:
 
-## Overview
+- Querying blockchain state (e.g., retrieving block info or consensus state)
+- Broadcasting new transactions
+- Monitoring network health and validator status
 
-The CoinFi API empowers developers to harness our cutting-edge blockchain technology underpinned by quantum-safe security measures. With endpoints for real-time blockchain data retrieval, transaction management, and smart contract interactions, you can build robust, next-generation financial applications with ease.
+> **Note:**  
+> - Many endpoints (such as transaction broadcasting) are compatible with both GET (via query parameters) and POST (with a JSON payload).  
+> - Replace placeholder values (e.g., `<HEIGHT>`, `<TX_DATA>`, `<QUERY>`) with your actual values.  
+> - Ensure you use the correct endpoint (`https://api.coinfi.zone`) and a valid API token in production.
 
-### Key Features
-- **Quantum-Safe Security:** Protect your digital assets with industry-leading post-quantum encryption.
-- **Real-Time Blockchain Data:** Access up-to-date status information, transaction histories, and network metrics.
-- **SDK Integration:** Accelerate development with our multi-language SDK supporting JavaScript/TypeScript, Python, Rust, and Golang.
-- **Smart Contract Interactions:** Facilitate seamless on-chain operations via advanced transaction and contract endpoints.
+---
 
-## Authentication
+## Example REST API Requests
 
-All API endpoints are secured with Bearer token authentication. Include your API token in the request header as shown below:
-
-```http
-Authorization: Bearer YOUR_API_TOKEN
+### 1. Get Transactions
+Retrieve the latest 10 transactions:
+```sh
+curl -X GET "https://api.coinfi.zone/transactions?limit=10" -H "Accept: application/json"
 ```
 
-The following security scheme is used throughout the API:
-
-```json
-"security": [
-  {
-    "bearerAuth": []
-  }
-]
+### 2. Submit a Transaction
+Submit a new transaction using a JSON payload:
+```sh
+curl -X POST "https://api.coinfi.zone/transactions" -H "Content-Type: application/json" -d '{
+  "from": "sender_address",
+  "to": "receiver_address",
+  "amount": "50",
+  "nonce": 123456,
+  "signature": "signature_string"
+}'
 ```
 
-You can obtain your API token from the [CoinFi Developer Dashboard [COMING SOON!]](#).
-
-## API Endpoints
-
-### 1. Blockchain Status
-
-**Endpoint:** `GET /api/v1/status`
-
-Retrieve essential information about the CoinFi blockchain, including the latest block height, timestamp, and node health.
-
-**Request Headers:**
-- `Authorization`: Bearer token
-
-**Response Example:**
-
-```json
-{
-  "blockHeight": 987654,
-  "timestamp": "2023-10-15T12:34:56Z",
-  "nodeStatus": "Healthy",
-  "networkLoad": "Moderate"
-}
+### 3. Cancel a Pending Transaction
+Cancel a transaction by its ID:
+```sh
+curl -X DELETE "https://api.coinfi.zone/transactions/12345" -H "Accept: application/json"
 ```
 
 ---
 
-### 2. Transaction History
+## RPC Endpoints Overview
 
-**Endpoint:** `GET /api/v1/transactions`
+In addition to the above REST API endpoints, CoinFi provides a full suite of RPC endpoints for direct low-level interaction with the blockchain. These include:
 
-Fetch a list of recent blockchain transactions. You can filter transactions by block range, participant address, or transaction type.
+- **ABCI Endpoints:** For application-specific queries.
+- **Block & Header Endpoints:** Retrieve block or header data by height, hash, or search query.
+- **Consensus & Genesis Endpoints:** Access consensus state and genesis block information.
+- **Transaction & Broadcast Endpoints:** Check transaction status or broadcast new transactions.
+- **Validators, Mempool, and Health Endpoints:** Monitor network performance and validator status.
 
-**Query Parameters:**
-- `limit` *(integer)*: Maximum number of transactions to retrieve (default: 25).
-- `startBlock` *(integer)*: Starting block number.
-- `endBlock` *(integer)*: Ending block number.
-- `address` *(string)*: Blockchain address (either sender or receiver).
+By leveraging these endpoints, you can build advanced monitoring, analysis tools, or custom transaction workflows that interact directly with the blockchain network.
 
-**Example Request:**
-
-```http
-GET /api/v1/transactions?limit=50&startBlock=980000&endBlock=987654&address=0xABC123 HTTP/1.1
-Authorization: Bearer YOUR_API_TOKEN
-```
-
-**Response Example:**
-
-```json
-{
-  "transactions": [
-    {
-      "txHash": "0xabcde12345",
-      "from": "0x1234abcd",
-      "to": "0xabcd1234",
-      "amount": "250.00",
-      "timestamp": "2023-10-15T12:30:00Z"
-    }
-    // additional transactions...
-  ],
-  "pagination": {
-    "limit": 50,
-    "offset": 0,
-    "total": 1024
-  }
-}
-```
-
----
-
-### 3. Submit Transaction
-
-**Endpoint:** `POST /api/v1/transactions`
-
-Broadcast a new transaction to the CoinFi blockchain. This endpoint accepts transaction details and queues the transaction for network processing.
-
-**Request Headers:**
-- `Content-Type`: application/json
-- `Authorization`: Bearer token
-
-**Request Body:**
-
-```json
-{
-  "from": "0x1234abcd",
-  "to": "0xabcd1234",
-  "amount": "100.00",
-  "nonce": 15,
-  "signature": "generated_signature_from_sdk"
-}
-```
-
-**Response Example:**
-
-```json
-{
-  "txHash": "0xnewtx7890",
-  "status": "submitted",
-  "message": "Transaction has been successfully submitted to the blockchain."
-}
-```
-
-## SDK Integration
-
-CoinFi provides a robust SDK to streamline blockchain interactions. Our SDK automates key management, transaction signing, and quantum-safe encryption, enabling you to focus on building innovative applications.
-
-Explore our SDK documentation for detailed guides and sample code:
-- **[JavaScript/TypeScript SDK](arpc/arpc-development/sdk/arpc-javascript.mdx)**
-- **[Python SDK](arpc/arpc-development/sdk/arpc-python.mdx)**
-- **[Rust SDK](arpc/arpc-development/sdk/arpc-rust.mdx)**
-- **[Golang SDK](arpc/arpc-development/sdk/arpc-golang.mdx)**
-
-Leverage these tools to quickly integrate secure blockchain operations into your projects.
-
-## Error Handling
-
-The CoinFi API returns standard HTTP status codes along with informative error messages. Common error codes include:
-- **400 Bad Request:** Invalid input or missing parameters.
-- **401 Unauthorized:** Invalid or expired API token.
-- **403 Forbidden:** Insufficient permissions.
-- **404 Not Found:** The requested resource does not exist.
-- **429 Too Many Requests:** Rate limit exceeded.
-- **500 Internal Server Error:** Server encountered an error.
-
-These responses aid in diagnosing issues and improving application resilience.
-
-## Rate Limiting
-
-To ensure consistent performance and fair usage, the API enforces rate limits. Exceeding these limits will result in a `429 Too Many Requests` response. For optimal performance, consult the rate limit guidelines on the [CoinFi Developer Portal [COMING SOON!]](#).
-
-## Getting Started
-
-Kickstart your integration with the CoinFi API by following these steps:
-
-1. **Register:** Obtain your API key via the [CoinFi Developer Dashboard [COMING SOON]](#).
-2. **Explore:** Use our interactive API explorer to test endpoints and familiarize yourself with our data structure.
-3. **Integrate:** Utilize our multi-language SDK to reduce boilerplate and enhance security.
-4. **Develop:** Follow our comprehensive [Developer Guides](coin-chain-builders/coinfi-build/coinfi-introduction/chain-introduction.mdx) for best practices and advanced workflows.
-
-For continuous updates and community support, join our active developer network on [Telegram](https://t.me/+3OjsGsfY3n5iNzIx) or check out our [GitHub repository](https://github.com/coinfi).
-
----
-
-<Note type="warning">
-  Always safeguard your API tokens and monitor your usage to avoid rate limit issues. For assistance, please reach out to [Developer Support](mailto:support@coin.fi).
-</Note>
-
-Happy coding and welcome to the future of quantum-safe blockchain technology!
+Happy coding on the CoinFi blockchain!

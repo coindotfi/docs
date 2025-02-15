@@ -1,9 +1,179 @@
 ---
 title: "CoinFi Automated Atomic Market Maker"
-description: "Quantum one-time smart contract authentication for bridgeless liquidity market making and instant cross-chain settlements using quantum-secure zero-knowledge proofs"
+description: "Secure and fast cross-chain trading with advanced zero-knowledge proofs and an intuitive, user-friendly design"
 sidebarTitle: "CoinFi AAMM"
 ---
+import ImageCard from '@site/components/ImageCard';
 
-# CoinFi AAMM
+{/*
+Hero Section
+*/}
+<section className="hero-banner" style={{ backgroundImage: "url('/logo/300x100-coin-chain.png')" }}>
+  <div className="hero-content">
+    <h1>CoinFi Automated Atomic Market Maker</h1>
+    <p>
+      Welcome to the next generation of cross-chain trading. Enjoy secure, fast, and straightforward asset swaps.
+    </p>
+    <div className="cta-buttons">
+      <a href="https://coin.fi/manifesto" className="btn-primary">Learn More</a>
+      <a href="https://coin.fi/manifesto" className="btn-secondary">Join Our Community</a>
+    </div>
+  </div>
+</section>
 
-Explore the cutting-edge CoinFi Automated Atomic Market Maker (AAMM) to discover market trends, analyze real-time asset data, and stay informed about the latest innovations in decentralized market making.
+---
+
+## Overview
+
+CoinFi AAMM transforms the way you trade by combining top-notch security with an easy-to-use interface. Whether you're trading large volumes or just starting out, our system processes your orders every 5 seconds—ensuring you always get a fair deal with low fees.
+
+> **Why CoinFi?**  
+> Trade confidently knowing your transactions are transparent, secure, and efficient.
+
+---
+
+## A Simple, Smart Trading Experience
+
+Our platform makes trading effortless by guiding you through every step:
+
+1. **Easy Order Entry**  
+   Choose the tokens you want to trade and simply enter the amount. Our clear, step‑by‑step process helps prevent errors.
+
+2. **Lightning-Fast 5‑Second Rounds**  
+   Orders are processed every 5 seconds, so you quickly get the best available market price.
+
+3. **Intelligent Order Matching**  
+   If your order isn't completely filled, the remainder is automatically queued for a better match—all while keeping costs low.
+
+4. **Instant Confirmation**  
+   As soon as your order is matched, it's immediately recorded on the blockchain, giving you real-time peace of mind.
+
+---
+
+## How It Works
+
+We use proven, straightforward math to keep trades fair and efficient:
+
+### Maintaining Balance with a Classic Formula
+
+Our order matching is based on a constant-product model:
+
+$$
+x \times y = k
+$$
+
+- **\(x\)** and **\(y\):** Token amounts in the liquidity pool  
+- **\(k\):** A fixed constant that keeps the pool balanced
+
+### Managing Unfilled Orders
+
+When part of your order isn't matched immediately, we re‑attempt matching in future rounds. If the order remains unmatched after several rounds, it's bridged using:
+
+$$
+\alpha_{\text{bridge}} = (1 - \eta)\,\bigl(1 - \eta_e\bigr)^\nu
+$$
+
+- **\(\eta\):** Efficiency of a direct match  
+- **\(\eta_e\):** Efficiency during additional matching rounds  
+- **\(\nu\):** Number of extra rounds before bridging is forced
+
+This approach, as detailed in the **Quantum One-Time Atomic Swap Contracts** paper, can reduce bridging fees by up to 95% compared to legacy methods.
+
+---
+
+## Technology at a Glance
+
+Our platform is built on solid technology that's both powerful and easy to understand:
+
+- **Top-Grade Security:**  
+  Quantum-secure proofs (e.g., zkHPNG, Fullmen commitments, and RWP) keep your trades private and verifiable.
+  
+- **Speed & Transparency:**  
+  Essential data is stored on-chain for transparency while heavy computations run off‑chain for speed.
+
+- **Smart Matching:**  
+  Orders are intelligently grouped to boost liquidity and minimize slippage.
+
+- **User-Friendly Design:**  
+  With live dashboards, clear charts, and intuitive navigation, tracking and managing your trades is effortless.
+
+*Stay tuned for new interactive features that will make your trading experience even more engaging!*
+
+---
+
+## Enjoy an Intuitive Interface
+
+Our design puts you first:
+
+- **Live, Easy-to-Read Dashboards:**  
+  See market trends, account balances, and trade history in clear, visual formats.
+  
+- **Guided Trading Steps:**  
+  Follow simple, step-by-step instructions from order entry to confirmation.
+
+- **Clear Analytics:**  
+  Complex data is presented using color-coded charts and real-time updates.
+
+- **Accessible for Everyone:**  
+  Whether you're a seasoned trader or just starting out, our interface is designed for clarity and ease.
+
+---
+
+## Key Benefits
+
+<div className="card-grid">
+  <div className="card">
+    <h3>Minimal Price Slippage</h3>
+    <p>Our smart matching system ensures your trades are executed at nearly perfect prices.</p>
+  </div>
+  <div className="card">
+    <h3>Low Trading Fees</h3>
+    <p>Intelligent queuing keeps your costs minimal, even when orders are partially filled.</p>
+  </div>
+  <div className="card">
+    <h3>Rapid Order Processing</h3>
+    <p>Experience the speed of orders being matched every 5 seconds.</p>
+  </div>
+  <div className="card">
+    <h3>Enhanced Security</h3>
+    <p>Advanced, quantum-secure protocols protect your trading data at every step.</p>
+  </div>
+</div>
+
+---
+
+## Looking Ahead
+
+CoinFi AAMM is always evolving:
+
+- **Continuous Improvement:** We constantly refine our technology and interface to offer you the best trading experience.  
+- **Community-Driven Updates:** Your feedback shapes our future features.  
+- **Exciting New Tools:** Look forward to enhanced mobile experiences, interactive analytics, and more powerful features coming soon.
+
+---
+
+## Get Started Today
+
+Join the future of cross-chain trading:
+- **Trade Securely:** Enjoy a system that's both fast and secure.
+- **Join Our Community:** Connect with fellow traders and receive the latest updates.
+
+<div className="join-container">
+  <a href="https://coin.fi/manifesto" className="btn-primary btn-lg">Get Started</a>
+  <a href="https://coin.fi/manifesto" className="btn-secondary btn-lg">Join Our Community</a>
+</div>
+
+---
+
+{/* Interactive diagram showcasing our trade matching process */}
+<ImageCard 
+  src="/logo/300x100-coin-chain.png" 
+  alt="Trade Matching Diagram" 
+  caption="See how our system smartly matches your orders for efficient trading." 
+/>
+
+---
+
+*For more details on our technology and the math behind it, please refer to our full documentation. We have aligned this content with the **Quantum One-Time Atomic Swap Contracts** paper to ensure both accuracy and clarity.*
+
+[**Learn More About Our Technology**](https://coin.fi/manifesto)&nbsp;&nbsp;|&nbsp;&nbsp;[**Subscribe for Updates**](https://coin.fi/manifesto)

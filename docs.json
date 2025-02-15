@@ -20,8 +20,8 @@
               {
                 "group": "CoinFi Explorer",
                 "icon": {
-                  "name": "compass",
-                  "style": "solid"
+                  "name": "chart-line",
+                  "style": "thin"
                 },
                 "pages": [
                   "coinfi-explorer"
@@ -30,7 +30,7 @@
               {
                 "group": "CoinFi Wallet",
                 "icon": {
-                  "name": "wallet",
+                  "name": "cent-sign",
                   "style": "solid"
                 },
                 "pages": [
@@ -40,8 +40,8 @@
               {
                 "group": "CoinFi AAMM",
                 "icon": {
-                  "name": "sliders-h",
-                  "style": "solid"
+                  "name": "atom-simple",
+                  "style": "thin"
                 },
                 "pages": [
                   "coinfi-aamm"
@@ -51,12 +51,12 @@
           },
           {
             "group": "Manifesto",
-            "icon": "pen",
+            "icon": "#",
             "pages": [
               {
                 "group": "CoinFi Chain Manifesto",
                 "icon": {
-                  "name": "scroll",
+                  "name": "scroll-old",
                   "style": "solid"
                 },
                 "pages": [

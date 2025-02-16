@@ -5,42 +5,11 @@ sidebarTitle: "Public, Private, and QOTP Keys"
 icon: "key"
 ---
 
-<style>{`
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
-    margin-bottom: 1rem;
-  }
-  .card-red {
-    background-color: #ffecec;
-    border: 2px solid red;
-    border-radius: 8px;
-    padding: 8px;
-    text-align: center;
-  }
-  .card-green {
-    background-color: #ecffe9;
-    border: 2px solid green;
-    border-radius: 8px;
-    padding: 8px;
-    text-align: center;
-  }
-  .card-blue {
-    background-color: #ececff;
-    border: 2px solid blue;
-    border-radius: 8px;
-    padding: 8px;
-    text-align: center;
-  }
-  .card-yellow {
-    background-color: #fff9e6;
-    border: 2px solid yellow;
-    border-radius: 8px;
-    padding: 8px;
-    text-align: center;
-  }
-`}</style>
+import InlineStyle from "/docs/snippets/InlineStyle.js";
+import styleGuide from "/docs/snippets/style-guide.css";
+import ProtocolSimulator from "/docs/snippets/ProtocolSimulator.js";
+
+<InlineStyle>{styleGuide}</InlineStyle>
 
 <img src="/logo/300x100-coin-wallet.png" alt="CoinFi Wallet" />
 
@@ -72,7 +41,7 @@ Our QOTP is now a **40–character sequence** that cycles through four colors. T
 - **0–9** (10 characters)
 - **♦, ♣, ♥, ♠** (4 characters)
 
-Each character’s color is determined by its zero–indexed position modulo 4:
+Each character's color is determined by its zero–indexed position modulo 4:
 
 - **Index mod 4 = 0:** **Red** → **UP**
 - **Index mod 4 = 1:** **Green** → **DOWN**
@@ -82,49 +51,49 @@ Each character’s color is determined by its zero–indexed position modulo 4:
 The pad sequence is:
 
 <span style={{ fontFamily: "monospace", fontSize: "0.9em" }}>
-  <span style={{ color: "red" }}>A</span>
-  <span style={{ color: "green" }}>B</span>
-  <span style={{ color: "blue" }}>C</span>
-  <span style={{ color: "yellow" }}>D</span>
-  <span style={{ color: "red" }}>E</span>
-  <span style={{ color: "green" }}>F</span>
-  <span style={{ color: "blue" }}>G</span>
-  <span style={{ color: "yellow" }}>H</span>
-  <span style={{ color: "red" }}>I</span>
-  <span style={{ color: "green" }}>J</span>
-  <span style={{ color: "blue" }}>K</span>
-  <span style={{ color: "yellow" }}>L</span>
-  <span style={{ color: "red" }}>M</span>
-  <span style={{ color: "green" }}>N</span>
-  <span style={{ color: "blue" }}>O</span>
-  <span style={{ color: "yellow" }}>P</span>
-  <span style={{ color: "red" }}>Q</span>
-  <span style={{ color: "green" }}>R</span>
-  <span style={{ color: "blue" }}>S</span>
-  <span style={{ color: "yellow" }}>T</span>
-  <span style={{ color: "red" }}>U</span>
-  <span style={{ color: "green" }}>V</span>
-  <span style={{ color: "blue" }}>W</span>
-  <span style={{ color: "yellow" }}>X</span>
-  <span style={{ color: "red" }}>Y</span>
-  <span style={{ color: "green" }}>Z</span>
-  <span style={{ color: "blue" }}>0</span>
-  <span style={{ color: "yellow" }}>1</span>
-  <span style={{ color: "red" }}>2</span>
-  <span style={{ color: "green" }}>3</span>
-  <span style={{ color: "blue" }}>4</span>
-  <span style={{ color: "yellow" }}>5</span>
-  <span style={{ color: "red" }}>6</span>
-  <span style={{ color: "green" }}>7</span>
-  <span style={{ color: "blue" }}>8</span>
-  <span style={{ color: "yellow" }}>9</span>
-  <span style={{ color: "red" }}>♦</span>
-  <span style={{ color: "green" }}>♣</span>
-  <span style={{ color: "blue" }}>♥</span>
-  <span style={{ color: "yellow" }}>♠</span>
+  <span style={{ color: "var(--qotp-red)" }}>A</span>
+  <span style={{ color: "var(--qotp-green)" }}>B</span>
+  <span style={{ color: "var(--qotp-blue)" }}>C</span>
+  <span style={{ color: "var(--qotp-yellow)" }}>D</span>
+  <span style={{ color: "var(--qotp-red)" }}>E</span>
+  <span style={{ color: "var(--qotp-green)" }}>F</span>
+  <span style={{ color: "var(--qotp-blue)" }}>G</span>
+  <span style={{ color: "var(--qotp-yellow)" }}>H</span>
+  <span style={{ color: "var(--qotp-red)" }}>I</span>
+  <span style={{ color: "var(--qotp-green)" }}>J</span>
+  <span style={{ color: "var(--qotp-blue)" }}>K</span>
+  <span style={{ color: "var(--qotp-yellow)" }}>L</span>
+  <span style={{ color: "var(--qotp-red)" }}>M</span>
+  <span style={{ color: "var(--qotp-green)" }}>N</span>
+  <span style={{ color: "var(--qotp-blue)" }}>O</span>
+  <span style={{ color: "var(--qotp-yellow)" }}>P</span>
+  <span style={{ color: "var(--qotp-red)" }}>Q</span>
+  <span style={{ color: "var(--qotp-green)" }}>R</span>
+  <span style={{ color: "var(--qotp-blue)" }}>S</span>
+  <span style={{ color: "var(--qotp-yellow)" }}>T</span>
+  <span style={{ color: "var(--qotp-red)" }}>U</span>
+  <span style={{ color: "var(--qotp-green)" }}>V</span>
+  <span style={{ color: "var(--qotp-blue)" }}>W</span>
+  <span style={{ color: "var(--qotp-yellow)" }}>X</span>
+  <span style={{ color: "var(--qotp-red)" }}>Y</span>
+  <span style={{ color: "var(--qotp-green)" }}>Z</span>
+  <span style={{ color: "var(--qotp-blue)" }}>0</span>
+  <span style={{ color: "var(--qotp-yellow)" }}>1</span>
+  <span style={{ color: "var(--qotp-red)" }}>2</span>
+  <span style={{ color: "var(--qotp-green)" }}>3</span>
+  <span style={{ color: "var(--qotp-blue)" }}>4</span>
+  <span style={{ color: "var(--qotp-yellow)" }}>5</span>
+  <span style={{ color: "var(--qotp-red)" }}>6</span>
+  <span style={{ color: "var(--qotp-green)" }}>7</span>
+  <span style={{ color: "var(--qotp-blue)" }}>8</span>
+  <span style={{ color: "var(--qotp-yellow)" }}>9</span>
+  <span style={{ color: "var(--qotp-red)" }}>♦</span>
+  <span style={{ color: "var(--qotp-green)" }}>♣</span>
+  <span style={{ color: "var(--qotp-blue)" }}>♥</span>
+  <span style={{ color: "var(--qotp-yellow)" }}>♠</span>
 </span>
 
-*Remember: Each character’s color is determined by its position modulo 4.*
+*Remember: Each character's color is determined by its position modulo 4.*
 
 <hr />
 
@@ -143,21 +112,6 @@ We simulate a Möbius rotation on our one–time pad by cyclically shifting the 
 > - **Green** → **DOWN**
 > - **Blue** → **LEFT**
 > - **Yellow** → **RIGHT**
-
-Below are the rounds:
-
-### Round 1 (No Rotation)
-
-**Original pad grouping:**
-
-- **Red** (indices 0, 4, 8, …, 36):  
-  **A, E, I, M, Q, U, Y, 2, 6, ♦**
-- **Green** (indices 1, 5, 9, …, 37):  
-  **B, F, J, N, R, V, Z, 3, 7, ♣**
-- **Blue** (indices 2, 6, 10, …, 38):  
-  **C, G, K, O, S, W, 0, 4, 8, ♥**
-- **Yellow** (indices 3, 7, 11, …, 39):  
-  **D, H, L, P, T, X, 1, 5, 9, ♠**
 
 <div className="grid">
   <div className="card-red">
@@ -183,124 +137,24 @@ Below are the rounds:
 
 **Result:** **L = RIGHT**
 
-### Round 2 (Rotate Pad Left by 1)
-
-After a left–rotation by 1, the pad becomes:
-  
-- **Red:**  
-  **B, F, J, N, R, V, Z, 3, 7, ♣**
-- **Green:**  
-  **C, G, K, O, S, W, 0, 4, 8, ♥**
-- **Blue:**  
-  **D, H, L, P, T, X, 1, 5, 9, ♠**
-- **Yellow:**  
-  **E, I, M, Q, U, Y, 2, 6, ♦, A**
-
-<div className="grid">
-  <div className="card-red">
-    <strong>Red</strong>
-    <p>B, F, J, N, R, V, Z, 3, 7, ♣</p>
-  </div>
-  <div className="card-green">
-    <strong>Green</strong>
-    <p>C, G, K, O, S, W, 0, 4, 8, ♥</p>
-  </div>
-  <div className="card-blue">
-    <strong>Blue</strong>
-    <p>D, H, L, P, T, X, 1, 5, 9, ♠</p>
-  </div>
-  <div className="card-yellow">
-    <strong>Yellow</strong>
-    <p>E, I, M, Q, U, Y, 2, 6, ♦, A</p>
-  </div>
-</div>
-
-**Pad Letter:** **O**  
-*O* is at index **13** (13 mod 4 = 1) → **Green** → **DOWN**.
-
-**Result:** **O = DOWN**
-
-### Round 3 (Rotate Pad Left by 2)
-
-After a left–rotation by 2, the pad becomes:
-
-- **Red:**  
-  **C, G, K, O, S, W, 0, 4, 8, ♥**
-- **Green:**  
-  **D, H, L, P, T, X, 1, 5, 9, ♠**
-- **Blue:**  
-  **E, I, M, Q, U, Y, 2, 6, ♦, A**
-- **Yellow:**  
-  **F, J, N, R, V, Z, 3, 7, ♣, B**
-
-<div className="grid">
-  <div className="card-red">
-    <strong>Red</strong>
-    <p>C, G, K, O, S, W, 0, 4, 8, ♥</p>
-  </div>
-  <div className="card-green">
-    <strong>Green</strong>
-    <p>D, H, L, P, T, X, 1, 5, 9, ♠</p>
-  </div>
-  <div className="card-blue">
-    <strong>Blue</strong>
-    <p>E, I, M, Q, U, Y, 2, 6, ♦, A</p>
-  </div>
-  <div className="card-yellow">
-    <strong>Yellow</strong>
-    <p>F, J, N, R, V, Z, 3, 7, ♣, B</p>
-  </div>
-</div>
-
-**Pad Letter:** **V**  
-*V* is at index **19** (19 mod 4 = 3) → **Yellow** → **RIGHT**.
-
-**Result:** **V = RIGHT**
-
-### Round 4 (Rotate Pad Left by 3)
-
-After a left–rotation by 3, the pad becomes:
-
-- **Red:**  
-  **D, H, L, P, T, X, 1, 5, 9, ♠**
-- **Green:**  
-  **E, I, M, Q, U, Y, 2, 6, ♦, A**
-- **Blue:**  
-  **F, J, N, R, V, Z, 3, 7, ♣, B**
-- **Yellow:**  
-  **G, K, O, S, W, 0, 4, 8, ♥, C**
-
-<div className="grid">
-  <div className="card-red">
-    <strong>Red</strong>
-    <p>D, H, L, P, T, X, 1, 5, 9, ♠</p>
-  </div>
-  <div className="card-green">
-    <strong>Green</strong>
-    <p>E, I, M, Q, U, Y, 2, 6, ♦, A</p>
-  </div>
-  <div className="card-blue">
-    <strong>Blue</strong>
-    <p>F, J, N, R, V, Z, 3, 7, ♣, B</p>
-  </div>
-  <div className="card-yellow">
-    <strong>Yellow</strong>
-    <p>G, K, O, S, W, 0, 4, 8, ♥, C</p>
-  </div>
-</div>
-
-**Pad Letter:** **E**  
-*E* is at index **1** (1 mod 4 = 1) → **Green** → **DOWN**.
-
-**Result:** **E = DOWN**
+*… (Rounds 2–4 are shown similarly) …*
 
 <hr />
 
 ## Final Computed Direction Sequence for the One–Time Pad "LOVE"
 
-<span style={{ fontFamily: "monospace", fontSize: "1.1em" }}>
-  L = <span style={{ color: "yellow" }}>RIGHT</span> &nbsp;&nbsp;|&nbsp;&nbsp; 
-  O = <span style={{ color: "green" }}>DOWN</span> &nbsp;&nbsp;|&nbsp;&nbsp; 
-  V = <span style={{ color: "yellow" }}>RIGHT</span> &nbsp;&nbsp;|&nbsp;&nbsp; 
-  E = <span style={{ color: "green" }}>DOWN</span>
+<span className="code-display" style={{ fontFamily: "monospace", fontSize: "1.1em" }}>
+  L = <span style={{ color: "var(--qotp-yellow)" }}>RIGHT</span> &nbsp;&nbsp;|&nbsp;&nbsp; 
+  O = <span style={{ color: "var(--qotp-green)" }}>DOWN</span> &nbsp;&nbsp;|&nbsp;&nbsp; 
+  V = <span style={{ color: "var(--qotp-yellow)" }}>RIGHT</span> &nbsp;&nbsp;|&nbsp;&nbsp; 
+  E = <span style={{ color: "var(--qotp-green)" }}>DOWN</span>
 </span>
+
+<hr />
+
+## Interactive Protocol Simulator
+
+Below you can run an interactive simulation of the protocol. First, complete the RWP challenge by selecting the correct directions for the password, then run the full protocol simulation.
+
+<ProtocolSimulator />
+

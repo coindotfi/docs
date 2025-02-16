@@ -1,0 +1,106 @@
+/* Define color variables and general styling for light mode */
+:root {
+  --qotp-red: red;
+  --qotp-green: green;
+  --qotp-blue: blue;
+  --qotp-yellow: yellow;
+  --background: #ffffff;
+  --text-color: #000000;
+  --font-bold: 600;
+}
+
+/* Light mode styling */
+body {
+  background-color: var(--background);
+  color: var(--text-color);
+  font-family: Arial, sans-serif;
+}
+
+/* Dark mode overrides */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --qotp-red: #ff6b6b;
+    --qotp-green: #51cf66;
+    --qotp-blue: #4dabf7;
+    --qotp-yellow: #fcc419;
+    --background: #1e1e1e;
+    --text-color: #f0f0f0;
+  }
+  body {
+    background-color: var(--background);
+    color: var(--text-color);
+  }
+}
+
+/* Grid layout for cards */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+/* Card styles with consistent color coordination */
+.card-red,
+.card-green,
+.card-blue,
+.card-yellow {
+  border-radius: 8px;
+  padding: 8px;
+  text-align: center;
+  font-weight: var(--font-bold);
+}
+
+.card-red {
+  background-color: #ffecec;
+  border: 2px solid var(--qotp-red);
+  color: var(--qotp-red);
+}
+
+.card-green {
+  background-color: #ecffe9;
+  border: 2px solid var(--qotp-green);
+  color: var(--qotp-green);
+}
+
+.card-blue {
+  background-color: #ececff;
+  border: 2px solid var(--qotp-blue);
+  color: var(--qotp-blue);
+}
+
+.card-yellow {
+  background-color: #fff9e6;
+  border: 2px solid var(--qotp-yellow);
+  color: var(--qotp-yellow);
+}
+
+/* Improved styling for code and legend text */
+.legend,
+.code-display {
+  font-family: "Courier New", monospace;
+  font-weight: var(--font-bold);
+}
+
+/* Interactive challenge form styling */
+.challenge-form {
+  margin: 1rem 0;
+  padding: 1rem;
+  border: 1px solid var(--text-color);
+  border-radius: 8px;
+}
+
+.challenge-form h3 {
+  margin-top: 0;
+}
+
+.challenge-form label {
+  margin-right: 1rem;
+  font-weight: var(--font-bold);
+}
+
+.challenge-result {
+  margin-top: 1rem;
+  font-size: 1.1em;
+  font-weight: var(--font-bold);
+}

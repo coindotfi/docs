@@ -158,33 +158,23 @@ icon: "atom"
   }
 `}</style>
 
-<img src="/logo/300x100-coin-wallet.png" alt="CoinFi Wallet" style={{ marginBottom: "2rem" }} />
+<div style={{ display: "flex", justifyContent: "center", marginBottom: "2rem" }}>
+  <img 
+    id="toggleImage" 
+    src="/logo/png-coinfi-blue.png" 
+    alt="CoinFi Wallet" 
+    onClick={() => {
+      const img = document.getElementById('toggleImage');
+      img.src = img.src.includes('/logo/png-color-splash.png') ? '/logo/300x100-colorwheel.png' : '/logo/png-coinfi-blue.png';
+    }} 
+  />
+</div>
 
 # Quantum One-Time Atomic Swap Contracts
 
 ## Introduction
 
 In the rapidly evolving landscape of decentralized finance (DeFi), cross-chain trading faces significant challenges, including high transaction costs, slippage, and vulnerability to quantum computing threats. The **CoinFi Automated Atomic Market Maker (AAMM)** introduces a groundbreaking solution: **Quantum One-Time Atomic Swap Contracts**, leveraging quantum-resistant cryptography, zero-knowledge proofs, and dynamic pricing algorithms. This platform ensures secure, fast, and cost-effective asset swaps across blockchains, minimizing counterparty risks and enhancing liquidity efficiency. By integrating advanced protocols like zkHPNG, Fullmen, and RWP, and utilizing an adaptive matching system, CoinFi AAMM delivers an intuitive, scalable, and trustless trading experience for all users, from retail traders to institutional investors.
-
----
-
-## Public Keys and Private Keys in Atomic Swaps
-
-**Public Keys:** Serve as unique identifiers for wallet owners, enabling trustless verification of swap participants across chains.  
-
-```plaintext
-coin1hj5fveer5cjtn4wd6wstzugjfdxzl0xpdpsrzs
-```
-
-*Explanation:* Public keys ensure transparency in cross-chain transactions, allowing participants to verify identities without exposing sensitive data, crucial for secure atomic swaps.
-
-**Private Keys:** Enable secure signing of swap transactions, ensuring only authorized parties can initiate or finalize trades.  
-
-```plaintext
-123SomePr1vat3Key...
-```
-
-*Explanation:* Private keys underpin the security of atomic swaps, generating digital signatures that validate transaction integrity and prevent unauthorized access, even under quantum threats.
 
 ---
 

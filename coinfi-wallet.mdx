@@ -3,6 +3,7 @@ title: "Quantum Resistant Authentication System for Authorizing Private Key Sign
 description: "Public Keys, Private Keys, and Quantum One-Time Pads with ENIGMA Cipher Integration"
 sidebarTitle: "Public, Private, and QOTP Keys"
 icon: "key"
+author: "Dylan Kawalec at Coin.fi"
 ---
 
 <style>{`
@@ -165,7 +166,7 @@ coin1hj5fveer5cjtn4wd6wstzugjfdxzl0xpdpsrzs
 ```
 
 
- *Explanation:* Think of the public key as your digital signature. It lets others recognize you without sharing your personal details, fostering trust and openness in every exchange.
+ + Think of the public key as your digital signature. It lets others recognize you without sharing your personal details, fostering trust and openness in every exchange.
 
 ## Private Keys  
 **Purpose:** Enable the wallet owner to sign and send messages securely, protecting confidentiality.  
@@ -174,7 +175,7 @@ coin1hj5fveer5cjtn4wd6wstzugjfdxzl0xpdpsrzs
 123SomePr1vat3Key...
 ```
 
-*Explanation:* The private key is a secret component used to generate digital signatures, ensuring that only the authorized owner can initiate transactions or communications, safeguarding against unauthorized access.
++ The private key is a secret component used to generate digital signatures, ensuring that only the authorized owner can initiate transactions or communications, safeguarding against unauthorized access.
 
 ---
 
@@ -236,7 +237,7 @@ Each character’s color is dynamically determined by its position in an entropy
   <span style={{ color: "#ffd54f" }}>衣</span>
 </div>
 
-*Explanation:* The QOTP’s entropy-driven rotation assigns colors to characters based on their position in the pad, which is synchronized with ENIGMA’s hyperplane mapping. This dual-system approach ensures quantum resistance by leveraging dynamic, unpredictable rotations and a private, static mapping, making it computationally infeasible for adversaries to predict or reverse-engineer the sequence.
++ The QOTP’s entropy-driven rotation assigns colors to characters based on their position in the pad, which is synchronized with ENIGMA’s hyperplane mapping. This dual-system approach ensures quantum resistance by leveraging dynamic, unpredictable rotations and a private, static mapping, making it computationally infeasible for adversaries to predict or reverse-engineer the sequence.
 
 ---
 
@@ -248,7 +249,7 @@ The QOTP and ENIGMA systems collaborate to provide secure, zero-knowledge authen
 <div className="equation">
   $\Lambda = \lbrace \mathrm{A}, \mathrm{B}, \ldots, \mathrm{Z}, 0, 1, \ldots, 9, 艾勒, 哦, 维, 衣 \rbrace$
 </div>
-*Explanation:* The universal language $\Lambda$ comprises 40 distinct symbols, forming a comprehensive alphabet for both QOTP and ENIGMA. This diverse set ensures a large keyspace, enhancing cryptographic strength by maximizing the possible combinations for subkeys and mappings.
++ The universal language $\Lambda$ comprises 40 distinct symbols, forming a comprehensive alphabet for both QOTP and ENIGMA. This diverse set ensures a large keyspace, enhancing cryptographic strength by maximizing the possible combinations for subkeys and mappings.
 
 ### Step 2: Private Key ($\Omega$) and Subkeys ($\Omega_i$)
 
@@ -262,15 +263,14 @@ This private key is split into individual subkeys $\Omega_i$, each corresponding
 
 <div className="equation">
   $\begin{aligned}
-    \Omega_1 &= \mathrm{L} \quad \text{(Position 11 in QOTP pad, located in } \Gamma_1 \text{, Yellow, mapped to RIGHT)} \\
-    \Omega_2 &= \mathrm{O} \quad \text{(Position 14 in QOTP pad, located in } \Gamma_3 \text{, Blue, mapped to LEFT)} \\
-    \Omega_3 &= \mathrm{V} \quad \text{(Position 21 in QOTP pad, located in } \Gamma_2 \text{, Green, mapped to DOWN)} \\
-    \Omega_4 &= \mathrm{E} \quad \text{(Position 4 in QOTP pad, located in } \Gamma_4 \text{, Red, mapped to UP)}
+    \Omega_1 &= \mathrm{L} \quad \text{(Position 11 in QOTP pad, located in } \Gamma_1 \text{, } \textcolor{#ffd54f}{\text{Yellow}}, \text{ mapped to RIGHT)} \\
+    \Omega_2 &= \mathrm{O} \quad \text{(Position 14 in QOTP pad, located in } \Gamma_3 \text{, } \textcolor{#64b5f6}{\text{Blue}}, \text{ mapped to LEFT)} \\
+    \Omega_3 &= \mathrm{V} \quad \text{(Position 21 in QOTP pad, located in } \Gamma_2 \text{, } \textcolor{#81c784}{\text{Green}}, \text{ mapped to DOWN)} \\
+    \Omega_4 &= \mathrm{E} \quad \text{(Position 4 in QOTP pad, located in } \Gamma_4 \text{, } \textcolor{#e57373}{\text{Red}}, \text{ mapped to UP)}
   \end{aligned}$
 </div>
 
-*Explanation:*  
-The private key $\Omega$ is an ordered sequence of subkeys $\Omega_i$, each drawn from $\Lambda$. In the QOTP system, each subkey’s position in the entropy-rotated pad determines its color and initial grouping, while in the ENIGMA system, these subkeys are located within specific hyperplanes ($\Gamma_i$) during each round of the $\Sigma$-Interactive Protocol. The term "position" refers to the character’s location in the QOTP pad sequence, which influences its hyperplane assignment in ENIGMA. For example, $\mathrm{L}$ at position 11 falls into the yellow hyperplane ($\Gamma_1$), mapped to RIGHT via $\Psi$. This dual-system approach ensures that each subkey’s cryptographic role is dynamically determined by entropy-based rotations and securely mapped within the holographic manifold, enhancing both visual clarity and quantum-resistant security.
++  The private key $\Omega$ is an ordered sequence of subkeys $\Omega_i$, each drawn from $\Lambda$. In the QOTP system, each subkey’s position in the entropy-rotated pad determines its color and initial grouping, while in the ENIGMA system, these subkeys are located within specific hyperplanes ($\Gamma_i$) during each round of the $\Sigma$-Interactive Protocol. The term "position" refers to the character’s location in the QOTP pad sequence, which influences its hyperplane assignment in ENIGMA. For example, $\mathrm{L}$ at position 11 falls into the yellow hyperplane ($\Gamma_1$), mapped to RIGHT via $\Psi$. This dual-system approach ensures that each subkey’s cryptographic role is dynamically determined by entropy-based rotations and securely mapped within the holographic manifold, enhancing both visual clarity and quantum-resistant security.
 
 ### Step 3: Secret Synonym Mapping ($\Psi$)
 Mapping <span className="tooltip" data-tooltip="Abstract layers in a holographic manifold that map characters to directions">hyperplanes</span> to bearing directions (aligned with QOTP colors):
@@ -281,14 +281,14 @@ Mapping <span className="tooltip" data-tooltip="Abstract layers in a holographic
 <div className="equation">
   $\Psi: \Gamma_i \rightarrow \Xi_i$
 </div>
-*Explanation:* The mapping $\Psi$ is a static, private function that associates each hyperplane $\Gamma_i$ with a bearing direction $\Xi_i$, known only to the observer. This mapping aligns with the QOTP’s color-coded system, ensuring that each subkey’s direction is both visually intuitive and cryptographically secure, maintaining zero-knowledge properties.
++ The mapping $\Psi$ is a static, private function that associates each hyperplane $\Gamma_i$ with a bearing direction $\Xi_i$, known only to the observer. This mapping aligns with the QOTP’s color-coded system, ensuring that each subkey’s direction is both visually intuitive and cryptographically secure, maintaining zero-knowledge properties.
 
 ### Step 4: Commitment ($\Gamma$)
 Combined as:
 <div className="equation">
   $\Gamma = H(\Omega \parallel H(\Psi))$
 </div>
-*Explanation:* The commitment $\Gamma$ binds the private key $\Omega$ and the hashed mapping $H(\Psi)$ using a quantum-resistant hash function $H$ (e.g., SHAKE256). The $\parallel$ operator denotes concatenation, ensuring that any alteration to $\Omega$ or $\Psi$ invalidates $\Gamma$, providing integrity and authenticity.
++ The commitment $\Gamma$ binds the private key $\Omega$ and the hashed mapping $H(\Psi)$ using a quantum-resistant hash function $H$ (e.g., SHAKE256). The $\parallel$ operator denotes concatenation, ensuring that any alteration to $\Omega$ or $\Psi$ invalidates $\Gamma$, providing integrity and authenticity.
 
 ### Step 5: Möbius Rotation and $\Sigma$-Interactive Protocol with "LOVE"
 
@@ -307,7 +307,7 @@ The QOTP pad rotates based on entropy-derived offsets, and each subkey $\Omega_i
   $\text{Comm}_1 = H(\mathrm{L} \parallel \text{RIGHT} \parallel r_1)$
 </div>
 **Result:** <span style={{ color: "#ffd54f" }}>L</span> → <span style={{ color: "#ffd54f", fontWeight: "bold" }}>RIGHT</span>.  
-*Explanation:* The initial pad groups characters by color, with $\mathrm{L}$ located in the yellow hyperplane ($\Gamma_1$). The mapping $\Psi$ assigns the direction RIGHT, and the commitment hashes $\mathrm{L}$, RIGHT, and a nonce $r_1$, ensuring secure, verifiable authentication.
++ The initial pad groups characters by color, with $\mathrm{L}$ located in the yellow hyperplane ($\Gamma_1$). The mapping $\Psi$ assigns the direction RIGHT, and the commitment hashes $\mathrm{L}$, RIGHT, and a nonce $r_1$, ensuring secure, verifiable authentication.
 
 #### Round 2 (Rotation by Offset 4, $\Omega_2 = \mathrm{O}$)
 **New Grouping:**
@@ -322,7 +322,7 @@ The QOTP pad rotates based on entropy-derived offsets, and each subkey $\Omega_i
   $\text{Comm}_2 = H(\mathrm{O} \parallel \text{LEFT} \parallel r_2)$
 </div>
 **Result:** <span style={{ color: "#64b5f6" }}>O</span> → <span style={{ color: "#64b5f6", fontWeight: "bold" }}>LEFT</span>.  
-*Explanation:* After a 4-position offset, $\mathrm{O}$ shifts to the blue hyperplane ($\Gamma_3$), mapped to LEFT. The commitment hashes $\mathrm{O}$, LEFT, and $r_2$, maintaining zero-knowledge security through dynamic rotation.
++ After a 4-position offset, $\mathrm{O}$ shifts to the blue hyperplane ($\Gamma_3$), mapped to LEFT. The commitment hashes $\mathrm{O}$, LEFT, and $r_2$, maintaining zero-knowledge security through dynamic rotation.
 
 #### Round 3 (Rotation by Offset 8, $\Omega_3 = \mathrm{V}$)
 **New Grouping:**
@@ -337,7 +337,7 @@ The QOTP pad rotates based on entropy-derived offsets, and each subkey $\Omega_i
   $\text{Comm}_3 = H(\mathrm{V} \parallel \text{DOWN} \parallel r_3)$
 </div>
 **Result:** <span style={{ color: "#81c784" }}>V</span> → <span style={{ color: "#81c784", fontWeight: "bold" }}>DOWN</span>.  
-*Explanation:* An 8-position offset places $\mathrm{V}$ in the green hyperplane ($\Gamma_2$), mapped to DOWN. The commitment hashes $\mathrm{V}$, DOWN, and $r_3$, ensuring the integrity of the authentication process.
++ An 8-position offset places $\mathrm{V}$ in the green hyperplane ($\Gamma_2$), mapped to DOWN. The commitment hashes $\mathrm{V}$, DOWN, and $r_3$, ensuring the integrity of the authentication process.
 
 #### Round 4 (Rotation by Offset 12, $\Omega_4 = \mathrm{E}$)
 **New Grouping:**
@@ -352,7 +352,7 @@ The QOTP pad rotates based on entropy-derived offsets, and each subkey $\Omega_i
   $\text{Comm}_4 = H(\mathrm{E} \parallel \text{UP} \parallel r_4)$
 </div>
 **Result:** <span style={{ color: "#e57373" }}>E</span> → <span style={{ color: "#e57373", fontWeight: "bold" }}>UP</span>.  
-*Explanation:* A 12-position offset shifts $\mathrm{E}$ to the red hyperplane ($\Gamma_4$), mapped to UP. The commitment hashes $\mathrm{E}$, UP, and $r_4$, completing the secure mapping for "LOVE".
++ A 12-position offset shifts $\mathrm{E}$ to the red hyperplane ($\Gamma_4$), mapped to UP. The commitment hashes $\mathrm{E}$, UP, and $r_4$, completing the secure mapping for "LOVE".
 
 ### Step 6: Final Witness Sequence for "LOVE"
 <div className="equation">
@@ -364,16 +364,18 @@ The QOTP pad rotates based on entropy-derived offsets, and each subkey $\Omega_i
   <span style={{ color: "#81c784" }}>V</span> = <span className="direction-icon">⬇️</span><span style={{ color: "#81c784", fontWeight: "bold" }}>DOWN</span> | 
   <span style={{ color: "#e57373" }}>E</span> = <span className="direction-icon">⬆️</span><span style={{ color: "#e57373", fontWeight: "bold" }}>UP</span>
 </div>
-*Explanation:* The final witness sequence $\Xi$ encapsulates the bearing directions for each subkey, derived from the hyperplane mappings and QOTP rotations. This sequence is visually represented with color-coded characters and direction icons, ensuring clarity and alignment with the cryptographic process.
++ The final witness sequence $\Xi$ encapsulates the bearing directions for each subkey, derived from the hyperplane mappings and QOTP rotations. This sequence is visually represented with color-coded characters and direction icons, ensuring clarity and alignment with the cryptographic process.
 
 ### Step 7: Verification
 The verifier confirms each response using the commitments and witnesses, ensuring zero-knowledge properties via:
 <div className="equation">
   $\Theta(\text{Comm}_i, e_i, s_i) \quad \text{for} \quad i = 1 \text{ to } 4$
 </div>
-*Explanation:* The verification function $\Theta$ evaluates the commitments $\text{Comm}_i$, challenges $e_i$, and responses $s_i$ for each round, leveraging zero-knowledge proof principles. This ensures that the observer’s knowledge of $\Omega_i$ and $\Psi$ remains confidential, with no leakage of sensitive information, even under quantum attacks.
++ The verification function $\Theta$ evaluates the commitments $\text{Comm}_i$, challenges $e_i$, and responses $s_i$ for each round, leveraging zero-knowledge proof principles. This ensures that the observer’s knowledge of $\Omega_i$ and $\Psi$ remains confidential, with no leakage of sensitive information, even under quantum attacks.
 
 ---
+<img src="/logo/png-color-splash.png" alt="CoinFi Wallet" style={{ marginBottom: "2rem" }} />
+
 
 ## Summary of Equations Used
 
@@ -383,25 +385,25 @@ This section consolidates the mathematical foundations of the QOTP-ENIGMA system
 <div className="equation">
   $\Lambda = \lbrace c_1, c_2, \ldots, c_{40} \rbrace$
 </div>
-*Explanation:* The universal language $\Lambda$ defines a 40-character alphabet, encompassing letters, digits, and symbols, forming the foundation for key generation and mapping. This expansive set maximizes entropy, ensuring robust cryptographic strength.
++ The universal language $\Lambda$ defines a 40-character alphabet, encompassing letters, digits, and symbols, forming the foundation for key generation and mapping. This expansive set maximizes entropy, ensuring robust cryptographic strength.
 
 2. **Private Key:**  
 <div className="equation">
   $\Omega = (\Omega_1, \Omega_2, \ldots, \Omega_n), \quad \Omega_i \in \Lambda$
 </div>
-*Explanation:* The private key $\Omega$ is an ordered sequence of subkeys $\Omega_i$, each drawn from $\Lambda$. This structure allows for flexible, dynamic key generation, with each subkey’s position in the QOTP pad determining its cryptographic role.
++ The private key $\Omega$ is an ordered sequence of subkeys $\Omega_i$, each drawn from $\Lambda$. This structure allows for flexible, dynamic key generation, with each subkey’s position in the QOTP pad determining its cryptographic role.
 
 3. **Secret Synonym Mapping (Holographic Morphism):**  
 <div className="equation">
   $\Psi: \Gamma_i \rightarrow \Xi_i$
 </div>
-*Explanation:* The mapping $\Psi$ is a private, static function that associates each hyperplane $\Gamma_i$ with a bearing direction $\Xi_i$. This mapping, known only to the observer, aligns with QOTP’s color-coded system, ensuring that each subkey’s direction is both visually intuitive and cryptographically secure.
++ The mapping $\Psi$ is a private, static function that associates each hyperplane $\Gamma_i$ with a bearing direction $\Xi_i$. This mapping, known only to the observer, aligns with QOTP’s color-coded system, ensuring that each subkey’s direction is both visually intuitive and cryptographically secure.
 
 4. **Commitment:**  
 <div className="equation">
   $\Gamma = H(\Omega \parallel H(\Psi))$
 </div>
-*Explanation:* The commitment $\Gamma$ binds the private key $\Omega$ and the hashed mapping $H(\Psi)$ using a quantum-resistant hash function $H$ (e.g., SHAKE256). The `\parallel` operator denotes concatenation, ensuring that any alteration to $\Omega$ or $\Psi$ invalidates $\Gamma$, providing integrity and authenticity.
++ The commitment $\Gamma$ binds the private key $\Omega$ and the hashed mapping $H(\Psi)$ using a quantum-resistant hash function $H$ (e.g., SHAKE256). The `\parallel` operator denotes concatenation, ensuring that any alteration to $\Omega$ or $\Psi$ invalidates $\Gamma$, providing integrity and authenticity.
 
 5. **$\Sigma$-Interactive Protocol Steps (Per Round):**  
 <div className="equation">
@@ -411,7 +413,7 @@ This section consolidates the mathematical foundations of the QOTP-ENIGMA system
     & \text{Verification:} \quad \Theta(\text{Comm}_i, s_i, e_i)
   \end{aligned}$
 </div>
-*Explanation:*  
++  
   - **Commitment:** Hashes the subkey $\Omega_i$, witness $\Xi_i$, and nonce $r_i$ using $H$, creating a secure, verifiable commitment.  
   - **Response:** Computes $s_i$ based on $\Omega_i$, $\Xi_i$, challenge $e_i$, and $r_i$, ensuring the observer’s knowledge is verifiable without revealing secrets.  
   - **Verification:** Uses $\Theta$ to validate the commitment, response, and challenge, enforcing zero-knowledge properties and ensuring no information leakage.
@@ -420,13 +422,14 @@ This section consolidates the mathematical foundations of the QOTP-ENIGMA system
 <div className="equation">
   $\Xi = (\Xi_1, \Xi_2, \ldots, \Xi_n)$
 </div>
-*Explanation:* The witness sequence $\Xi$ encapsulates the bearing directions for each subkey, derived from hyperplane mappings and QOTP rotations. This sequence is the final output of the authentication process, ensuring alignment with the cryptographic framework.
++ The witness sequence $\Xi$ encapsulates the bearing directions for each subkey, derived from hyperplane mappings and QOTP rotations. This sequence is the final output of the authentication process, ensuring alignment with the cryptographic framework.
 
 *Conclusion:* These equations form the mathematical backbone of the QOTP-ENIGMA system, integrating entropy-driven rotations with zero-knowledge proofs. The use of `\parallel` for concatenation, aligned equations, and rigorous notation ensures clarity, security, and quantum resistance.
 
 ---
+<img src="/logo/300x100-coin-wallet.png" alt="CoinFi Wallet" style={{ marginBottom: "2rem" }} />
 
-## Attribute Associations
+## Symbol Definitions
 
 <table className="table">
   <thead>

@@ -1,6 +1,6 @@
 ---
 title: "Quantum Resistant Authentication System for Authorizing Private Key Signing"
-description: "Public Keys, Private Keys, and Quantum One-Time Pads"
+description: "Public Keys, Private Keys, and Quantum One-Time Pads with ENIGMA Cipher Integration"
 sidebarTitle: "Public, Private, and QOTP Keys"
 icon: "key"
 ---
@@ -14,6 +14,18 @@ icon: "key"
     --equation-bg: #f5f5f5;
     --table-border: #ddd;
     --table-header-bg: #1976d2;
+    --text-light: #fff;
+    --text-dark: #212121;
+    --red-bg: #e57373;
+    --green-bg: #81c784;
+    --blue-bg: #64b5f6;
+    --yellow-bg: #ffd54f;
+    --red-border: #d32f2f;
+    --green-border: #388e3c;
+    --blue-border: #1976d2;
+    --yellow-border: #fbc02d;
+    --yellow-text-light: #212121;
+    --yellow-text-dark: #fff;
   }
   @media (prefers-color-scheme: dark) {
     :root {
@@ -21,6 +33,12 @@ icon: "key"
       --equation-bg: #333;
       --table-border: #444;
       --table-header-bg: #90caf9;
+      --text-light: #333;
+      --text-dark: #e0e0e0;
+      --red-bg: #b71c1c;
+      --green-bg: #388e3c;
+      --blue-bg: #1565c0;
+      --yellow-bg: #fbc02d;
     }
   }
   .grid {
@@ -36,44 +54,44 @@ icon: "key"
     text-align: center;
     box-shadow: var(--card-box-shadow);
     transition: var(--card-transition);
+    color: var(--text-light);
   }
   .card:hover {
     transform: translateY(-4px);
     box-shadow: 0 6px 12px rgba(0,0,0,0.15);
   }
   .card-red {
-    background-color: #e57373;
-    color: #fff;
-    border-color: #d32f2f;
+    background-color: var(--red-bg);
+    border-color: var(--red-border);
   }
   .card-green {
-    background-color: #81c784;
-    color: #fff;
-    border-color: #388e3c;
+    background-color: var(--green-bg);
+    border-color: var(--green-border);
   }
   .card-blue {
-    background-color: #64b5f6;
-    color: #fff;
-    border-color: #1976d2;
+    background-color: var(--blue-bg);
+    border-color: var(--blue-border);
   }
   .card-yellow {
-    background-color: #ffd54f;
-    color: #212121;
-    border-color: #fbc02d;
+    background-color: var(--yellow-bg);
+    border-color: var(--yellow-border);
+    color: var(--yellow-text-light);
   }
-  .card-red strong,
-  .card-green strong,
-  .card-blue strong,
-  .card-yellow strong {
+  @media (prefers-color-scheme: dark) {
+    .card-yellow {
+      color: var(--yellow-text-dark);
+    }
+  }
+  .card strong {
     font-size: 1.2em;
     font-weight: 600;
   }
-  .card-red p,
-  .card-green p,
-  .card-blue p,
-  .card-yellow p {
+  .card p {
     margin: 8px 0 0;
     font-size: 1em;
+  }
+  .card span {
+    color: inherit;
   }
   .qotp-sequence span:hover {
     text-decoration: underline;
@@ -108,45 +126,72 @@ icon: "key"
     background-color: var(--table-header-bg);
     color: #fff;
   }
+  .tooltip {
+    position: relative;
+    display: inline-block;
+    cursor: help;
+    border-bottom: 1px dotted #666;
+  }
+  .tooltip:hover::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 4px;
+    white-space: nowrap;
+    z-index: 10;
+  }
 `}</style>
 
 <img src="/logo/300x100-coin-wallet.png" alt="CoinFi Wallet" style={{ marginBottom: "2rem" }} />
 
-## Overview
+# Quantum Resistant Authentication System for Authorizing Private Key Signing
 
-This document details our **quantum–resistant authentication system** which incorporates:
+Welcome to our comprehensive guide on a **quantum–resistant authentication system**. This system integrates three robust cryptographic components:
+
 - **Public Keys:** Identify the wallet owner.
-- **Private Keys:** Enable the owner to sign and send messages.
-- **Quantum One–Time Pad (QOTP):** A dynamic, color–coded pad solved via entropy-based rotations.
+- **Private Keys:** Allow the owner to sign and send messages.
+- **Quantum One–Time Pad (QOTP) with ENIGMA Cipher:** Utilizes a dynamic, color–coded pad (solved via entropy-based rotations) enhanced by the ROSARIO-WANG Cipher System, achieving secure, zero-knowledge authentication with hyperplanes and holographic morphisms.
 
 ---
 
 ## Public Keys  
-*Identifier for the wallet owner:*  
-- `coin1hj5fveer5cjtn4wd6wstzugjfdxzl0xpdpsrzs`
+**Identifier for the wallet owner:**  
+
+```plaintext
+coin1hj5fveer5cjtn4wd6wstzugjfdxzl0xpdpsrzs
+```
 
 ## Private Keys  
-*Used to sign and send messages:*  
-- `123SomePr1vat3Key...`
+**Used to sign and send messages:**  
+
+```plaintext
+123SomePr1vat3Key...
+```
 
 ---
 
-## Quantum One–Time Pad (QOTP) Legend
+## Quantum One–Time Pad (QOTP) and ENIGMA Cipher Integration
 
-Our QOTP is a **40–character sequence** drawn from:
+Our QOTP consists of a **40–character sequence** derived from:
+
 - **A–Z** (26 characters)
 - **0–9** (10 characters)
 - **♦, ♣, ♥, ♠** (4 characters)
 
-Each character’s color is determined by its position in the entropy-rotated pad:
-- **Red:** <span style={{ color: "#e57373", fontWeight: "bold" }}>UP</span>
-- **Green:** <span style={{ color: "#81c784", fontWeight: "bold" }}>DOWN</span>
-- **Blue:** <span style={{ color: "#64b5f6", fontWeight: "bold" }}>LEFT</span>
-- **Yellow:** <span style={{ color: "#ffd54f", fontWeight: "bold" }}>RIGHT</span>
+Each character’s color is determined by its position in the entropy-rotated pad, which is aligned with the ENIGMA Cipher’s <span className="tooltip" data-tooltip="Layers in the holographic manifold for mapping characters">hyperplane</span> mapping:
+- <span style={{ color: "#e57373", fontWeight: "bold" }}>Red</span>: **UP**
+- <span style={{ color: "#81c784", fontWeight: "bold" }}>Green</span>: **DOWN**
+- <span style={{ color: "#64b5f6", fontWeight: "bold" }}>Blue</span>: **LEFT**
+- <span style={{ color: "#ffd54f", fontWeight: "bold" }}>Yellow</span>: **RIGHT**
 
 **Initial pad sequence:**
 
-<span className="qotp-sequence" style={{ fontFamily: "monospace", fontSize: "1em", lineHeight: "1.5" }}>
+<div style={{ fontFamily: "monospace", fontSize: "1em", lineHeight: "1.5" }}>
   <span style={{ color: "#e57373" }}>A</span>
   <span style={{ color: "#81c784" }}>B</span>
   <span style={{ color: "#64b5f6" }}>C</span>
@@ -187,212 +232,194 @@ Each character’s color is determined by its position in the entropy-rotated pa
   <span style={{ color: "#81c784" }}>♣</span>
   <span style={{ color: "#64b5f6" }}>♥</span>
   <span style={{ color: "#ffd54f" }}>♠</span>
-</span>
+</div>
 
-*Note: Colors are determined by the pad’s entropy rotation rather than a fixed pattern.*
-
----
-
-## Quantum One–Time Pad Operation
-
-For authentication, the owner solves the QOTP. For example, the pad solution:
-
-- <span style={{ color: "#ffd54f" }}>L</span>
-- <span style={{ color: "#64b5f6" }}>O</span>
-- <span style={{ color: "#81c784" }}>V</span>
-- <span style={{ color: "#e57373" }}>E</span>
-
-corresponds to:
-- **L** (index 11) → <span style={{ color: "#ffd54f", fontWeight: "bold" }}>Yellow → RIGHT</span>
-- **O** (index 14) → <span style={{ color: "#64b5f6", fontWeight: "bold" }}>Blue → LEFT</span>
-- **V** (index 21) → <span style={{ color: "#81c784", fontWeight: "bold" }}>Green → DOWN</span>
-- **E** (index 4) → <span style={{ color: "#e57373", fontWeight: "bold" }}>Red → UP</span>
+*Note: Colors are determined by the pad’s entropy rotation, aligned with ENIGMA’s hyperplane mapping to ensure quantum resistance.*
 
 ---
 
-## Example: Möbius One–Time Pad Rotation
+## Integrated QOTP and ENIGMA Operation: Example with "LOVE"
 
-The pad rotates cyclically based on entropy-derived offsets and is grouped into four color cards.
+The QOTP and ENIGMA systems operate in tandem for secure authentication. The private key  
+$\Omega$ is **<span style={{ color: "#ffd54f" }}>L</span><span style={{ color: "#64b5f6" }}>O</span><span style={{ color: "#81c784" }}>V</span><span style={{ color: "#e57373" }}>E</span>**, which is split into subkeys $\Omega_i$ and mapped to hyperplanes via entropy-derived rotations.
 
-### Round 1 (Initial Pad)
-**Grouping:**
+### Step 1: Universal Language ($\Lambda$)
+<div className="equation">
+  $\Lambda = \lbrace \mathrm{A}, \mathrm{B}, \ldots, \mathrm{Z}, 0, 1, \ldots, 9, ♦, ♣, ♥, ♠ \rbrace$
+</div>
+*This 40-character set forms the basis for both QOTP and ENIGMA, ensuring a robust alphabet for cryptographic operations.*
+
+### Step 2: Private Key ($\Omega$) and Subkeys ($\Omega_i$)
+For example:
+<div className="equation">
+  $\Omega = \lbrace \mathrm{L}, \mathrm{O}, \mathrm{V}, \mathrm{E} \rbrace$
+</div>
+Split as:
+<div className="equation">
+  $\begin{aligned}
+    \Omega_1 &= \mathrm{L} \\
+    \Omega_2 &= \mathrm{O} \\
+    \Omega_3 &= \mathrm{V} \\
+    \Omega_4 &= \mathrm{E} 
+  \end{aligned}$
+</div>
+
+### Step 3: Secret Synonym Mapping ($\Psi$)
+Mapping <span className="tooltip" data-tooltip="Layers in the holographic manifold for mapping characters">hyperplanes</span> to directions (aligned with QOTP colors):
+- $\Gamma_1$ (<span style={{ color: "#ffd54f" }}>Yellow</span>) → $\Xi_1$ (RIGHT)
+- $\Gamma_2$ (<span style={{ color: "#81c784" }}>Green</span>) → $\Xi_2$ (DOWN)
+- $\Gamma_3$ (<span style={{ color: "#64b5f6" }}>Blue</span>) → $\Xi_3$ (LEFT)
+- $\Gamma_4$ (<span style={{ color: "#e57373" }}>Red</span>) → $\Xi_4$ (UP)
+<div className="equation">
+  $\Psi: \Gamma_i \rightarrow \Xi_i$
+</div>
+*This mapping remains private and static, ensuring zero-knowledge security.*
+
+### Step 4: Commitment ($\Gamma$)
+Combined as:
+<div className="equation">
+  $\Gamma = H(\Omega \mid H(\Psi))$
+</div>
+*Here, $H$ is a quantum-resistant hash function (e.g., SHAKE256) that binds the private key with its mapping for integrity.*
+
+### Step 5: Möbius Rotation and $\Sigma$-Interactive Protocol with "LOVE"
+
+The pad rotates based on entropy offsets. Each subkey $\Omega_i$ is located in a hyperplane $\Gamma_j$, then mapped to a witness $\Xi_j$ via $\Psi$. The following rounds detail the QOTP rotations in conjunction with ENIGMA’s protocol rounds.
+
+#### Round 1 (Initial Pad, $\Omega_1 = \mathrm{L}$)
+**Grouping (Entropy Offset 0):**
 - **Red:** <span style={{ color: "#e57373" }}>A, E, I, M, Q, U, Y, 2, 6, ♦</span>
 - **Green:** <span style={{ color: "#81c784" }}>B, F, J, N, R, V, Z, 3, 7, ♣</span>
 - **Blue:** <span style={{ color: "#64b5f6" }}>C, G, K, O, S, W, 0, 4, 8, ♥</span>
 - **Yellow:** <span style={{ color: "#ffd54f" }}>D, H, L, P, T, X, 1, 5, 9, ♠</span>
 
+**Locate $\Omega_1 = \mathrm{L}$:**  
+Found in $\Gamma_1$ (<span style={{ color: "#ffd54f" }}>Yellow</span>).  
+**Witness:** $\Psi(\Gamma_1) = \Xi_1$ → <span style={{ color: "#ffd54f", fontWeight: "bold" }}>RIGHT</span>.  
+**Commitment:**  
+<div className="equation">
+  $\text{Comm}_1 = H(\mathrm{L} \mid \text{RIGHT} \mid r_1)$
+</div>
+**Result:**  
+<span style={{ color: "#ffd54f" }}>L</span> → <span style={{ color: "#ffd54f", fontWeight: "bold" }}>RIGHT</span>.
 
-
-**Pad Letter:** <span style={{ color: "#ffd54f" }}>L</span>  
-→ <span style={{ color: "#ffd54f", fontWeight: "bold" }}>Yellow → RIGHT</span>
-
-### Round 2 (Rotation by Offset 4)
+#### Round 2 (Rotation by Offset 4, $\Omega_2 = \mathrm{O}$)
 **New Grouping:**
 - **Red:** <span style={{ color: "#e57373" }}>E, I, M, Q, U, Y, 2, 6, ♦, A</span>
 - **Green:** <span style={{ color: "#81c784" }}>F, J, N, R, V, Z, 3, 7, ♣, B</span>
 - **Blue:** <span style={{ color: "#64b5f6" }}>G, K, O, S, W, 0, 4, 8, ♥, C</span>
 - **Yellow:** <span style={{ color: "#ffd54f" }}>H, L, P, T, X, 1, 5, 9, ♠, D</span>
 
+**Locate $\Omega_2 = \mathrm{O}$:**  
+Found in $\Gamma_3$ (<span style={{ color: "#64b5f6" }}>Blue</span>).  
+**Witness:** $\Psi(\Gamma_3) = \Xi_3$ → <span style={{ color: "#64b5f6", fontWeight: "bold" }}>LEFT</span>.  
+**Commitment:**  
+<div className="equation">
+  $\text{Comm}_2 = H(\mathrm{O} \mid \text{LEFT} \mid r_2)$
+</div>
+**Result:**  
+<span style={{ color: "#64b5f6" }}>O</span> → <span style={{ color: "#64b5f6", fontWeight: "bold" }}>LEFT</span>.
 
-
-**Pad Letter:** <span style={{ color: "#64b5f6" }}>O</span>  
-→ <span style={{ color: "#64b5f6", fontWeight: "bold" }}>Blue → LEFT</span>
-
-### Round 3 (Rotation by Offset 8)
+#### Round 3 (Rotation by Offset 8, $\Omega_3 = \mathrm{V}$)
 **New Grouping:**
 - **Red:** <span style={{ color: "#e57373" }}>I, M, Q, U, Y, 2, 6, ♦, A, E</span>
 - **Green:** <span style={{ color: "#81c784" }}>J, N, R, V, Z, 3, 7, ♣, B, F</span>
 - **Blue:** <span style={{ color: "#64b5f6" }}>K, O, S, W, 0, 4, 8, ♥, C, G</span>
 - **Yellow:** <span style={{ color: "#ffd54f" }}>L, P, T, X, 1, 5, 9, ♠, D, H</span>
 
+**Locate $\Omega_3 = \mathrm{V}$:**  
+Found in $\Gamma_2$ (<span style={{ color: "#81c784" }}>Green</span>).  
+**Witness:** $\Psi(\Gamma_2) = \Xi_2$ → <span style={{ color: "#81c784", fontWeight: "bold" }}>DOWN</span>.  
+**Commitment:**  
+<div className="equation">
+  $\text{Comm}_3 = H(\mathrm{V} \mid \text{DOWN} \mid r_3)$
+</div>
+**Result:**  
+<span style={{ color: "#81c784" }}>V</span> → <span style={{ color: "#81c784", fontWeight: "bold" }}>DOWN</span>.
 
-
-**Pad Letter:** <span style={{ color: "#81c784" }}>V</span>  
-→ <span style={{ color: "#81c784", fontWeight: "bold" }}>Green → DOWN</span>
-
-### Round 4 (Rotation by Offset 12)
+#### Round 4 (Rotation by Offset 12, $\Omega_4 = \mathrm{E}$)
 **New Grouping:**
 - **Red:** <span style={{ color: "#e57373" }}>M, Q, U, Y, 2, 6, ♦, A, E, I</span>
 - **Green:** <span style={{ color: "#81c784" }}>N, R, V, Z, 3, 7, ♣, B, F, J</span>
 - **Blue:** <span style={{ color: "#64b5f6" }}>O, S, W, 0, 4, 8, ♥, C, G, K</span>
 - **Yellow:** <span style={{ color: "#ffd54f" }}>P, T, X, 1, 5, 9, ♠, D, H, L</span>
 
+**Locate $\Omega_4 = \mathrm{E}$:**  
+Found in $\Gamma_4$ (<span style={{ color: "#e57373" }}>Red</span>).  
+**Witness:** $\Psi(\Gamma_4) = \Xi_4$ → <span style={{ color: "#e57373", fontWeight: "bold" }}>UP</span>.  
+**Commitment:**  
+<div className="equation">
+  $\text{Comm}_4 = H(\mathrm{E} \mid \text{UP} \mid r_4)$
+</div>
+**Result:**  
+<span style={{ color: "#e57373" }}>E</span> → <span style={{ color: "#e57373", fontWeight: "bold" }}>UP</span>.
 
+### Step 6: Final Witness Sequence for "LOVE"
+<div className="equation">
+  $(\Xi_1, \Xi_2, \Xi_3, \Xi_4) = (\text{RIGHT}, \text{LEFT}, \text{DOWN}, \text{UP})$
+</div>
+<div style={{ fontFamily: "monospace", fontSize: "1.2em", lineHeight: "1.5" }}>
+  <span style={{ color: "#ffd54f" }}>L</span> = <span className="direction-icon">➡️</span><span style={{ color: "#ffd54f", fontWeight: "bold" }}>RIGHT</span> | 
+  <span style={{ color: "#64b5f6" }}>O</span> = <span className="direction-icon">⬅️</span><span style={{ color: "#64b5f6", fontWeight: "bold" }}>LEFT</span> | 
+  <span style={{ color: "#81c784" }}>V</span> = <span className="direction-icon">⬇️</span><span style={{ color: "#81c784", fontWeight: "bold" }}>DOWN</span> | 
+  <span style={{ color: "#e57373" }}>E</span> = <span className="direction-icon">⬆️</span><span style={{ color: "#e57373", fontWeight: "bold" }}>UP</span>
+</div>
 
-**Pad Letter:** <span style={{ color: "#e57373" }}>E</span>  
-→ <span style={{ color: "#e57373", fontWeight: "bold" }}>Red → UP</span>
+### Step 7: Verification
+The verifier confirms each response using the commitments and witnesses, ensuring zero-knowledge properties via:
+<div className="equation">
+  $B(\text{Comm}_i, e_i, s_i) \quad \text{for} \quad i = 1 \text{ to } 4$
+</div>
+*This verification leverages zero-knowledge proof principles, so no information about $\Omega_i$ or $\Psi$ is leaked.*
 
 ---
 
-## Final Computed Direction Sequence for "LOVE"
+## Summary of Equations Used
 
-<span style={{ fontFamily: "monospace", fontSize: "1.2em", lineHeight: "1.5" }}>
-  <span style={{ color: "#ffd54f" }}>L</span> = <span className="direction-icon">➡️</span><strong>RIGHT</strong>   |   
-  <span style={{ color: "#64b5f6" }}>O</span> = <span className="direction-icon">⬅️</span><strong>LEFT</strong>   |   
-  <span style={{ color: "#81c784" }}>V</span> = <span className="direction-icon">⬇️</span><strong>DOWN</strong>   |   
-  <span style={{ color: "#e57373" }}>E</span> = <span className="direction-icon">⬆️</span><strong>UP</strong>
-</span>
+This section summarizes the key equations used in the QOTP and ENIGMA systems, aligning with the cryptographic principles outlined.
 
----
-
-## ENIGMA: ROSARIO-WANG Cipher System Example
-
-### Introduction
-This section illustrates how the system integrates cryptographic mechanisms within a holographic manifold using:
-- The universal language
-- Private key and subkeys
-- A secret synonym mapping (holographic morphism)
-- The $\Sigma$-Interactive Protocol
-
-### Step 1: Universal Language ($\Lambda$)
-<div className="equation">
-  $\Lambda = \lbrace \mathrm{A}, \mathrm{B}, \ldots, \mathrm{Z} \rbrace$
-</div>
-
-### Step 2: Private Key ($\Omega$)
-For example:
-<div className="equation">
-  $\Omega = \lbrace \mathrm{S}, \mathrm{E}, \mathrm{C}, \mathrm{R}, \mathrm{E}, \mathrm{T} \rbrace$
-</div>
-
-### Step 3: Subkeys ($\Omega_i$)
-Split as:
-<div className="equation">
-  $\begin{aligned}
-    \Omega_1 &= \mathrm{S} \\
-    \Omega_2 &= \mathrm{E} \\
-    \Omega_3 &= \mathrm{C} \\
-    \Omega_4 &= \mathrm{R} \\
-    \Omega_5 &= \mathrm{E} \\
-    \Omega_6 &= \mathrm{T}
-  \end{aligned}$
-</div>
-
-### Step 4: Secret Synonym Mapping ($\Psi$)
-Mapping hyperplanes to directions:
-- $\Gamma_1$ (Yellow) → $\Xi_1$ (UP)
-- $\Gamma_2$ (Green) → $\Xi_2$ (DOWN)
-- $\Gamma_3$ (Blue) → $\Xi_3$ (LEFT)
-- $\Gamma_4$ (Red) → $\Xi_4$ (RIGHT)
-
-Expressed as:
-<div className="equation">
-  $\Psi: \Gamma_i \rightarrow \Xi_i$
-</div>
-
-### Step 5: Commitment ($\Gamma$)
-Combined as:
-<div className="equation">
-  $\Gamma = H(\Omega \mid H(\Psi))$
-</div>
-
-### Step 6: $\Sigma$-Interactive Protocol (Per Subkey)
-For each subkey $\Omega_i$, the observer:
-1. Randomly distributes a subset $\Pi_i \subset \Lambda$ across hyperplanes.
-2. Locates $\Omega_i$ in a hyperplane $\Gamma_j$.
-3. Determines the witness $\Xi_j = \Psi(\Gamma_j)$.
-4. Computes a commitment:
-<div className="equation">
-  $\text{Comm}_i = H(\Omega_i \mid \Xi_j \mid r_i)$
-</div>
-5. Responds to a challenge $e_i$:
-<div className="equation">
-  $s_i = f(\Omega_i, \Xi_j, e_i, r_i)$
-</div>
-6. The verifier checks:
-<div className="equation">
-  $B(\text{Comm}_i, e_i, s_i)$
-</div>
-
-### Step 7: Witness Sequence
-After all rounds, the observer obtains:
-<div className="equation">
-  (\Xi_1, \Xi_2, \Xi_3, \Xi_4, \Xi_5, \Xi_6)
-</div>
-For example:
-- $\Xi_1 =$ UP, $\Xi_2 =$ DOWN, $\Xi_3 =$ LEFT, $\Xi_4 =$ RIGHT, $\Xi_5 =$ DOWN, $\Xi_6 =$ UP
-
-### Step 8: Verification
-The verifier confirms each response against the commitments and witness values.
-
----
-
-### Summary of Equations Used
 1. **Universal Language:**  
 <div className="equation">
-  $\Lambda = \lbrace c_1, c_2, \ldots, c_{26} \rbrace$
+  $\Lambda = \lbrace c_1, c_2, \ldots, c_{40} \rbrace$
 </div>
+*Explanation:* Defines the 40-character alphabet used for both QOTP and ENIGMA, including A–Z, 0–9, and special symbols (♦, ♣, ♥, ♠).
 
 2. **Private Key:**  
 <div className="equation">
   $\Omega = (\Omega_1, \Omega_2, \ldots, \Omega_n), \quad \Omega_i \in \Lambda$
 </div>
+*Explanation:* Represents the private key as an ordered sequence of subkeys, each drawn from the universal language $\Lambda$.
 
 3. **Secret Synonym Mapping (Holographic Morphism):**  
 <div className="equation">
   $\Psi: \Gamma_i \rightarrow \Xi_i$
 </div>
+*Explanation:* Maps hyperplanes ($\Gamma_i$) to bearing directions ($\Xi_i$), forming a private, static mapping known only to the observer.
 
 4. **Commitment:**  
 <div className="equation">
-  $\Gamma = H(\Omega \mid H(\Psi))$
+  $\Gamma = H(\Omega \parallel H(\Psi))$
 </div>
+*Explanation:* Combines the private key $\Omega$ and the hashed mapping $H(\Psi)$ using a quantum-resistant hash function $H$ (e.g., SHAKE256), with `\parallel` denoting concatenation.
 
 5. **$\Sigma$-Interactive Protocol Steps (Per Round):**  
-<div className="equation" style={{ marginBottom: "0.5rem", padding: "0.5rem 1rem" }}>
-  $\text{Comm}_i = H(\Omega_i \mid \Xi_i \mid r_i)$
+<div className="equation">
+  $\begin{aligned}
+    & \text{Commitment:} \quad \text{Comm}_i = H(\Omega_i \parallel \Xi_i \parallel r_i) \\
+    & \text{Response:} \quad s_i = f(\Omega_i, \Xi_i, e_i, r_i) \\
+    & \text{Verification:} \quad \Theta(\text{Comm}_i, s_i, e_i)
+  \end{aligned}$
 </div>
-<div className="equation" style={{ marginBottom: "0.5rem", padding: "0.5rem 1rem" }}>
-  $s_i = f(\Omega_i, \Xi_i, e_i, r_i)$
-</div>
-<div className="equation" style={{ padding: "0.5rem 1rem" }}>
-  $B(\text{Comm}_i, e_i, s_i)$
-</div>
+*Explanation:*  
+  - **Commitment:** Hashes the subkey $\Omega_i$, witness $\Xi_i$, and nonce $r_i$ using $H$.  
+  - **Response:** Computes $s_i$ based on $\Omega_i$, $\Xi_i$, challenge $e_i$, and $r_i$.  
+  - **Verification:** Uses $\Theta$ to verify the commitment, response, and challenge, ensuring zero-knowledge properties.
 
 6. **Witness Sequence:**  
 <div className="equation">
   $\Xi = (\Xi_1, \Xi_2, \ldots, \Xi_n)$
 </div>
+*Explanation:* Represents the sequence of witnesses (bearing directions) corresponding to each subkey, derived from the hyperplane mapping.
 
 ---
 
@@ -435,8 +462,16 @@ The verifier confirms each response against the commitments and witness values.
       <td>Projective Alphabet (Subset for round $i$)</td>
     </tr>
     <tr>
+      <td>$\Pi$</td>
+      <td>Distribution Function (Assigns $\Pi_i$ to $\Gamma_i$)</td>
+    </tr>
+    <tr>
       <td>$\Gamma$</td>
       <td>Commitment Hash</td>
+    </tr>
+    <tr>
+      <td>$\Theta$</td>
+      <td>Verification Function</td>
     </tr>
     <tr>
       <td>$r_i$</td>
@@ -456,7 +491,7 @@ The verifier confirms each response against the commitments and witness values.
     </tr>
     <tr>
       <td>$\mathrm{H}$</td>
-      <td>Cryptographic Hash Function</td>
+      <td>Quantum-Resistant Cryptographic Hash Function (e.g., SHAKE256)</td>
     </tr>
     <tr>
       <td>$\mid$</td>

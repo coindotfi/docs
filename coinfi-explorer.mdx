@@ -8,13 +8,13 @@ icon: "shield-dog"
 # ARPC  
 #### *Authentication Remote Procedural Call*
 
-Traditional <abbr title="Remote Procedure Call: a protocol enabling a computer to request a service from a program on another computer without needing to understand network details.">RPC</abbr> protocols only enable basic client-server calls. ARPC, however, adds a robust authentication layer that cryptographically verifies the caller’s identity before any action is taken. This strong verification is the foundation of Notary.
+Traditional <abbr title="Remote Procedure Call: a protocol enabling a computer to request a service from a program on another computer without needing to understand network details.">RPC</abbr> protocols only enable basic client-server calls. ARPC, however, adds a robust authentication layer that cryptographically verifies the caller's identity before any action is taken. This strong verification is the foundation of Notary.
 
 Notary is a dedicated blockchain explorer—a vigilant guardian in the digital realm. It continuously monitors and records phishing attempts, scam traps, and malicious contract deployments, strengthening the trustless infrastructure of decentralized systems. By integrating Notary with the CoinAuth SDK, any wallet can execute transactions with quantum-resistant security. Every transaction signing attempt—successful or not—is permanently recorded across supported blockchain networks. If an unauthorized use of a <abbr title="Private Key: a secret number that grants access to your cryptocurrency funds.">private key</abbr> is detected, the rightful owner is immediately alerted via our secure messaging system, ensuring an unbreakable chain of accountability.
 
 Explore the power of Notary at the [CoinFi Notary Explorer](https://console.coin.ga/coinfi/fuel-explorer) and discover how you can reclaim true ownership of your digital assets.
 
-<div style={{ padding: '2rem', backgroundColor: '#fafafa' }}>
+<div className="video-container" style={{ padding: '2rem', backgroundColor: '#fafafa' }}>
   <h1 style={{ fontSize: '2.5rem', textAlign: 'center', marginBottom: '1rem', color: '#2a2a2a' }}>
     We need a solution, we need Notary
   </h1>
@@ -22,9 +22,18 @@ Explore the power of Notary at the [CoinFi Notary Explorer](https://console.coin
     Before Notary, wallet users were exposed to sophisticated phishing—from AI-generated impersonations and deepfakes to deceptive scam traps—leaving their <abbr title="Private Key: a critical secret used to access cryptocurrency funds.">private keys</abbr> at risk. Without a unified defense, attackers could easily mimic legitimate users and compromise wallet security.
   </p>
 
-  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem', justifyContent: 'center' }}>
+  <div
+    className="video-grid"
+    style={{
+      display: 'grid',
+      gridTemplateColumns: 'repeat(2, 1fr)', // fallback for desktop if needed
+      gap: '1.5rem',
+      justifyContent: 'center'
+    }}
+  >
     {/* Video Card 1 */}
     <div
+      className="video-card"
       data-sound="off"
       style={{
         maxWidth: '320px',
@@ -67,6 +76,7 @@ Explore the power of Notary at the [CoinFi Notary Explorer](https://console.coin
     >
       <h3 style={{ fontSize: '1.25rem', marginBottom: '0.5rem', color: '#2a2a2a' }}>Deepfake &amp; AI Phishing Surge</h3>
       <iframe
+        className="video-iframe"
         width="300"
         height="170"
         src="https://www.youtube.com/embed/3tI_4QzyhE8?autoplay=1&mute=1&enablejsapi=1&loop=1&playlist=3tI_4QzyhE8"
@@ -79,6 +89,7 @@ Explore the power of Notary at the [CoinFi Notary Explorer](https://console.coin
 
     {/* Video Card 2 */}
     <div
+      className="video-card"
       data-sound="off"
       style={{
         maxWidth: '320px',
@@ -121,6 +132,7 @@ Explore the power of Notary at the [CoinFi Notary Explorer](https://console.coin
     >
       <h3 style={{ fontSize: '1.25rem', marginBottom: '0.5rem', color: '#2a2a2a' }}>Evolving Phishing Techniques</h3>
       <iframe
+        className="video-iframe"
         width="300"
         height="170"
         src="https://www.youtube.com/embed/GqPeE_7Nlqg?autoplay=1&mute=1&enablejsapi=1&loop=1&playlist=GqPeE_7Nlqg"
@@ -133,6 +145,7 @@ Explore the power of Notary at the [CoinFi Notary Explorer](https://console.coin
 
     {/* Video Card 3 */}
     <div
+      className="video-card"
       data-sound="off"
       style={{
         maxWidth: '320px',
@@ -175,6 +188,7 @@ Explore the power of Notary at the [CoinFi Notary Explorer](https://console.coin
     >
       <h3 style={{ fontSize: '1.25rem', marginBottom: '0.5rem', color: '#2a2a2a' }}>'Pig Butchering Scam'</h3>
       <iframe
+        className="video-iframe"
         width="300"
         height="170"
         src="https://www.youtube.com/embed/TbscHpEpg6s?autoplay=1&mute=1&enablejsapi=1&loop=1&playlist=TbscHpEpg6s"
@@ -187,6 +201,7 @@ Explore the power of Notary at the [CoinFi Notary Explorer](https://console.coin
 
     {/* Video Card 4 */}
     <div
+      className="video-card"
       data-sound="off"
       style={{
         maxWidth: '320px',
@@ -229,6 +244,7 @@ Explore the power of Notary at the [CoinFi Notary Explorer](https://console.coin
     >
       <h3 style={{ fontSize: '1.25rem', marginBottom: '0.5rem', color: '#2a2a2a' }}>Honeypot Scams Exposed</h3>
       <iframe
+        className="video-iframe"
         width="300"
         height="170"
         src="https://www.youtube.com/embed/d_aDmCHfhEs?autoplay=1&mute=1&enablejsapi=1&loop=1&playlist=d_aDmCHfhEs"
@@ -241,6 +257,7 @@ Explore the power of Notary at the [CoinFi Notary Explorer](https://console.coin
 
     {/* Video Card 5 */}
     <div
+      className="video-card"
       data-sound="off"
       style={{
         maxWidth: '320px',
@@ -283,6 +300,7 @@ Explore the power of Notary at the [CoinFi Notary Explorer](https://console.coin
     >
       <h3 style={{ fontSize: '1.25rem', marginBottom: '0.5rem', color: '#2a2a2a' }}>Notary: Honeypotting the Phisher</h3>
       <iframe
+        className="video-iframe"
         width="300"
         height="170"
         src="https://www.youtube.com/embed/fKlhOZ5rlto?autoplay=1&mute=1&enablejsapi=1&loop=1&playlist=fKlhOZ5rlto"
@@ -295,6 +313,7 @@ Explore the power of Notary at the [CoinFi Notary Explorer](https://console.coin
 
     {/* Video Card 6 */}
     <div
+      className="video-card"
       data-sound="off"
       style={{
         maxWidth: '320px',
@@ -337,6 +356,7 @@ Explore the power of Notary at the [CoinFi Notary Explorer](https://console.coin
     >
       <h3 style={{ fontSize: '1.25rem', marginBottom: '0.5rem', color: '#2a2a2a' }}>Public vs Private Key Explained</h3>
       <iframe
+        className="video-iframe"
         width="300"
         height="170"
         src="https://www.youtube.com/embed/mAakrCW8QAY?autoplay=1&mute=1&enablejsapi=1&loop=1&playlist=mAakrCW8QAY"
@@ -349,13 +369,13 @@ Explore the power of Notary at the [CoinFi Notary Explorer](https://console.coin
   </div>
 
   <p style={{ maxWidth: '800px', margin: '2rem auto 0', fontSize: '1.1rem', lineHeight: '1.6', textAlign: 'center', color: '#555' }}>
-    With Notary powered by ARPC, wallets are secured using Quantum One Time Passkeys. This advanced system guarantees that only the legitimate private key owner—verified via a robust zero-knowledge proof—can authorize transactions. This shift from vulnerability to assured security is what makes Notary indispensable in today’s digital landscape.
+    With Notary powered by ARPC, wallets are secured using Quantum One Time Passkeys. This advanced system guarantees that only the legitimate private key owner—verified via a robust zero-knowledge proof—can authorize transactions. This shift from vulnerability to assured security is what makes Notary indispensable in today's digital landscape.
   </p>
 </div>
 
 # Securing Digital Identities: A New Vision for Crypto Security
 
-Decentralization is more than a buzzword—it’s a vision for true digital empowerment. Inspired by [Satoshi Nakamoto](https://bitcoin.org/bitcoin.pdf), we must address threats that undermine our digital ecosystem. Phishing, scam traps, and leaked private keys are not just technical glitches; they fracture the very trust that decentralized systems rely on. Our mission is to improve security practices and restore confidence in the digital tools that empower us.
+Decentralization is more than a buzzword—it's a vision for true digital empowerment. Inspired by [Satoshi Nakamoto](https://bitcoin.org/bitcoin.pdf), we must address threats that undermine our digital ecosystem. Phishing, scam traps, and leaked private keys are not just technical glitches; they fracture the very trust that decentralized systems rely on. Our mission is to improve security practices and restore confidence in the digital tools that empower us.
 
 > *Satoshi Nakamoto: "What is needed is an electronic payment system based on cryptographic proof instead of trust, allowing any two willing parties to transact directly with each other without the need for a trusted third party."*
 
@@ -366,15 +386,15 @@ Modern phishing attacks employ deepfakes and advanced algorithms to impersonate 
 
 Each threat challenges our goal of a secure, trustless environment where every individual maintains complete control over their assets.
 
-## Shortcomings of Today’s Systems
+## Shortcomings of Today's Systems
 
-Many current wallet solutions and blockchain explorers provide only a partial view of network activity. Without a comprehensive monitoring system, unusual activities may go unnoticed until it’s too late. This fragmented approach creates gaps that attackers can exploit.
+Many current wallet solutions and blockchain explorers provide only a partial view of network activity. Without a comprehensive monitoring system, unusual activities may go unnoticed until it's too late. This fragmented approach creates gaps that attackers can exploit.
 
 True decentralization requires tools that let every user independently verify transactions and secure their assets.
 
 ## The Path Forward
 
-Imagine a tool that records every transaction with cryptographic certainty and flags irregularities in real time. Such a system would integrate wallet data seamlessly, alert users to potential intrusions immediately, and offer complete transparency. This isn’t a distant dream—it’s the next evolution in digital security.
+Imagine a tool that records every transaction with cryptographic certainty and flags irregularities in real time. Such a system would integrate wallet data seamlessly, alert users to potential intrusions immediately, and offer complete transparency. This isn't a distant dream—it's the next evolution in digital security.
 
 Our solution is simple yet powerful: a decentralized record-keeping mechanism that safeguards private keys while providing users with real-time insights. This is the future of wallet security—where protection and transparency go hand in hand.
 
@@ -387,7 +407,7 @@ Explore this new era of secure digital identities at the [CoinFi Notary Explorer
 - **RPC**: Remote Procedure Call – a protocol that allows one computer to request a service from another without needing to understand the underlying network details.
 - **Private Key**: A secret number that provides access to your cryptocurrency funds.
 - **Quantum-Resistant**: Security measures designed to protect against attacks from quantum computers.
-- **Deepfakes**: AI-generated synthetic media that can convincingly replace a person’s likeness.
+- **Deepfakes**: AI-generated synthetic media that can convincingly replace a person's likeness.
 - **Honeypot Scam**: A deceptive trap designed to lure users into losing funds.
 - **Zero-Knowledge Proof**: A method to prove that a statement is true without revealing any additional information.
 - **CoinAuth SDK**: A toolkit that enables secure transaction authentication in crypto wallets.
@@ -395,3 +415,37 @@ Explore this new era of secure digital identities at the [CoinFi Notary Explorer
 ---
 
 *Not your password, not your $COIN!*
+
+<style jsx>{`
+  @media (max-width: 600px) {
+    /* Responsive adjustments for the outer container */
+    .video-container {
+      width: calc(100% - 50px) !important;
+      margin: 0 auto;
+      padding: 1rem !important;
+    }
+    
+    /* Use auto-fit to flex the video cards between 200px and 320px */
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 320px));
+      gap: 1rem;
+      justify-content: center;
+      width: 100%; 
+      margin: 0 auto;
+    }
+    
+    /* Ensure video cards use full width of the grid cell */
+    .video-card {
+      width: 100% !important;
+      max-width: 100% !important;
+      padding: 0.75rem !important;
+    }
+    
+    /* Let the iframe scale with its container */
+    .video-iframe {
+      width: 100% !important;
+      height: auto !important;
+    }
+  }
+`}</style>

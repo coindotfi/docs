@@ -6,110 +6,147 @@ icon: "key"
 ---
 
 <style>{`
+  :root {
+    --card-border-radius: 12px;
+    --card-padding: 16px;
+    --card-box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --card-transition: transform 0.2s, box-shadow 0.2s;
+    --equation-bg: #f5f5f5;
+    --table-border: #ddd;
+    --table-header-bg: #1976d2;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --card-box-shadow: 0 4px 6px rgba(255, 255, 255, 0.1);
+      --equation-bg: #333;
+      --table-border: #444;
+      --table-header-bg: #90caf9;
+    }
+  }
   .grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 1.5rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  .card {
+    border: 1px solid;
+    border-radius: var(--card-border-radius);
+    padding: var(--card-padding);
+    text-align: center;
+    box-shadow: var(--card-box-shadow);
+    transition: var(--card-transition);
+  }
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
   }
   .card-red {
     background-color: #e57373;
     color: #fff;
-    border-radius: 12px;
-    padding: 16px;
-    text-align: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s;
-  }
-  .card-red:hover {
-    transform: translateY(-4px);
+    border-color: #d32f2f;
   }
   .card-green {
     background-color: #81c784;
     color: #fff;
-    border-radius: 12px;
-    padding: 16px;
-    text-align: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s;
-  }
-  .card-green:hover {
-    transform: translateY(-4px);
+    border-color: #388e3c;
   }
   .card-blue {
     background-color: #64b5f6;
     color: #fff;
-    border-radius: 12px;
-    padding: 16px;
-    text-align: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s;
-  }
-  .card-blue:hover {
-    transform: translateY(-4px);
+    border-color: #1976d2;
   }
   .card-yellow {
     background-color: #ffd54f;
-    color: #fff;
-    border-radius: 12px;
-    padding: 16px;
-    text-align: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s;
+    color: #212121;
+    border-color: #fbc02d;
   }
-  .card-yellow:hover {
-    transform: translateY(-4px);
-  }
-  .card-red strong, .card-green strong, .card-blue strong, .card-yellow strong {
+  .card-red strong,
+  .card-green strong,
+  .card-blue strong,
+  .card-yellow strong {
     font-size: 1.2em;
     font-weight: 600;
   }
-  .card-red p, .card-green p, .card-blue p, .card-yellow p {
+  .card-red p,
+  .card-green p,
+  .card-blue p,
+  .card-yellow p {
     margin: 8px 0 0;
     font-size: 1em;
   }
+  .qotp-sequence span:hover {
+    text-decoration: underline;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .direction-icon {
+    display: inline-block;
+    margin-right: 4px;
+    font-size: 1.2em;
+  }
+  .equation {
+    font-family: "Times New Roman", serif;
+    font-style: italic;
+    margin: 1rem 0;
+    padding: 1rem;
+    background-color: var(--equation-bg);
+    border-left: 4px solid #1976d2;
+  }
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem 0;
+  }
+  .table th,
+  .table td {
+    border: 1px solid var(--table-border);
+    padding: 8px;
+    text-align: left;
+  }
+  .table th {
+    background-color: var(--table-header-bg);
+    color: #fff;
+  }
 `}</style>
 
-<img src="/logo/300x100-coin-wallet.png" alt="CoinFi Wallet" />
+<img src="/logo/300x100-coin-wallet.png" alt="CoinFi Wallet" style={{ marginBottom: "2rem" }} />
 
 ## Overview
 
-This document details our **quantum–resistant authentication system**. It explains:
+This document details our **quantum–resistant authentication system** which incorporates:
+- **Public Keys:** Identify the wallet owner.
+- **Private Keys:** Enable the owner to sign and send messages.
+- **Quantum One–Time Pad (QOTP):** A dynamic, color–coded pad solved via entropy-based rotations.
 
-- **Public Keys:** The only way to identify a wallet owner.
-- **Private Keys:** The only way an owner can sign and send messages.
-- **Quantum One–Time Pad (QOTP):** A dynamic, color–coded pad that only the owner can solve.
-
-<hr />
+---
 
 ## Public Keys  
-*The only way to identify an **owner** of a wallet:*  
+*Identifier for the wallet owner:*  
 - `coin1hj5fveer5cjtn4wd6wstzugjfdxzl0xpdpsrzs`
 
 ## Private Keys  
-*The only way an **owner** can sign and send messages:*  
+*Used to sign and send messages:*  
 - `123SomePr1vat3Key...`
 
-<hr />
+---
 
 ## Quantum One–Time Pad (QOTP) Legend
 
-Our QOTP is a **40–character sequence** that cycles through four colors. The full domain consists of:
-
+Our QOTP is a **40–character sequence** drawn from:
 - **A–Z** (26 characters)
 - **0–9** (10 characters)
 - **♦, ♣, ♥, ♠** (4 characters)
 
-Each character’s color is determined by its zero–indexed position modulo 4:
+Each character’s color is determined by its position in the entropy-rotated pad:
+- **Red:** <span style={{ color: "#e57373", fontWeight: "bold" }}>UP</span>
+- **Green:** <span style={{ color: "#81c784", fontWeight: "bold" }}>DOWN</span>
+- **Blue:** <span style={{ color: "#64b5f6", fontWeight: "bold" }}>LEFT</span>
+- **Yellow:** <span style={{ color: "#ffd54f", fontWeight: "bold" }}>RIGHT</span>
 
-- **Index mod 4 = 0:** <span style={{ color: "#e57373" }}>Red</span> → **UP**
-- **Index mod 4 = 1:** <span style={{ color: "#81c784" }}>Green</span> → **DOWN**
-- **Index mod 4 = 2:** <span style={{ color: "#64b5f6" }}>Blue</span> → **LEFT**
-- **Index mod 4 = 3:** <span style={{ color: "#ffd54f" }}>Yellow</span> → **RIGHT**
+**Initial pad sequence:**
 
-The pad sequence is:
-
-<span style={{ fontFamily: "monospace", fontSize: "0.9em" }}>
+<span className="qotp-sequence" style={{ fontFamily: "monospace", fontSize: "1em", lineHeight: "1.5" }}>
   <span style={{ color: "#e57373" }}>A</span>
   <span style={{ color: "#81c784" }}>B</span>
   <span style={{ color: "#64b5f6" }}>C</span>
@@ -152,190 +189,278 @@ The pad sequence is:
   <span style={{ color: "#ffd54f" }}>♠</span>
 </span>
 
-*Remember: Each character’s color is determined by its position modulo 4.*
+*Note: Colors are determined by the pad’s entropy rotation rather than a fixed pattern.*
 
-<hr />
+---
 
-## Quantum One–Time Pad  
-Only the owner can authenticate using the one–time pad. For example, once the pad appears the solution to the pad key may be:
+## Quantum One–Time Pad Operation
 
-- <span style={{ color: "#ffd54f" }}>L</span><span style={{ color: "#64b5f6" }}>O</span><span style={{ color: "#81c784" }}>V</span><span style={{ color: "#e57373" }}>E</span>
+For authentication, the owner solves the QOTP. For example, the pad solution:
 
-This corresponds to:
-- **L** (index 11): Yellow → **RIGHT**
-- **O** (index 14): Blue → **LEFT**
-- **V** (index 21): Green → **DOWN**
-- **E** (index 4): Red → **UP**
+- <span style={{ color: "#ffd54f" }}>L</span>
+- <span style={{ color: "#64b5f6" }}>O</span>
+- <span style={{ color: "#81c784" }}>V</span>
+- <span style={{ color: "#e57373" }}>E</span>
 
-<hr />
+corresponds to:
+- **L** (index 11) → <span style={{ color: "#ffd54f", fontWeight: "bold" }}>Yellow → RIGHT</span>
+- **O** (index 14) → <span style={{ color: "#64b5f6", fontWeight: "bold" }}>Blue → LEFT</span>
+- **V** (index 21) → <span style={{ color: "#81c784", fontWeight: "bold" }}>Green → DOWN</span>
+- **E** (index 4) → <span style={{ color: "#e57373", fontWeight: "bold" }}>Red → UP</span>
+
+---
 
 ## Example: Möbius One–Time Pad Rotation
 
-We simulate a Möbius rotation on our one–time pad by cyclically shifting the ordering. In each round, the pad is divided into four "color cards" (displayed as a 2×2 grid), with characters assigned based on their zero–indexed positions modulo 4.
+The pad rotates cyclically based on entropy-derived offsets and is grouped into four color cards.
 
-> **Legend Recap:**
-> - <span style={{ color: "#e57373" }}>Red</span> → **UP**
-> - <span style={{ color: "#81c784" }}>Green</span> → **DOWN**
-> - <span style={{ color: "#64b5f6" }}>Blue</span> → **LEFT**
-> - <span style={{ color: "#ffd54f" }}>Yellow</span> → **RIGHT**
+### Round 1 (Initial Pad)
+**Grouping:**
+- **Red:** <span style={{ color: "#e57373" }}>A, E, I, M, Q, U, Y, 2, 6, ♦</span>
+- **Green:** <span style={{ color: "#81c784" }}>B, F, J, N, R, V, Z, 3, 7, ♣</span>
+- **Blue:** <span style={{ color: "#64b5f6" }}>C, G, K, O, S, W, 0, 4, 8, ♥</span>
+- **Yellow:** <span style={{ color: "#ffd54f" }}>D, H, L, P, T, X, 1, 5, 9, ♠</span>
 
-Below are the rounds:
 
-### Round 1 (No Rotation)
-
-**Original pad grouping:**
-
-- **Red** (indices 0, 4, 8, …, 36):  
-  <span style={{ color: "#e57373" }}>A, E, I, M, Q, U, Y, 2, 6, ♦</span>
-- **Green** (indices 1, 5, 9, …, 37):  
-  <span style={{ color: "#81c784" }}>B, F, J, N, R, V, Z, 3, 7, ♣</span>
-- **Blue** (indices 2, 6, 10, …, 38):  
-  <span style={{ color: "#64b5f6" }}>C, G, K, O, S, W, 0, 4, 8, ♥</span>
-- **Yellow** (indices 3, 7, 11, …, 39):  
-  <span style={{ color: "#ffd54f" }}>D, H, L, P, T, X, 1, 5, 9, ♠</span>
-
-<div className="grid">
-  <div className="card-red">
-    <strong>Red</strong>
-    <p><span style={{ color: "#fff" }}>A, E, I, M, Q, U, Y, 2, 6, ♦</span></p>
-  </div>
-  <div className="card-green">
-    <strong>Green</strong>
-    <p><span style={{ color: "#fff" }}>B, F, J, N, R, V, Z, 3, 7, ♣</span></p>
-  </div>
-  <div className="card-blue">
-    <strong>Blue</strong>
-    <p><span style={{ color: "#fff" }}>C, G, K, O, S, W, 0, 4, 8, ♥</span></p>
-  </div>
-  <div className="card-yellow">
-    <strong>Yellow</strong>
-    <p><span style={{ color: "#fff" }}>D, H, L, P, T, X, 1, 5, 9, ♠</span></p>
-  </div>
-</div>
 
 **Pad Letter:** <span style={{ color: "#ffd54f" }}>L</span>  
-*L is at index 11 (11 mod 4 = 3) → Yellow → **RIGHT**.*
+→ <span style={{ color: "#ffd54f", fontWeight: "bold" }}>Yellow → RIGHT</span>
 
-**Result:** <span style={{ color: "#ffd54f" }}>L</span> = RIGHT
+### Round 2 (Rotation by Offset 4)
+**New Grouping:**
+- **Red:** <span style={{ color: "#e57373" }}>E, I, M, Q, U, Y, 2, 6, ♦, A</span>
+- **Green:** <span style={{ color: "#81c784" }}>F, J, N, R, V, Z, 3, 7, ♣, B</span>
+- **Blue:** <span style={{ color: "#64b5f6" }}>G, K, O, S, W, 0, 4, 8, ♥, C</span>
+- **Yellow:** <span style={{ color: "#ffd54f" }}>H, L, P, T, X, 1, 5, 9, ♠, D</span>
 
-### Round 2 (Rotate Pad Left by 4)
 
-After a left–rotation by 4 (removing A–D and appending them to the end), the new ordering becomes:
-
-- **Red:**  
-  <span style={{ color: "#e57373" }}>E, I, M, Q, U, Y, 2, 6, ♦, A</span>
-- **Green:**  
-  <span style={{ color: "#81c784" }}>F, J, N, R, V, Z, 3, 7, ♣, B</span>
-- **Blue:**  
-  <span style={{ color: "#64b5f6" }}>G, K, O, S, W, 0, 4, 8, ♥, C</span>
-- **Yellow:**  
-  <span style={{ color: "#ffd54f" }}>H, L, P, T, X, 1, 5, 9, ♠, D</span>
-
-<div className="grid">
-  <div className="card-red">
-    <strong>Red</strong>
-    <p><span style={{ color: "#fff" }}>E, I, M, Q, U, Y, 2, 6, ♦, A</span></p>
-  </div>
-  <div className="card-green">
-    <strong>Green</strong>
-    <p><span style={{ color: "#fff" }}>F, J, N, R, V, Z, 3, 7, ♣, B</span></p>
-  </div>
-  <div className="card-blue">
-    <strong>Blue</strong>
-    <p><span style={{ color: "#fff" }}>G, K, O, S, W, 0, 4, 8, ♥, C</span></p>
-  </div>
-  <div className="card-yellow">
-    <strong>Yellow</strong>
-    <p><span style={{ color: "#fff" }}>H, L, P, T, X, 1, 5, 9, ♠, D</span></p>
-  </div>
-</div>
 
 **Pad Letter:** <span style={{ color: "#64b5f6" }}>O</span>  
-*O is now at index 10 (10 mod 4 = 2) → Blue → **LEFT**.*
+→ <span style={{ color: "#64b5f6", fontWeight: "bold" }}>Blue → LEFT</span>
 
-**Result:** <span style={{ color: "#64b5f6" }}>O</span> = LEFT
+### Round 3 (Rotation by Offset 8)
+**New Grouping:**
+- **Red:** <span style={{ color: "#e57373" }}>I, M, Q, U, Y, 2, 6, ♦, A, E</span>
+- **Green:** <span style={{ color: "#81c784" }}>J, N, R, V, Z, 3, 7, ♣, B, F</span>
+- **Blue:** <span style={{ color: "#64b5f6" }}>K, O, S, W, 0, 4, 8, ♥, C, G</span>
+- **Yellow:** <span style={{ color: "#ffd54f" }}>L, P, T, X, 1, 5, 9, ♠, D, H</span>
 
-### Round 3 (Rotate Pad Left by 8)
 
-After a left–rotation by 8, the ordering becomes:
-
-- **Red:**  
-  <span style={{ color: "#e57373" }}>I, M, Q, U, Y, 2, 6, ♦, A, E</span>
-- **Green:**  
-  <span style={{ color: "#81c784" }}>J, N, R, V, Z, 3, 7, ♣, B, F</span>
-- **Blue:**  
-  <span style={{ color: "#64b5f6" }}>K, O, S, W, 0, 4, 8, ♥, C, G</span>
-- **Yellow:**  
-  <span style={{ color: "#ffd54f" }}>L, P, T, X, 1, 5, 9, ♠, D, H</span>
-
-<div className="grid">
-  <div className="card-red">
-    <strong>Red</strong>
-    <p><span style={{ color: "#fff" }}>I, M, Q, U, Y, 2, 6, ♦, A, E</span></p>
-  </div>
-  <div className="card-green">
-    <strong>Green</strong>
-    <p><span style={{ color: "#fff" }}>J, N, R, V, Z, 3, 7, ♣, B, F</span></p>
-  </div>
-  <div className="card-blue">
-    <strong>Blue</strong>
-    <p><span style={{ color: "#fff" }}>K, O, S, W, 0, 4, 8, ♥, C, G</span></p>
-  </div>
-  <div className="card-yellow">
-    <strong>Yellow</strong>
-    <p><span style={{ color: "#fff" }}>L, P, T, X, 1, 5, 9, ♠, D, H</span></p>
-  </div>
-</div>
 
 **Pad Letter:** <span style={{ color: "#81c784" }}>V</span>  
-*V is now at index 13 (13 mod 4 = 1) → Green → **DOWN**.*
+→ <span style={{ color: "#81c784", fontWeight: "bold" }}>Green → DOWN</span>
 
-**Result:** <span style={{ color: "#81c784" }}>V</span> = DOWN
+### Round 4 (Rotation by Offset 12)
+**New Grouping:**
+- **Red:** <span style={{ color: "#e57373" }}>M, Q, U, Y, 2, 6, ♦, A, E, I</span>
+- **Green:** <span style={{ color: "#81c784" }}>N, R, V, Z, 3, 7, ♣, B, F, J</span>
+- **Blue:** <span style={{ color: "#64b5f6" }}>O, S, W, 0, 4, 8, ♥, C, G, K</span>
+- **Yellow:** <span style={{ color: "#ffd54f" }}>P, T, X, 1, 5, 9, ♠, D, H, L</span>
 
-### Round 4 (Rotate Pad Left by 12)
 
-After a left–rotation by 12, the ordering becomes:
-
-- **Red:**  
-  <span style={{ color: "#e57373" }}>M, Q, U, Y, 2, 6, ♦, A, E, I</span>
-- **Green:**  
-  <span style={{ color: "#81c784" }}>N, R, V, Z, 3, 7, ♣, B, F, J</span>
-- **Blue:**  
-  <span style={{ color: "#64b5f6" }}>O, S, W, 0, 4, 8, ♥, C, G, K</span>
-- **Yellow:**  
-  <span style={{ color: "#ffd54f" }}>P, T, X, 1, 5, 9, ♠, D, H, L</span>
-
-<div className="grid">
-  <div className="card-red">
-    <strong>Red</strong>
-    <p><span style={{ color: "#fff" }}>M, Q, U, Y, 2, 6, ♦, A, E, I</span></p>
-  </div>
-  <div className="card-green">
-    <strong>Green</strong>
-    <p><span style={{ color: "#fff" }}>N, R, V, Z, 3, 7, ♣, B, F, J</span></p>
-  </div>
-  <div className="card-blue">
-    <strong>Blue</strong>
-    <p><span style={{ color: "#fff" }}>O, S, W, 0, 4, 8, ♥, C, G, K</span></p>
-  </div>
-  <div className="card-yellow">
-    <strong>Yellow</strong>
-    <p><span style={{ color: "#fff" }}>P, T, X, 1, 5, 9, ♠, D, H, L</span></p>
-  </div>
-</div>
 
 **Pad Letter:** <span style={{ color: "#e57373" }}>E</span>  
-*E is now at index 32 (32 mod 4 = 0) → Red → **UP**.*
+→ <span style={{ color: "#e57373", fontWeight: "bold" }}>Red → UP</span>
 
-**Result:** <span style={{ color: "#e57373" }}>E</span> = UP
+---
 
-<hr />
+## Final Computed Direction Sequence for "LOVE"
 
-## Final Computed Direction Sequence for the One–Time Pad "LOVE"
-
-<span style={{ fontFamily: "monospace", fontSize: "1.1em" }}>
-  <span style={{ color: "#ffd54f" }}>L</span> = <span style={{ color: "#ffd54f" }}>RIGHT</span>   |   
-  <span style={{ color: "#64b5f6" }}>O</span> = <span style={{ color: "#64b5f6" }}>LEFT</span>   |   
-  <span style={{ color: "#81c784" }}>V</span> = <span style={{ color: "#81c784" }}>DOWN</span>   |   
-  <span style={{ color: "#e57373" }}>E</span> = <span style={{ color: "#e57373" }}>UP</span>
+<span style={{ fontFamily: "monospace", fontSize: "1.2em", lineHeight: "1.5" }}>
+  <span style={{ color: "#ffd54f" }}>L</span> = <span className="direction-icon">➡️</span><strong>RIGHT</strong>   |   
+  <span style={{ color: "#64b5f6" }}>O</span> = <span className="direction-icon">⬅️</span><strong>LEFT</strong>   |   
+  <span style={{ color: "#81c784" }}>V</span> = <span className="direction-icon">⬇️</span><strong>DOWN</strong>   |   
+  <span style={{ color: "#e57373" }}>E</span> = <span className="direction-icon">⬆️</span><strong>UP</strong>
 </span>
+
+---
+
+## ENIGMA: ROSARIO-WANG Cipher System Example
+
+### Introduction
+This section illustrates how the system integrates cryptographic mechanisms within a holographic manifold using:
+- The universal language
+- Private key and subkeys
+- A secret synonym mapping (holographic morphism)
+- The $\Sigma$-Interactive Protocol
+
+### Step 1: Universal Language ($\Lambda$)
+<div className="equation">
+  $\Lambda = \lbrace \mathrm{A}, \mathrm{B}, \ldots, \mathrm{Z} \rbrace$
+</div>
+
+### Step 2: Private Key ($\Omega$)
+For example:
+<div className="equation">
+  $\Omega = \lbrace \mathrm{S}, \mathrm{E}, \mathrm{C}, \mathrm{R}, \mathrm{E}, \mathrm{T} \rbrace$
+</div>
+
+### Step 3: Subkeys ($\Omega_i$)
+Split as:
+<div className="equation">
+  $\begin{aligned}
+    \Omega_1 &= \mathrm{S} \\
+    \Omega_2 &= \mathrm{E} \\
+    \Omega_3 &= \mathrm{C} \\
+    \Omega_4 &= \mathrm{R} \\
+    \Omega_5 &= \mathrm{E} \\
+    \Omega_6 &= \mathrm{T}
+  \end{aligned}$
+</div>
+
+### Step 4: Secret Synonym Mapping ($\Psi$)
+Mapping hyperplanes to directions:
+- $\Gamma_1$ (Yellow) → $\Xi_1$ (UP)
+- $\Gamma_2$ (Green) → $\Xi_2$ (DOWN)
+- $\Gamma_3$ (Blue) → $\Xi_3$ (LEFT)
+- $\Gamma_4$ (Red) → $\Xi_4$ (RIGHT)
+
+Expressed as:
+<div className="equation">
+  $\Psi: \Gamma_i \rightarrow \Xi_i$
+</div>
+
+### Step 5: Commitment ($\Gamma$)
+Combined as:
+<div className="equation">
+  $\Gamma = H(\Omega \mid H(\Psi))$
+</div>
+
+### Step 6: $\Sigma$-Interactive Protocol (Per Subkey)
+For each subkey $\Omega_i$, the observer:
+1. Randomly distributes a subset $\Pi_i \subset \Lambda$ across hyperplanes.
+2. Locates $\Omega_i$ in a hyperplane $\Gamma_j$.
+3. Determines the witness $\Xi_j = \Psi(\Gamma_j)$.
+4. Computes a commitment:
+<div className="equation">
+  $\text{Comm}_i = H(\Omega_i \mid \Xi_j \mid r_i)$
+</div>
+5. Responds to a challenge $e_i$:
+<div className="equation">
+  $s_i = f(\Omega_i, \Xi_j, e_i, r_i)$
+</div>
+6. The verifier checks:
+<div className="equation">
+  $B(\text{Comm}_i, e_i, s_i)$
+</div>
+
+### Step 7: Witness Sequence
+After all rounds, the observer obtains:
+<div className="equation">
+  (\Xi_1, \Xi_2, \Xi_3, \Xi_4, \Xi_5, \Xi_6)
+</div>
+For example:
+- $\Xi_1 =$ UP, $\Xi_2 =$ DOWN, $\Xi_3 =$ LEFT, $\Xi_4 =$ RIGHT, $\Xi_5 =$ DOWN, $\Xi_6 =$ UP
+
+### Step 8: Verification
+The verifier confirms each response against the commitments and witness values.
+
+---
+
+### Summary of Equations Used
+1. **Universal Language:**  
+<div className="equation">
+  $\Lambda = \lbrace c_1, c_2, \ldots, c_{26} \rbrace$
+</div>
+
+2. **Private Key:**  
+<div className="equation">
+  $\Omega = (\Omega_1, \Omega_2, \ldots, \Omega_n), \quad \Omega_i \in \Lambda$
+</div>
+
+3. **Secret Synonym Mapping (Holographic Morphism):**  
+<div className="equation">
+  $\Psi: \Gamma_i \rightarrow \Xi_i$
+</div>
+
+4. **Commitment:**  
+<div className="equation">
+  $\Gamma = H(\Omega \mid H(\Psi))$
+</div>
+
+5. **$\Sigma$-Interactive Protocol Steps (Per Round):**  
+<div className="equation" style={{ marginBottom: "0.5rem", padding: "0.5rem 1rem" }}>
+  $\text{Comm}_i = H(\Omega_i \mid \Xi_i \mid r_i)$
+</div>
+<div className="equation" style={{ marginBottom: "0.5rem", padding: "0.5rem 1rem" }}>
+  $s_i = f(\Omega_i, \Xi_i, e_i, r_i)$
+</div>
+<div className="equation" style={{ padding: "0.5rem 1rem" }}>
+  $B(\text{Comm}_i, e_i, s_i)$
+</div>
+
+6. **Witness Sequence:**  
+<div className="equation">
+  $\Xi = (\Xi_1, \Xi_2, \ldots, \Xi_n)$
+</div>
+
+---
+
+## Attribute Associations
+
+<table className="table">
+  <thead>
+    <tr>
+      <th>Symbol</th>
+      <th>Definition</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>$\Lambda$</td>
+      <td>Universal Language (Set of symbols)</td>
+    </tr>
+    <tr>
+      <td>$\Omega$</td>
+      <td>Private Key (Sequence of subkeys)</td>
+    </tr>
+    <tr>
+      <td>$\Omega_i$</td>
+      <td>Subkey (Element of the private key)</td>
+    </tr>
+    <tr>
+      <td>$\Gamma_i$</td>
+      <td>Hyperplanes (Manifold layers)</td>
+    </tr>
+    <tr>
+      <td>$\Xi_i$</td>
+      <td>Bearing Directions (UP, DOWN, LEFT, RIGHT)</td>
+    </tr>
+    <tr>
+      <td>$\Psi$</td>
+      <td>Secret Synonym Mapping</td>
+    </tr>
+    <tr>
+      <td>$\Pi_i$</td>
+      <td>Projective Alphabet (Subset for round $i$)</td>
+    </tr>
+    <tr>
+      <td>$\Gamma$</td>
+      <td>Commitment Hash</td>
+    </tr>
+    <tr>
+      <td>$r_i$</td>
+      <td>Random Nonce in round $i$</td>
+    </tr>
+    <tr>
+      <td>$e_i$</td>
+      <td>Challenge in round $i$</td>
+    </tr>
+    <tr>
+      <td>$s_i$</td>
+      <td>Response in round $i$</td>
+    </tr>
+    <tr>
+      <td>$f$</td>
+      <td>Response Function</td>
+    </tr>
+    <tr>
+      <td>$\mathrm{H}$</td>
+      <td>Cryptographic Hash Function</td>
+    </tr>
+    <tr>
+      <td>$\mid$</td>
+      <td>Concatenation Operator</td>
+    </tr>
+  </tbody>
+</table>

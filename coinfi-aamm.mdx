@@ -2,179 +2,368 @@
 title: "Quantum One-Time Atomic Swap Contracts"
 description: "A fast cross-chain trading platform using advanced quantum one-time passkeys and zero-knowledge proof account abstractions, providing an intuitive and user-friendly experience for all token orders."
 sidebarTitle: "Automated Atomic Market Maker"
+icon: "atom"
 ---
-import ImageCard from '/snippets/components/ImageCard';
 
-{/*
-Hero Section
-*/}
-<section className="hero-banner" style={{ backgroundImage: "url('/logo/300x100-coin-chain.png')" }}>
-  <div className="hero-content">
-    <h1>CoinFi Automated Atomic Market Maker</h1>
-    <p>
-      Welcome to the next generation of cross-chain trading. Enjoy secure, fast, and straightforward asset swaps.
-    </p>
-    <div className="cta-buttons">
-      <a href="https://coin.fi/manifesto" className="btn-primary">Learn More</a>
-      <a href="https://coin.fi/manifesto" className="btn-secondary">Join Our Community</a>
+<style>{`
+  :root {
+    --card-border-radius: 10px;
+    --card-padding: 20px;
+    --card-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    --equation-bg: #f5f5f5;
+    --text-light: #fff;
+    --text-dark: #212121;
+    --blue-bg: #007bff;
+    --gray-bg: #6c757d;
+    --card-bg: #f8f9fa;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --card-box-shadow: 0 2px 5px rgba(255, 255, 255, 0.1);
+      --equation-bg: #333;
+      --text-light: #333;
+      --text-dark: #e0e0e0;
+      --blue-bg: #0056b3;
+      --gray-bg: #5a6268;
+      --card-bg: #444;
+    }
+  }
+  .hero-banner {
+    background-color: #333;
+    padding: 40px;
+    text-align: center;
+    color: var(--text-light);
+    min-height: 200px;
+  }
+  .hero-content h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+  }
+  .hero-content p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .btn-primary, .btn-secondary {
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-block;
+    color: var(--text-light);
+  }
+  .btn-primary {
+    background-color: var(--blue-bg);
+  }
+  .btn-secondary {
+    background-color: var(--gray-bg);
+  }
+  .btn-lg {
+    padding: 15px 30px;
+    font-size: 1.2rem;
+  }
+  .section {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    box-sizing: border-box;
+  }
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin: 20px 0;
+  }
+  .card {
+    background-color: var(--card-bg);
+    padding: var(--card-padding);
+    border-radius: var(--card-border-radius);
+    box-shadow: var(--card-box-shadow);
+    text-align: center;
+  }
+  .card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: var(--text-dark);
+  }
+  .join-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 30px 0;
+    flex-wrap: wrap;
+  }
+  .math {
+    font-family: "Times New Roman", serif;
+    font-style: italic;
+    display: block;
+    text-align: center;
+    margin: 10px 0;
+    padding: 10px;
+    background-color: var(--equation-bg);
+    border-left: 4px solid var(--blue-bg);
+  }
+  @media (max-width: 768px) {
+    .hero-content h1 {
+      font-size: 2rem;
+    }
+    .hero-content p {
+      font-size: 1rem;
+    }
+    .btn-primary, .btn-secondary {
+      padding: 8px 16px;
+    }
+    .btn-lg {
+      padding: 12px 24px;
+      font-size: 1rem;
+    }
+    .section {
+      padding: 15px;
+    }
+  }
+`}</style>
+
+<main>
+  <div class="hero-banner">
+    <div class="hero-content">
+      <h1>CoinFi Automated Atomic Market Maker</h1>
+      <p>
+        Welcome to the next generation of cross-chain trading. Enjoy secure, fast, and straightforward asset swaps with quantum-resistant security and minimal transaction costs.
+      </p>
+      <div class="cta-buttons">
+        <a href="https://coin.fi/manifesto" class="btn-primary">Learn More</a>
+        <a href="https://coin.fi/manifesto" class="btn-secondary">Join Our Community</a>
+      </div>
     </div>
   </div>
-</section>
 
----
+  ---
 
+  ## Overview
 
-## Overview
+  CoinFi AAMM revolutionizes cross-chain trading by integrating quantum-secure cryptography, zero-knowledge proofs, and dynamic automated market maker (AMM) pricing. Our platform addresses inefficiencies in traditional atomic swaps, such as slippage, rigid execution conditions, and counterparty risks, offering a scalable, trustless, and cost-effective solution for decentralized asset trading.
 
-CoinFi AAMM transforms the way you trade by combining top-notch security with an easy-to-use interface. Whether you're trading large volumes or just starting out, our system processes your orders every 5 seconds—ensuring you always get a fair deal with low fees.
+  - **Quantum Security:** Utilizes zkHPNG for prime number generation, Fullmen for tamper-evident commitments, and RWP for proof verification to ensure transactions are secure against quantum computing threats.
+  - **High-Frequency Trading:** Processes orders in 5-second rounds, categorizing trades into large and small orders for optimized matching and reduced slippage.
+  - **Flexible Exit Mechanism:** Unmatched orders enter an exit queue, allowing multiple retry attempts before forced bridging, minimizing collateral usage and transaction costs.
+  - **Economic Benefits:** Reduces bridging fees, enhances liquidity efficiency, and increases returns for liquidity providers, with an estimated annual ROI of 8-12%.
 
-> **Why CoinFi?**  
-> Trade confidently knowing your transactions are transparent, secure, and efficient.
+  ---
 
----
+  ## A Simple, Smart Trading Experience
 
-## A Simple, Smart Trading Experience
+  <div class="section">
+    <h2>User Interaction Flow</h2>
+    <ol>
+      <li><strong>Order Submission:</strong> Users submit trades with one-time quantum keys, ensuring transaction data privacy and security.</li>
+      <li><strong>Order Matching:</strong> Trades are matched using an adaptive algorithm that categorizes orders by size and optimizes for liquidity, reducing slippage.</li>
+      <li><strong>Exit Queue Management:</strong> Unmatched orders are queued for up to <span class="math">nu</span> rounds to find matches, preventing indefinite stalling and reducing bridging needs.</li>
+      <li><strong>Final Settlement:</strong> If unmatched after <span class="math">nu</span> rounds, orders are bridged with minimal fees, ensuring efficient liquidity utilization.</li>
+    </ol>
 
-Our platform makes trading effortless by guiding you through every step:
-
-1. **Easy Order Entry**  
-   Choose the tokens you want to trade and simply enter the amount. Our clear, step‑by‑step process helps prevent errors.
-
-2. **Lightning-Fast 5‑Second Rounds**  
-   Orders are processed every 5 seconds, so you quickly get the best available market price.
-
-3. **Intelligent Order Matching**  
-   If your order isn't completely filled, the remainder is automatically queued for a better match—all while keeping costs low.
-
-4. **Instant Confirmation**  
-   As soon as your order is matched, it's immediately recorded on the blockchain, giving you real-time peace of mind.
-
----
-
-## How It Works
-
-We use proven, straightforward math to keep trades fair and efficient:
-
-### Maintaining Balance with a Classic Formula
-
-Our order matching is based on a constant-product model:
-
-$$
-x \times y = k
-$$
-
-- **\(x\)** and **\(y\):** Token amounts in the liquidity pool  
-- **\(k\):** A fixed constant that keeps the pool balanced
-
-### Managing Unfilled Orders
-
-When part of your order isn't matched immediately, we re‑attempt matching in future rounds. If the order remains unmatched after several rounds, it's bridged using:
-
-$$
-\alpha_{\text{bridge}} = (1 - \eta)\,\bigl(1 - \eta_e\bigr)^\nu
-$$
-
-- **\(\eta\):** Efficiency of a direct match  
-- **\(\eta_e\):** Efficiency during additional matching rounds  
-- **\(\nu\):** Number of extra rounds before bridging is forced
-
-This approach, as detailed in the **Quantum One-Time Atomic Swap Contracts** paper, can reduce bridging fees by up to 95% compared to legacy methods.
-
----
-
-## Technology at a Glance
-
-Our platform is built on solid technology that's both powerful and easy to understand:
-
-- **Top-Grade Security:**  
-  Quantum-secure proofs (e.g., zkHPNG, Fullmen commitments, and RWP) keep your trades private and verifiable.
-  
-- **Speed & Transparency:**  
-  Essential data is stored on-chain for transparency while heavy computations run off‑chain for speed.
-
-- **Smart Matching:**  
-  Orders are intelligently grouped to boost liquidity and minimize slippage.
-
-- **User-Friendly Design:**  
-  With live dashboards, clear charts, and intuitive navigation, tracking and managing your trades is effortless.
-
-*Stay tuned for new interactive features that will make your trading experience even more engaging!*
-
----
-
-## Enjoy an Intuitive Interface
-
-Our design puts you first:
-
-- **Live, Easy-to-Read Dashboards:**  
-  See market trends, account balances, and trade history in clear, visual formats.
-  
-- **Guided Trading Steps:**  
-  Follow simple, step-by-step instructions from order entry to confirmation.
-
-- **Clear Analytics:**  
-  Complex data is presented using color-coded charts and real-time updates.
-
-- **Accessible for Everyone:**  
-  Whether you're a seasoned trader or just starting out, our interface is designed for clarity and ease.
-
----
-
-## Key Benefits
-
-<div className="card-grid">
-  <div className="card">
-    <h3>Minimal Price Slippage</h3>
-    <p>Our smart matching system ensures your trades are executed at nearly perfect prices.</p>
+    <h2>Key Features</h2>
+    <ul>
+      <li><strong>Intuitive Interface:</strong> Guides users through order submission, matching, and confirmation with clear, step-by-step instructions.</li>
+      <li><strong>Real-Time Feedback:</strong> Provides immediate blockchain confirmation for matched orders, enhancing transparency and trust.</li>
+      <li><strong>Dynamic AMM Pricing:</strong> Adjusts liquidity pool pricing using constant-product or stable-swap formulas to optimize trade execution.</li>
+    </ul>
   </div>
-  <div className="card">
-    <h3>Low Trading Fees</h3>
-    <p>Intelligent queuing keeps your costs minimal, even when orders are partially filled.</p>
+
+  ---
+
+  ## How It Works
+
+  <div class="section">
+    <h2>Mathematical Foundation</h2>
+    <ul>
+      <li>
+        <strong>Constant Product Formula:</strong>
+        <div class="math">x * y = k</div>
+        where <span class="math">x</span> and <span class="math">y</span> are token amounts in the liquidity pool, and <span class="math">k</span> is a constant that maintains pool balance, ensuring fair pricing.
+      </li>
+      <li>
+        <strong>Bridging Efficiency:</strong>
+        <div class="math">alpha_bridge = (1 - eta)(1 - eta_e)^nu</div>
+        <ul>
+          <li><span class="math">eta</span>: Efficiency of direct matches (approximately 95%).</li>
+          <li><span class="math">eta_e</span>: Efficiency during exit queue rounds.</li>
+          <li><span class="math">nu</span>: Number of exit rounds (default 3) before forced bridging.</li>
+        </ul>
+        This formula reduces bridging fees by up to 95% compared to immediate bridging, minimizing collateral usage.
+      </li>
+      <li>
+        <strong>Groth16 Verification:</strong>
+        <div class="math">e(a, b) = e([alpha beta], [T]) * e(Prod[A, b], [gamma]) * e(c, [delta])</div>
+        Ensures zero-knowledge proof validity for transaction integrity.
+      </li>
+      <li><strong>Holy Prime Condition:</strong> Requires both <span class="math">P</span> and <span class="math">2P + 1</span> to be prime for quantum resistance.</li>
+      <li><strong>Merkle Root:</strong> Aggregates commitments as <span class="math">C_r = MerkleRoot(C_1, ..., C_n)</span>, ensuring tamper-evidence.</li>
+      <li>
+        <strong>Exit-Queue Collateral:</strong>
+        <div class="math">L_bridge = max(0, Sum{o in U_left} u(o) - Delta)</div>
+        Calculates leftover volume for bridging, optimizing liquidity.
+      </li>
+    </ul>
+
+    <h2>Core Axioms</h2>
+    <ol>
+      <li><strong>Atomic Execution:</strong> Every swap either executes fully or reverts completely.</li>
+      <li><strong>Zero-Knowledge Soundness:</strong> Groth16 zk-SNARK proofs ensure only valid witnesses produce verifiable proofs.</li>
+      <li><strong>Quantum Resistance:</strong> Primes are accepted only if both <span class="math">P</span> and <span class="math">2P + 1</span> are prime.</li>
+      <li><strong>Merkle-Based Commitments:</strong> Fullmen commitments <span class="math">C = H(P concat E concat pk)</span> are aggregated into a tamper-evident Merkle root.</li>
+      <li><strong>Recursive Proof Aggregation (RWP):</strong> Individual proofs are linked recursively for secure aggregation.</li>
+      <li><strong>Exit-Queue Consistency:</strong> Leftover volume <span class="math">l</span> at round <span class="math">R_n</span> either bridges immediately with fee <span class="math">phi</span> or enters an exit queue for up to <span class="math">nu</span> rounds, preventing indefinite stalling.</li>
+    </ol>
   </div>
-  <div className="card">
-    <h3>Rapid Order Processing</h3>
-    <p>Experience the speed of orders being matched every 5 seconds.</p>
+
+  ---
+
+  ## Technology at a Glance
+
+  <div class="section">
+    <h2>Security Layer</h2>
+    <ul>
+      <li><strong>zkHPNG:</strong> Generates candidate and holy primes in a zero-knowledge setting, ensuring quantum resistance.</li>
+      <li><strong>Fullmen Commitments:</strong> Binds prover's public parameters into tamper-evident Merkle roots.</li>
+      <li><strong>RWP (Rossario Wang Proof):</strong> Verifies secrets via a color-based challenge-response mechanism, supporting automatic, interactive, or stealth modes.</li>
+      <li>Zero-knowledge commitments conceal order details until execution, mitigating front-running and MEV attacks.</li>
+    </ul>
+
+    <h2>Efficiency & Scalability</h2>
+    <ul>
+      <li>On-chain settlement via Cosmos SDK and CometBFT minimizes on-chain data, ensuring scalability and block finality in seconds.</li>
+      <li>Off-chain proof generation and aggregation reduce computational load, enabling millisecond order matching.</li>
+      <li>Adaptive matching isolates large orders and aggregates small orders, reducing slippage and gas costs.</li>
+    </ul>
+
+    <h2>User Experience</h2>
+    <ul>
+      <li>Real-time dashboards display market trends, account balances, and trade history in visual formats.</li>
+      <li>Guided trading steps simplify the process from order entry to confirmation, with color-coded charts for clarity.</li>
+    </ul>
   </div>
-  <div className="card">
-    <h3>Enhanced Security</h3>
-    <p>Advanced, quantum-secure protocols protect your trading data at every step.</p>
+
+  ---
+
+  ## Enjoy an Intuitive Interface
+
+  <div class="section">
+    <ul>
+      <li><strong>Live Dashboards:</strong> Track orders, liquidity pools, and market dynamics in real time with easy-to-read visuals.</li>
+      <li><strong>Guided Trading:</strong> Follow step-by-step instructions for order submission, matching, and confirmation.</li>
+      <li><strong>Data Visualization:</strong> Complex data is presented using color-coded charts and real-time updates, accessible to all users.</li>
+      <li><strong>Accessibility:</strong> Designed for both seasoned traders and beginners, ensuring clarity and ease of use.</li>
+    </ul>
   </div>
-</div>
 
----
+  ---
 
-## Looking Ahead
+  ## Key Benefits
 
-CoinFi AAMM is always evolving:
+  <div class="section">
+    <div class="card-grid">
+      <div class="card">
+        <h3>Reduced Slippage</h3>
+        <p>Adaptive matching minimizes price impact, especially for large orders, ensuring near-perfect execution prices.</p>
+      </div>
+      <div class="card">
+        <h3>Low Transaction Fees</h3>
+        <p>Efficient exit queue management reduces forced bridging, lowering costs with fees as low as 0.3% for swaps and 1% for bridging.</p>
+      </div>
+      <div class="card">
+        <h3>Rapid Execution</h3>
+        <p>5-second trade rounds enable high throughput, processing millions of orders daily with minimal latency.</p>
+      </div>
+      <div class="card">
+        <h3>Quantum Security</h3>
+        <p>Quantum-resistant protocols (zkHPNG, Fullmen, RWP) protect transactions against future cryptographic threats.</p>
+      </div>
+    </div>
+  </div>
 
-- **Continuous Improvement:** We constantly refine our technology and interface to offer you the best trading experience.  
-- **Community-Driven Updates:** Your feedback shapes our future features.  
-- **Exciting New Tools:** Look forward to enhanced mobile experiences, interactive analytics, and more powerful features coming soon.
+  ---
 
----
+  ## Economic Analysis and Performance
 
-## Get Started Today
+  <div class="section">
+    <h2>Fee Model</h2>
+    <ul>
+      <li>Swap Fee: 0.3% per matched portion.</li>
+      <li>Bridging Fee: 1% applied only if leftover volume is bridged.</li>
+      <li>Carry-Forward Fee: Optional <span class="math">alpha%</span> per exit round.</li>
+    </ul>
 
-Join the future of cross-chain trading:
-- **Trade Securely:** Enjoy a system that's both fast and secure.
-- **Join Our Community:** Connect with fellow traders and receive the latest updates.
+    <h2>Performance Metrics</h2>
+    <ul>
+      <li>Order matching executes in milliseconds, with <span class="math">O(N log N)</span> complexity for <span class="math">N approx 1000</span> orders per round.</li>
+      <li>Tendermint (CometBFT) ensures block finality in seconds, enhancing throughput and latency.</li>
+    </ul>
 
-<div className="join-container">
-  <a href="https://coin.fi/manifesto" className="btn-primary btn-lg">Get Started</a>
-  <a href="https://coin.fi/manifesto" className="btn-secondary btn-lg">Join Our Community</a>
-</div>
+    <h2>ROI for Liquidity Providers</h2>
+    <p>Estimated at 8-12% annually, driven by reduced bridging and improved liquidity utilization.</p>
+  </div>
 
----
+  ---
 
-{/* Interactive diagram showcasing our trade matching process */}
-<ImageCard 
-  src="/logo/300x100-coin-chain.png" 
-  alt="Trade Matching Diagram" 
-  caption="See how our system smartly matches your orders for efficient trading." 
-/>
+  ## Security Considerations
 
----
+  <div class="section">
+    <ul>
+      <li><strong>Front-Running and MEV Mitigation:</strong> Zero-knowledge commitments and time-box rounds minimize reordering risks.</li>
+      <li><strong>Cryptographic Security:</strong> Quantum-resistant methods, comprehensive audits, and bug bounty programs ensure robust protection.</li>
+      <li><strong>Completeness and Soundness:</strong> Valid witnesses produce verifiable proofs, and any deviation results in proof failure, ensuring transaction integrity.</li>
+    </ul>
+  </div>
 
-*For more details on our technology and the math behind it, please refer to our full documentation. We have aligned this content with the **Quantum One-Time Atomic Swap Contracts** paper to ensure both accuracy and clarity.*
+  ---
 
-[**Learn More About Our Technology**](https://coin.fi/manifesto)&nbsp;&nbsp;|&nbsp;&nbsp;[**Subscribe for Updates**](https://coin.fi/manifesto)
+  ## Looking Ahead
+
+  <div class="section">
+    <h2>Development Roadmap</h2>
+    <ul>
+      <li>Q1 2025: Finalize protocol axioms and gather feedback.</li>
+      <li>Q2 2025: Design Cosmos SDK module and develop prototypes.</li>
+      <li>Q3 2025: Complete implementation, testing, and beta launch on testnet.</li>
+      <li>Q4 2025: Conduct security audits and optimize gas costs.</li>
+      <li>Q1 2026: Deploy on mainnet, integrate with bridge providers, and launch investor programs.</li>
+    </ul>
+
+    <h2>Future Enhancements</h2>
+    <ul>
+      <li>Expand token pair support, enhance mobile experiences, and integrate community-driven features.</li>
+    </ul>
+  </div>
+
+  ---
+
+  ## Get Started Today
+
+  <div class="section">
+    <p>Join the forefront of decentralized finance:</p>
+    <ul>
+      <li><strong>Trade with Confidence:</strong> Secure, fast, and transparent transactions with quantum-resistant security.</li>
+      <li><strong>Community Involvement:</strong> Shape the future of trading through active participation and feedback.</li>
+    </ul>
+    <div class="join-container">
+      <a href="https://coin.fi/manifesto" class="btn-primary btn-lg">Get Started</a>
+      <a href="https://coin.fi/manifesto" class="btn-secondary">Join Our Community</a>
+    </div>
+  </div>
+
+  ---
+
+  <p>For a deep dive into the mathematical models, cryptographic methods, and economic analysis, explore our technical documentation, aligned with the <strong>Quantum One-Time Atomic Swap Contracts</strong> research.</p>
+
+  <p>
+    <a href="https://coin.fi/manifesto">Learn More About Our Technology</a>  |  <a href="https://coin.fi/manifesto">Subscribe for Updates</a>
+  </p>
+</main>

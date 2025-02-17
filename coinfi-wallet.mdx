@@ -183,7 +183,7 @@ coin1hj5fveer5cjtn4wd6wstzugjfdxzl0xpdpsrzs
 The QOTP is a **40-character sequence** derived from a comprehensive alphabet:
 - **A–Z** (26 characters)
 - **0–9** (10 characters)
-- **♦, ♣, ♥, ♠** (4 symbols)
+- **艾勒, 哦, 维, 衣** (4 symbols)
 
 Each character’s color is dynamically determined by its position in an entropy-driven, rotating pad, which aligns with the ENIGMA Cipher’s <span className="tooltip" data-tooltip="Abstract layers in a holographic manifold that map characters to directions">hyperplane</span> mapping. This mapping associates colors with specific bearing directions, ensuring a visually intuitive and cryptographically secure framework:
 - <span style={{ color: "#e57373", fontWeight: "bold" }}>Red</span> → **UP**
@@ -230,10 +230,10 @@ Each character’s color is dynamically determined by its position in an entropy
   <span style={{ color: "#81c784" }}>7</span>
   <span style={{ color: "#64b5f6" }}>8</span>
   <span style={{ color: "#ffd54f" }}>9</span>
-  <span style={{ color: "#e57373" }}>♦</span>
-  <span style={{ color: "#81c784" }}>♣</span>
-  <span style={{ color: "#64b5f6" }}>♥</span>
-  <span style={{ color: "#ffd54f" }}>♠</span>
+  <span style={{ color: "#e57373" }}>艾勒</span>
+  <span style={{ color: "#81c784" }}>哦</span>
+  <span style={{ color: "#64b5f6" }}>维</span>
+  <span style={{ color: "#ffd54f" }}>衣</span>
 </div>
 
 *Explanation:* The QOTP’s entropy-driven rotation assigns colors to characters based on their position in the pad, which is synchronized with ENIGMA’s hyperplane mapping. This dual-system approach ensures quantum resistance by leveraging dynamic, unpredictable rotations and a private, static mapping, making it computationally infeasible for adversaries to predict or reverse-engineer the sequence.
@@ -246,7 +246,7 @@ The QOTP and ENIGMA systems collaborate to provide secure, zero-knowledge authen
 
 ### Step 1: Universal Language ($\Lambda$)
 <div className="equation">
-  $\Lambda = \lbrace \mathrm{A}, \mathrm{B}, \ldots, \mathrm{Z}, 0, 1, \ldots, 9, ♦, ♣, ♥, ♠ \rbrace$
+  $\Lambda = \lbrace \mathrm{A}, \mathrm{B}, \ldots, \mathrm{Z}, 0, 1, \ldots, 9, 艾勒, 哦, 维, 衣 \rbrace$
 </div>
 *Explanation:* The universal language $\Lambda$ comprises 40 distinct symbols, forming a comprehensive alphabet for both QOTP and ENIGMA. This diverse set ensures a large keyspace, enhancing cryptographic strength by maximizing the possible combinations for subkeys and mappings.
 
@@ -296,10 +296,10 @@ The QOTP pad rotates based on entropy-derived offsets, and each subkey $\Omega_i
 
 #### Round 1 (Initial Pad, $\Omega_1 = \mathrm{L}$)
 **Grouping (Entropy Offset 0):**
-- **Red (UP):** <span style={{ color: "#e57373" }}>A, E, I, M, Q, U, Y, 2, 6, ♦</span>
-- **Green (DOWN):** <span style={{ color: "#81c784" }}>B, F, J, N, R, V, Z, 3, 7, ♣</span>
-- **Blue (LEFT):** <span style={{ color: "#64b5f6" }}>C, G, K, O, S, W, 0, 4, 8, ♥</span>
-- **Yellow (RIGHT):** <span style={{ color: "#ffd54f" }}>D, H, L, P, T, X, 1, 5, 9, ♠</span>
+- **Red (UP):** <span style={{ color: "#e57373" }}>A, E, I, M, Q, U, Y, 2, 6, 艾勒</span>
+- **Green (DOWN):** <span style={{ color: "#81c784" }}>B, F, J, N, R, V, Z, 3, 7, 哦</span>
+- **Blue (LEFT):** <span style={{ color: "#64b5f6" }}>C, G, K, O, S, W, 0, 4, 8, 维</span>
+- **Yellow (RIGHT):** <span style={{ color: "#ffd54f" }}>D, H, L, P, T, X, 1, 5, 9, 衣</span>
 **Locate $\Omega_1 = \mathrm{L}$:** Found in $\Gamma_1$ (<span style={{ color: "#ffd54f" }}>Yellow</span>).  
 **Witness:** $\Psi(\Gamma_1) = \Xi_1$ → <span style={{ color: "#ffd54f", fontWeight: "bold" }}>RIGHT</span>.  
 **Commitment:**  
@@ -311,10 +311,10 @@ The QOTP pad rotates based on entropy-derived offsets, and each subkey $\Omega_i
 
 #### Round 2 (Rotation by Offset 4, $\Omega_2 = \mathrm{O}$)
 **New Grouping:**
-- **Red (UP):** <span style={{ color: "#e57373" }}>E, I, M, Q, U, Y, 2, 6, ♦, A</span>
-- **Green (DOWN):** <span style={{ color: "#81c784" }}>F, J, N, R, V, Z, 3, 7, ♣, B</span>
-- **Blue (LEFT):** <span style={{ color: "#64b5f6" }}>G, K, O, S, W, 0, 4, 8, ♥, C</span>
-- **Yellow (RIGHT):** <span style={{ color: "#ffd54f" }}>H, L, P, T, X, 1, 5, 9, ♠, D</span>
+- **Red (UP):** <span style={{ color: "#e57373" }}>E, I, M, Q, U, Y, 2, 6, 艾勒, A</span>
+- **Green (DOWN):** <span style={{ color: "#81c784" }}>F, J, N, R, V, Z, 3, 7, 哦, B</span>
+- **Blue (LEFT):** <span style={{ color: "#64b5f6" }}>G, K, O, S, W, 0, 4, 8, 维, C</span>
+- **Yellow (RIGHT):** <span style={{ color: "#ffd54f" }}>H, L, P, T, X, 1, 5, 9, 衣, D</span>
 **Locate $\Omega_2 = \mathrm{O}$:** Found in $\Gamma_3$ (<span style={{ color: "#64b5f6" }}>Blue</span>).  
 **Witness:** $\Psi(\Gamma_3) = \Xi_3$ → <span style={{ color: "#64b5f6", fontWeight: "bold" }}>LEFT</span>.  
 **Commitment:**  
@@ -326,10 +326,10 @@ The QOTP pad rotates based on entropy-derived offsets, and each subkey $\Omega_i
 
 #### Round 3 (Rotation by Offset 8, $\Omega_3 = \mathrm{V}$)
 **New Grouping:**
-- **Red (UP):** <span style={{ color: "#e57373" }}>I, M, Q, U, Y, 2, 6, ♦, A, E</span>
-- **Green (DOWN):** <span style={{ color: "#81c784" }}>J, N, R, V, Z, 3, 7, ♣, B, F</span>
-- **Blue (LEFT):** <span style={{ color: "#64b5f6" }}>K, O, S, W, 0, 4, 8, ♥, C, G</span>
-- **Yellow (RIGHT):** <span style={{ color: "#ffd54f" }}>L, P, T, X, 1, 5, 9, ♠, D, H</span>
+- **Red (UP):** <span style={{ color: "#e57373" }}>I, M, Q, U, Y, 2, 6, 艾勒, A, E</span>
+- **Green (DOWN):** <span style={{ color: "#81c784" }}>J, N, R, V, Z, 3, 7, 哦, B, F</span>
+- **Blue (LEFT):** <span style={{ color: "#64b5f6" }}>K, O, S, W, 0, 4, 8, 维, C, G</span>
+- **Yellow (RIGHT):** <span style={{ color: "#ffd54f" }}>L, P, T, X, 1, 5, 9, 衣, D, H</span>
 **Locate $\Omega_3 = \mathrm{V}$:** Found in $\Gamma_2$ (<span style={{ color: "#81c784" }}>Green</span>).  
 **Witness:** $\Psi(\Gamma_2) = \Xi_2$ → <span style={{ color: "#81c784", fontWeight: "bold" }}>DOWN</span>.  
 **Commitment:**  
@@ -341,10 +341,10 @@ The QOTP pad rotates based on entropy-derived offsets, and each subkey $\Omega_i
 
 #### Round 4 (Rotation by Offset 12, $\Omega_4 = \mathrm{E}$)
 **New Grouping:**
-- **Red (UP):** <span style={{ color: "#e57373" }}>M, Q, U, Y, 2, 6, ♦, A, E, I</span>
-- **Green (DOWN):** <span style={{ color: "#81c784" }}>N, R, V, Z, 3, 7, ♣, B, F, J</span>
-- **Blue (LEFT):** <span style={{ color: "#64b5f6" }}>O, S, W, 0, 4, 8, ♥, C, G, K</span>
-- **Yellow (RIGHT):** <span style={{ color: "#ffd54f" }}>P, T, X, 1, 5, 9, ♠, D, H, L</span>
+- **Red (UP):** <span style={{ color: "#e57373" }}>M, Q, U, Y, 2, 6, 艾勒, A, E, I</span>
+- **Green (DOWN):** <span style={{ color: "#81c784" }}>N, R, V, Z, 3, 7, 哦, B, F, J</span>
+- **Blue (LEFT):** <span style={{ color: "#64b5f6" }}>O, S, W, 0, 4, 8, 维, C, G, K</span>
+- **Yellow (RIGHT):** <span style={{ color: "#ffd54f" }}>P, T, X, 1, 5, 9, 衣, D, H, L</span>
 **Locate $\Omega_4 = \mathrm{E}$:** Found in $\Gamma_4$ (<span style={{ color: "#e57373" }}>Red</span>).  
 **Witness:** $\Psi(\Gamma_4) = \Xi_4$ → <span style={{ color: "#e57373", fontWeight: "bold" }}>UP</span>.  
 **Commitment:**  

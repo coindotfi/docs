@@ -1,306 +1,507 @@
 ---
 title: "Quantum Resistant Authentication System for Authorizing Private Key Signing"
-description: "Public Keys, Private Keys, and Quantum One-Time Pads"
+description: "Public Keys, Private Keys, and Quantum One-Time Pads with ENIGMA Cipher Integration"
 sidebarTitle: "Public, Private, and QOTP Keys"
 icon: "key"
+author: "Dylan Kawalec at Coin.fi"
 ---
 
 <style>{`
+  :root {
+    --card-border-radius: 12px;
+    --card-padding: 16px;
+    --card-box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --card-transition: transform 0.2s, box-shadow 0.2s;
+    --equation-bg: #f5f5f5;
+    --table-border: #ddd;
+    --table-header-bg: #1976d2;
+    --text-light: #fff;
+    --text-dark: #212121;
+    --red-bg: #e57373;
+    --green-bg: #81c784;
+    --blue-bg: #64b5f6;
+    --yellow-bg: #ffd54f;
+    --red-border: #d32f2f;
+    --green-border: #388e3c;
+    --blue-border: #1976d2;
+    --yellow-border: #fbc02d;
+    --yellow-text-light: #212121;
+    --yellow-text-dark: #fff;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --card-box-shadow: 0 4px 6px rgba(255, 255, 255, 0.1);
+      --equation-bg: #333;
+      --table-border: #444;
+      --table-header-bg: #90caf9;
+      --text-light: #333;
+      --text-dark: #e0e0e0;
+      --red-bg: #b71c1c;
+      --green-bg: #388e3c;
+      --blue-bg: #1565c0;
+      --yellow-bg: #fbc02d;
+    }
+  }
   .grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
-    margin-bottom: 1rem;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  .card {
+    border: 1px solid;
+    border-radius: var(--card-border-radius);
+    padding: var(--card-padding);
+    text-align: center;
+    box-shadow: var(--card-box-shadow);
+    transition: var(--card-transition);
+    color: var(--text-light);
+  }
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
   }
   .card-red {
-    background-color: #ffecec;
-    border: 2px solid red;
-    border-radius: 8px;
-    padding: 8px;
-    text-align: center;
+    background-color: var(--red-bg);
+    border-color: var(--red-border);
   }
   .card-green {
-    background-color: #ecffe9;
-    border: 2px solid green;
-    border-radius: 8px;
-    padding: 8px;
-    text-align: center;
+    background-color: var(--green-bg);
+    border-color: var(--green-border);
   }
   .card-blue {
-    background-color: #ececff;
-    border: 2px solid blue;
-    border-radius: 8px;
-    padding: 8px;
-    text-align: center;
+    background-color: var(--blue-bg);
+    border-color: var(--blue-border);
   }
   .card-yellow {
-    background-color: #fff9e6;
-    border: 2px solid yellow;
-    border-radius: 8px;
+    background-color: var(--yellow-bg);
+    border-color: var(--yellow-border);
+    color: var(--yellow-text-light);
+  }
+  @media (prefers-color-scheme: dark) {
+    .card-yellow {
+      color: var(--yellow-text-dark);
+    }
+  }
+  .card strong {
+    font-size: 1.2em;
+    font-weight: 600;
+  }
+  .card p {
+    margin: 8px 0 0;
+    font-size: 1em;
+  }
+  .card span {
+    color: inherit;
+  }
+  .qotp-sequence span:hover {
+    text-decoration: underline;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .direction-icon {
+    display: inline-block;
+    margin-right: 4px;
+    font-size: 1.2em;
+  }
+  .equation {
+    font-family: "Times New Roman", serif;
+    font-style: italic;
+    margin: 1rem 0;
+    padding: 1rem;
+    background-color: var(--equation-bg);
+    border-left: 4px solid #1976d2;
+  }
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem 0;
+  }
+  .table th,
+  .table td {
+    border: 1px solid var(--table-border);
     padding: 8px;
-    text-align: center;
+    text-align: left;
+  }
+  .table th {
+    background-color: var(--table-header-bg);
+    color: #fff;
+  }
+  .tooltip {
+    position: relative;
+    display: inline-block;
+    cursor: help;
+    border-bottom: 1px dotted #666;
+  }
+  .tooltip:hover::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 4px;
+    white-space: nowrap;
+    z-index: 10;
   }
 `}</style>
 
-<img src="/logo/300x100-coin-wallet.png" alt="CoinFi Wallet" />
+<img src="/logo/300x100-coin-wallet.png" alt="CoinFi Wallet" style={{ marginBottom: "2rem" }} />
 
-## Overview
+# Quantum Resistant Authentication System for Authorizing Private Key Signing
 
-This document details our **quantum–resistant authentication system**. It explains:
+## Introduction
 
-- **Public Keys:** The only way to identify a wallet owner.
-- **Private Keys:** The only way an owner can sign and send messages.
-- **Quantum One–Time Pad (QOTP):** A dynamic, color–coded pad that only the owner can solve.
+As quantum computing advances, threatening to dismantle traditional cryptographic safeguards, the necessity for resilient and forward-thinking authentication systems becomes undeniable. This document introduces a **quantum-resistant authentication system**—a pioneering solution that harmoniously integrates three essential elements: **Public Keys** for uniquely identifying wallet owners, **Private Keys** for securely signing and transmitting messages, and a **Quantum One-Time Pad (QOTP)** fortified by the **ENIGMA Cipher System**. This hybrid architecture employs entropy-driven rotations within a vibrant, color-coded pad, mapped onto a holographic manifold of hyperplanes, to deliver unmatched security. By leveraging zero-knowledge proofs and quantum-resistant hash functions like SHAKE256, it guarantees that private information remains safeguarded, even against quantum adversaries. Through the example of the private key "LOVE," we showcase how this system seamlessly blends visual clarity with mathematical precision, providing a secure, verifiable, and user-friendly authentication protocol tailored for the quantum age.
 
-<hr />
+
 
 ## Public Keys  
-*The only way to identify an **owner** of a wallet:*
-- `coin1hj5fveer5cjtn4wd6wstzugjfdxzl0xpdpsrzs`
+**Purpose:** Uniquely identify the wallet owner, serving as a public identifier for authentication.  
+
+```plaintext
+coin1hj5fveer5cjtn4wd6wstzugjfdxzl0xpdpsrzs
+```
+
+
+ + Think of the public key as your digital signature. It lets others recognize you without sharing your personal details, fostering trust and openness in every exchange.
 
 ## Private Keys  
-*The only way an **owner** can sign and send messages:*
-- `123SomePr1vat3Key...`
+**Purpose:** Enable the wallet owner to sign and send messages securely, protecting confidentiality.  
 
-<hr />
+```plaintext
+123SomePr1vat3Key...
+```
 
-## Quantum One–Time Pad (QOTP) Legend
++ The private key is a secret component used to generate digital signatures, ensuring that only the authorized owner can initiate transactions or communications, safeguarding against unauthorized access.
 
-Our QOTP is now a **40–character sequence** that cycles through four colors. The full domain consists of:
+---
 
+## Quantum One–Time Pad (QOTP) and ENIGMA Cipher Integration
+
+The QOTP is a **40-character sequence** derived from a comprehensive alphabet:
 - **A–Z** (26 characters)
 - **0–9** (10 characters)
-- **♦, ♣, ♥, ♠** (4 characters)
+- **艾勒, 哦, 维, 衣** (4 symbols)
 
-Each character’s color is determined by its zero–indexed position modulo 4:
+Each character’s color is dynamically determined by its position in an entropy-driven, rotating pad, which aligns with the ENIGMA Cipher’s <span className="tooltip" data-tooltip="Abstract layers in a holographic manifold that map characters to directions">hyperplane</span> mapping. This mapping associates colors with specific bearing directions, ensuring a visually intuitive and cryptographically secure framework:
+- <span style={{ color: "#e57373", fontWeight: "bold" }}>Red</span> → **UP**
+- <span style={{ color: "#81c784", fontWeight: "bold" }}>Green</span> → **DOWN**
+- <span style={{ color: "#64b5f6", fontWeight: "bold" }}>Blue</span> → **LEFT**
+- <span style={{ color: "#ffd54f", fontWeight: "bold" }}>Yellow</span> → **RIGHT**
 
-- **Index mod 4 = 0:** **Red** → **UP**
-- **Index mod 4 = 1:** **Green** → **DOWN**
-- **Index mod 4 = 2:** **Blue** → **LEFT**
-- **Index mod 4 = 3:** **Yellow** → **RIGHT**
+**Initial Pad Sequence (Visual Representation):**
 
-The pad sequence is:
-
-<span style={{ fontFamily: "monospace", fontSize: "0.9em" }}>
-  <span style={{ color: "red" }}>A</span>
-  <span style={{ color: "green" }}>B</span>
-  <span style={{ color: "blue" }}>C</span>
-  <span style={{ color: "yellow" }}>D</span>
-  <span style={{ color: "red" }}>E</span>
-  <span style={{ color: "green" }}>F</span>
-  <span style={{ color: "blue" }}>G</span>
-  <span style={{ color: "yellow" }}>H</span>
-  <span style={{ color: "red" }}>I</span>
-  <span style={{ color: "green" }}>J</span>
-  <span style={{ color: "blue" }}>K</span>
-  <span style={{ color: "yellow" }}>L</span>
-  <span style={{ color: "red" }}>M</span>
-  <span style={{ color: "green" }}>N</span>
-  <span style={{ color: "blue" }}>O</span>
-  <span style={{ color: "yellow" }}>P</span>
-  <span style={{ color: "red" }}>Q</span>
-  <span style={{ color: "green" }}>R</span>
-  <span style={{ color: "blue" }}>S</span>
-  <span style={{ color: "yellow" }}>T</span>
-  <span style={{ color: "red" }}>U</span>
-  <span style={{ color: "green" }}>V</span>
-  <span style={{ color: "blue" }}>W</span>
-  <span style={{ color: "yellow" }}>X</span>
-  <span style={{ color: "red" }}>Y</span>
-  <span style={{ color: "green" }}>Z</span>
-  <span style={{ color: "blue" }}>0</span>
-  <span style={{ color: "yellow" }}>1</span>
-  <span style={{ color: "red" }}>2</span>
-  <span style={{ color: "green" }}>3</span>
-  <span style={{ color: "blue" }}>4</span>
-  <span style={{ color: "yellow" }}>5</span>
-  <span style={{ color: "red" }}>6</span>
-  <span style={{ color: "green" }}>7</span>
-  <span style={{ color: "blue" }}>8</span>
-  <span style={{ color: "yellow" }}>9</span>
-  <span style={{ color: "red" }}>♦</span>
-  <span style={{ color: "green" }}>♣</span>
-  <span style={{ color: "blue" }}>♥</span>
-  <span style={{ color: "yellow" }}>♠</span>
-</span>
-
-*Remember: Each character’s color is determined by its position modulo 4.*
-
-<hr />
-
-## Quantum One–Time Pad  
-Only the owner can authenticate using the one–time pad (for example):
-- The pad key may be: `LOVE`
-
-<hr />
-
-## Example: Möbius One–Time Pad Rotation
-
-We simulate a Möbius rotation on our one–time pad by cyclically shifting the ordering. In each round, the pad is divided into four "color cards" (displayed as a 2×2 grid), with characters assigned based on their zero–indexed positions modulo 4.
-
-> **Legend Recap:**
-> - **Red** → **UP**
-> - **Green** → **DOWN**
-> - **Blue** → **LEFT**
-> - **Yellow** → **RIGHT**
-
-Below are the rounds:
-
-### Round 1 (No Rotation)
-
-**Original pad grouping:**
-
-- **Red** (indices 0, 4, 8, …, 36):  
-  **A, E, I, M, Q, U, Y, 2, 6, ♦**
-- **Green** (indices 1, 5, 9, …, 37):  
-  **B, F, J, N, R, V, Z, 3, 7, ♣**
-- **Blue** (indices 2, 6, 10, …, 38):  
-  **C, G, K, O, S, W, 0, 4, 8, ♥**
-- **Yellow** (indices 3, 7, 11, …, 39):  
-  **D, H, L, P, T, X, 1, 5, 9, ♠**
-
-<div className="grid">
-  <div className="card-red">
-    <strong>Red</strong>
-    <p>A, E, I, M, Q, U, Y, 2, 6, ♦</p>
-  </div>
-  <div className="card-green">
-    <strong>Green</strong>
-    <p>B, F, J, N, R, V, Z, 3, 7, ♣</p>
-  </div>
-  <div className="card-blue">
-    <strong>Blue</strong>
-    <p>C, G, K, O, S, W, 0, 4, 8, ♥</p>
-  </div>
-  <div className="card-yellow">
-    <strong>Yellow</strong>
-    <p>D, H, L, P, T, X, 1, 5, 9, ♠</p>
-  </div>
+<div style={{ fontFamily: "monospace", fontSize: "1em", lineHeight: "1.5" }}>
+  <span style={{ color: "#e57373" }}>A</span>
+  <span style={{ color: "#81c784" }}>B</span>
+  <span style={{ color: "#64b5f6" }}>C</span>
+  <span style={{ color: "#ffd54f" }}>D</span>
+  <span style={{ color: "#e57373" }}>E</span>
+  <span style={{ color: "#81c784" }}>F</span>
+  <span style={{ color: "#64b5f6" }}>G</span>
+  <span style={{ color: "#ffd54f" }}>H</span>
+  <span style={{ color: "#e57373" }}>I</span>
+  <span style={{ color: "#81c784" }}>J</span>
+  <span style={{ color: "#64b5f6" }}>K</span>
+  <span style={{ color: "#ffd54f" }}>L</span>
+  <span style={{ color: "#e57373" }}>M</span>
+  <span style={{ color: "#81c784" }}>N</span>
+  <span style={{ color: "#64b5f6" }}>O</span>
+  <span style={{ color: "#ffd54f" }}>P</span>
+  <span style={{ color: "#e57373" }}>Q</span>
+  <span style={{ color: "#81c784" }}>R</span>
+  <span style={{ color: "#64b5f6" }}>S</span>
+  <span style={{ color: "#ffd54f" }}>T</span>
+  <span style={{ color: "#e57373" }}>U</span>
+  <span style={{ color: "#81c784" }}>V</span>
+  <span style={{ color: "#64b5f6" }}>W</span>
+  <span style={{ color: "#ffd54f" }}>X</span>
+  <span style={{ color: "#e57373" }}>Y</span>
+  <span style={{ color: "#81c784" }}>Z</span>
+  <span style={{ color: "#64b5f6" }}>0</span>
+  <span style={{ color: "#ffd54f" }}>1</span>
+  <span style={{ color: "#e57373" }}>2</span>
+  <span style={{ color: "#81c784" }}>3</span>
+  <span style={{ color: "#64b5f6" }}>4</span>
+  <span style={{ color: "#ffd54f" }}>5</span>
+  <span style={{ color: "#e57373" }}>6</span>
+  <span style={{ color: "#81c784" }}>7</span>
+  <span style={{ color: "#64b5f6" }}>8</span>
+  <span style={{ color: "#ffd54f" }}>9</span>
+  <span style={{ color: "#e57373" }}>艾勒</span>
+  <span style={{ color: "#81c784" }}>哦</span>
+  <span style={{ color: "#64b5f6" }}>维</span>
+  <span style={{ color: "#ffd54f" }}>衣</span>
 </div>
 
-**Pad Letter:** **L**  
-*L* is at index **11** (11 mod 4 = 3) → **Yellow** → **RIGHT**.
++ The QOTP’s entropy-driven rotation assigns colors to characters based on their position in the pad, which is synchronized with ENIGMA’s hyperplane mapping. This dual-system approach ensures quantum resistance by leveraging dynamic, unpredictable rotations and a private, static mapping, making it computationally infeasible for adversaries to predict or reverse-engineer the sequence.
 
-**Result:** **L = RIGHT**
+---
 
-### Round 2 (Rotate Pad Left by 1)
+## Integrated QOTP and ENIGMA Operation: Example with "LOVE"
 
-After a left–rotation by 1, the pad becomes:
-  
-- **Red:**  
-  **B, F, J, N, R, V, Z, 3, 7, ♣**
-- **Green:**  
-  **C, G, K, O, S, W, 0, 4, 8, ♥**
-- **Blue:**  
-  **D, H, L, P, T, X, 1, 5, 9, ♠**
-- **Yellow:**  
-  **E, I, M, Q, U, Y, 2, 6, ♦, A**
+The QOTP and ENIGMA systems collaborate to provide secure, zero-knowledge authentication. The private key $\Omega$ is **<span style={{ color: "#ffd54f" }}>L</span><span style={{ color: "#64b5f6" }}>O</span><span style={{ color: "#81c784" }}>V</span><span style={{ color: "#e57373" }}>E</span>**, split into subkeys $\Omega_i$ and mapped to hyperplanes via entropy-derived rotations. This example demonstrates how the systems integrate visual clarity with cryptographic rigor.
 
-<div className="grid">
-  <div className="card-red">
-    <strong>Red</strong>
-    <p>B, F, J, N, R, V, Z, 3, 7, ♣</p>
-  </div>
-  <div className="card-green">
-    <strong>Green</strong>
-    <p>C, G, K, O, S, W, 0, 4, 8, ♥</p>
-  </div>
-  <div className="card-blue">
-    <strong>Blue</strong>
-    <p>D, H, L, P, T, X, 1, 5, 9, ♠</p>
-  </div>
-  <div className="card-yellow">
-    <strong>Yellow</strong>
-    <p>E, I, M, Q, U, Y, 2, 6, ♦, A</p>
-  </div>
+### Step 1: Universal Language ($\Lambda$)
+<div className="equation">
+  $\Lambda = \lbrace \mathrm{A}, \mathrm{B}, \ldots, \mathrm{Z}, 0, 1, \ldots, 9, 艾勒, 哦, 维, 衣 \rbrace$
+</div>
++ The universal language $\Lambda$ comprises 40 distinct symbols, forming a comprehensive alphabet for both QOTP and ENIGMA. This diverse set ensures a large keyspace, enhancing cryptographic strength by maximizing the possible combinations for subkeys and mappings.
+
+### Step 2: Private Key ($\Omega$) and Subkeys ($\Omega_i$)
+
+The private key $\Omega$ is a sequence of characters selected from the universal language $\Lambda$, allowing for potential repetitions. In this example, we use the key "LOVE" to illustrate the integration of QOTP and ENIGMA systems:
+
+<div className="equation">
+  $\Omega = \lbrace \mathrm{L}, \mathrm{O}, \mathrm{V}, \mathrm{E} \rbrace$
 </div>
 
-**Pad Letter:** **O**  
-*O* is at index **13** (13 mod 4 = 1) → **Green** → **DOWN**.
+This private key is split into individual subkeys $\Omega_i$, each corresponding to a character in the sequence, and mapped to specific positions in the QOTP pad and ENIGMA hyperplanes:
 
-**Result:** **O = DOWN**
-
-### Round 3 (Rotate Pad Left by 2)
-
-After a left–rotation by 2, the pad becomes:
-
-- **Red:**  
-  **C, G, K, O, S, W, 0, 4, 8, ♥**
-- **Green:**  
-  **D, H, L, P, T, X, 1, 5, 9, ♠**
-- **Blue:**  
-  **E, I, M, Q, U, Y, 2, 6, ♦, A**
-- **Yellow:**  
-  **F, J, N, R, V, Z, 3, 7, ♣, B**
-
-<div className="grid">
-  <div className="card-red">
-    <strong>Red</strong>
-    <p>C, G, K, O, S, W, 0, 4, 8, ♥</p>
-  </div>
-  <div className="card-green">
-    <strong>Green</strong>
-    <p>D, H, L, P, T, X, 1, 5, 9, ♠</p>
-  </div>
-  <div className="card-blue">
-    <strong>Blue</strong>
-    <p>E, I, M, Q, U, Y, 2, 6, ♦, A</p>
-  </div>
-  <div className="card-yellow">
-    <strong>Yellow</strong>
-    <p>F, J, N, R, V, Z, 3, 7, ♣, B</p>
-  </div>
+<div className="equation">
+  $\begin{aligned}
+    \Omega_1 &= \mathrm{L} \quad \text{(Position 11 in QOTP pad, located in } \Gamma_1 \text{, } \textcolor{#ffd54f}{\text{Yellow}}, \text{ mapped to RIGHT)} \\
+    \Omega_2 &= \mathrm{O} \quad \text{(Position 14 in QOTP pad, located in } \Gamma_3 \text{, } \textcolor{#64b5f6}{\text{Blue}}, \text{ mapped to LEFT)} \\
+    \Omega_3 &= \mathrm{V} \quad \text{(Position 21 in QOTP pad, located in } \Gamma_2 \text{, } \textcolor{#81c784}{\text{Green}}, \text{ mapped to DOWN)} \\
+    \Omega_4 &= \mathrm{E} \quad \text{(Position 4 in QOTP pad, located in } \Gamma_4 \text{, } \textcolor{#e57373}{\text{Red}}, \text{ mapped to UP)}
+  \end{aligned}$
 </div>
 
-**Pad Letter:** **V**  
-*V* is at index **19** (19 mod 4 = 3) → **Yellow** → **RIGHT**.
++  The private key $\Omega$ is an ordered sequence of subkeys $\Omega_i$, each drawn from $\Lambda$. In the QOTP system, each subkey’s position in the entropy-rotated pad determines its color and initial grouping, while in the ENIGMA system, these subkeys are located within specific hyperplanes ($\Gamma_i$) during each round of the $\Sigma$-Interactive Protocol. The term "position" refers to the character’s location in the QOTP pad sequence, which influences its hyperplane assignment in ENIGMA. For example, $\mathrm{L}$ at position 11 falls into the yellow hyperplane ($\Gamma_1$), mapped to RIGHT via $\Psi$. This dual-system approach ensures that each subkey’s cryptographic role is dynamically determined by entropy-based rotations and securely mapped within the holographic manifold, enhancing both visual clarity and quantum-resistant security.
 
-**Result:** **V = RIGHT**
-
-### Round 4 (Rotate Pad Left by 3)
-
-After a left–rotation by 3, the pad becomes:
-
-- **Red:**  
-  **D, H, L, P, T, X, 1, 5, 9, ♠**
-- **Green:**  
-  **E, I, M, Q, U, Y, 2, 6, ♦, A**
-- **Blue:**  
-  **F, J, N, R, V, Z, 3, 7, ♣, B**
-- **Yellow:**  
-  **G, K, O, S, W, 0, 4, 8, ♥, C**
-
-<div className="grid">
-  <div className="card-red">
-    <strong>Red</strong>
-    <p>D, H, L, P, T, X, 1, 5, 9, ♠</p>
-  </div>
-  <div className="card-green">
-    <strong>Green</strong>
-    <p>E, I, M, Q, U, Y, 2, 6, ♦, A</p>
-  </div>
-  <div className="card-blue">
-    <strong>Blue</strong>
-    <p>F, J, N, R, V, Z, 3, 7, ♣, B</p>
-  </div>
-  <div className="card-yellow">
-    <strong>Yellow</strong>
-    <p>G, K, O, S, W, 0, 4, 8, ♥, C</p>
-  </div>
+### Step 3: Secret Synonym Mapping ($\Psi$)
+Mapping <span className="tooltip" data-tooltip="Abstract layers in a holographic manifold that map characters to directions">hyperplanes</span> to bearing directions (aligned with QOTP colors):
+- $\Gamma_1$ (<span style={{ color: "#ffd54f" }}>Yellow</span>) → $\Xi_1$ (<span style={{ color: "#ffd54f", fontWeight: "bold" }}>RIGHT</span>)
+- $\Gamma_2$ (<span style={{ color: "#81c784" }}>Green</span>) → $\Xi_2$ (<span style={{ color: "#81c784", fontWeight: "bold" }}>DOWN</span>)
+- $\Gamma_3$ (<span style={{ color: "#64b5f6" }}>Blue</span>) → $\Xi_3$ (<span style={{ color: "#64b5f6", fontWeight: "bold" }}>LEFT</span>)
+- $\Gamma_4$ (<span style={{ color: "#e57373" }}>Red</span>) → $\Xi_4$ (<span style={{ color: "#e57373", fontWeight: "bold" }}>UP</span>)
+<div className="equation">
+  $\Psi: \Gamma_i \rightarrow \Xi_i$
 </div>
++ The mapping $\Psi$ is a static, private function that associates each hyperplane $\Gamma_i$ with a bearing direction $\Xi_i$, known only to the observer. This mapping aligns with the QOTP’s color-coded system, ensuring that each subkey’s direction is both visually intuitive and cryptographically secure, maintaining zero-knowledge properties.
 
-**Pad Letter:** **E**  
-*E* is at index **1** (1 mod 4 = 1) → **Green** → **DOWN**.
+### Step 4: Commitment ($\Gamma$)
+Combined as:
+<div className="equation">
+  $\Gamma = H(\Omega \parallel H(\Psi))$
+</div>
++ The commitment $\Gamma$ binds the private key $\Omega$ and the hashed mapping $H(\Psi)$ using a quantum-resistant hash function $H$ (e.g., SHAKE256). The $\parallel$ operator denotes concatenation, ensuring that any alteration to $\Omega$ or $\Psi$ invalidates $\Gamma$, providing integrity and authenticity.
 
-**Result:** **E = DOWN**
+### Step 5: Möbius Rotation and $\Sigma$-Interactive Protocol with "LOVE"
 
-<hr />
+The QOTP pad rotates based on entropy-derived offsets, and each subkey $\Omega_i$ is located within a hyperplane $\Gamma_j$, mapped to a witness $\Xi_j$ via $\Psi$. The following rounds illustrate how QOTP’s visual rotations integrate with ENIGMA’s rigorous protocol steps, ensuring secure authentication.
 
-## Final Computed Direction Sequence for the One–Time Pad "LOVE"
+#### Round 1 (Initial Pad, $\Omega_1 = \mathrm{L}$)
+**Grouping (Entropy Offset 0):**
+- **Red (UP):** <span style={{ color: "#e57373" }}>A, E, I, M, Q, U, Y, 2, 6, 艾勒</span>
+- **Green (DOWN):** <span style={{ color: "#81c784" }}>B, F, J, N, R, V, Z, 3, 7, 哦</span>
+- **Blue (LEFT):** <span style={{ color: "#64b5f6" }}>C, G, K, O, S, W, 0, 4, 8, 维</span>
+- **Yellow (RIGHT):** <span style={{ color: "#ffd54f" }}>D, H, L, P, T, X, 1, 5, 9, 衣</span>
+**Locate $\Omega_1 = \mathrm{L}$:** Found in $\Gamma_1$ (<span style={{ color: "#ffd54f" }}>Yellow</span>).  
+**Witness:** $\Psi(\Gamma_1) = \Xi_1$ → <span style={{ color: "#ffd54f", fontWeight: "bold" }}>RIGHT</span>.  
+**Commitment:**  
+<div className="equation">
+  $\text{Comm}_1 = H(\mathrm{L} \parallel \text{RIGHT} \parallel r_1)$
+</div>
+**Result:** <span style={{ color: "#ffd54f" }}>L</span> → <span style={{ color: "#ffd54f", fontWeight: "bold" }}>RIGHT</span>.  
++ The initial pad groups characters by color, with $\mathrm{L}$ located in the yellow hyperplane ($\Gamma_1$). The mapping $\Psi$ assigns the direction RIGHT, and the commitment hashes $\mathrm{L}$, RIGHT, and a nonce $r_1$, ensuring secure, verifiable authentication.
 
-<span style={{ fontFamily: "monospace", fontSize: "1.1em" }}>
-  L = <span style={{ color: "yellow" }}>RIGHT</span> &nbsp;&nbsp;|&nbsp;&nbsp; 
-  O = <span style={{ color: "green" }}>DOWN</span> &nbsp;&nbsp;|&nbsp;&nbsp; 
-  V = <span style={{ color: "yellow" }}>RIGHT</span> &nbsp;&nbsp;|&nbsp;&nbsp; 
-  E = <span style={{ color: "green" }}>DOWN</span>
-</span>
+#### Round 2 (Rotation by Offset 4, $\Omega_2 = \mathrm{O}$)
+**New Grouping:**
+- **Red (UP):** <span style={{ color: "#e57373" }}>E, I, M, Q, U, Y, 2, 6, 艾勒, A</span>
+- **Green (DOWN):** <span style={{ color: "#81c784" }}>F, J, N, R, V, Z, 3, 7, 哦, B</span>
+- **Blue (LEFT):** <span style={{ color: "#64b5f6" }}>G, K, O, S, W, 0, 4, 8, 维, C</span>
+- **Yellow (RIGHT):** <span style={{ color: "#ffd54f" }}>H, L, P, T, X, 1, 5, 9, 衣, D</span>
+**Locate $\Omega_2 = \mathrm{O}$:** Found in $\Gamma_3$ (<span style={{ color: "#64b5f6" }}>Blue</span>).  
+**Witness:** $\Psi(\Gamma_3) = \Xi_3$ → <span style={{ color: "#64b5f6", fontWeight: "bold" }}>LEFT</span>.  
+**Commitment:**  
+<div className="equation">
+  $\text{Comm}_2 = H(\mathrm{O} \parallel \text{LEFT} \parallel r_2)$
+</div>
+**Result:** <span style={{ color: "#64b5f6" }}>O</span> → <span style={{ color: "#64b5f6", fontWeight: "bold" }}>LEFT</span>.  
++ After a 4-position offset, $\mathrm{O}$ shifts to the blue hyperplane ($\Gamma_3$), mapped to LEFT. The commitment hashes $\mathrm{O}$, LEFT, and $r_2$, maintaining zero-knowledge security through dynamic rotation.
+
+#### Round 3 (Rotation by Offset 8, $\Omega_3 = \mathrm{V}$)
+**New Grouping:**
+- **Red (UP):** <span style={{ color: "#e57373" }}>I, M, Q, U, Y, 2, 6, 艾勒, A, E</span>
+- **Green (DOWN):** <span style={{ color: "#81c784" }}>J, N, R, V, Z, 3, 7, 哦, B, F</span>
+- **Blue (LEFT):** <span style={{ color: "#64b5f6" }}>K, O, S, W, 0, 4, 8, 维, C, G</span>
+- **Yellow (RIGHT):** <span style={{ color: "#ffd54f" }}>L, P, T, X, 1, 5, 9, 衣, D, H</span>
+**Locate $\Omega_3 = \mathrm{V}$:** Found in $\Gamma_2$ (<span style={{ color: "#81c784" }}>Green</span>).  
+**Witness:** $\Psi(\Gamma_2) = \Xi_2$ → <span style={{ color: "#81c784", fontWeight: "bold" }}>DOWN</span>.  
+**Commitment:**  
+<div className="equation">
+  $\text{Comm}_3 = H(\mathrm{V} \parallel \text{DOWN} \parallel r_3)$
+</div>
+**Result:** <span style={{ color: "#81c784" }}>V</span> → <span style={{ color: "#81c784", fontWeight: "bold" }}>DOWN</span>.  
++ An 8-position offset places $\mathrm{V}$ in the green hyperplane ($\Gamma_2$), mapped to DOWN. The commitment hashes $\mathrm{V}$, DOWN, and $r_3$, ensuring the integrity of the authentication process.
+
+#### Round 4 (Rotation by Offset 12, $\Omega_4 = \mathrm{E}$)
+**New Grouping:**
+- **Red (UP):** <span style={{ color: "#e57373" }}>M, Q, U, Y, 2, 6, 艾勒, A, E, I</span>
+- **Green (DOWN):** <span style={{ color: "#81c784" }}>N, R, V, Z, 3, 7, 哦, B, F, J</span>
+- **Blue (LEFT):** <span style={{ color: "#64b5f6" }}>O, S, W, 0, 4, 8, 维, C, G, K</span>
+- **Yellow (RIGHT):** <span style={{ color: "#ffd54f" }}>P, T, X, 1, 5, 9, 衣, D, H, L</span>
+**Locate $\Omega_4 = \mathrm{E}$:** Found in $\Gamma_4$ (<span style={{ color: "#e57373" }}>Red</span>).  
+**Witness:** $\Psi(\Gamma_4) = \Xi_4$ → <span style={{ color: "#e57373", fontWeight: "bold" }}>UP</span>.  
+**Commitment:**  
+<div className="equation">
+  $\text{Comm}_4 = H(\mathrm{E} \parallel \text{UP} \parallel r_4)$
+</div>
+**Result:** <span style={{ color: "#e57373" }}>E</span> → <span style={{ color: "#e57373", fontWeight: "bold" }}>UP</span>.  
++ A 12-position offset shifts $\mathrm{E}$ to the red hyperplane ($\Gamma_4$), mapped to UP. The commitment hashes $\mathrm{E}$, UP, and $r_4$, completing the secure mapping for "LOVE".
+
+### Step 6: Final Witness Sequence for "LOVE"
+<div className="equation">
+  $(\Xi_1, \Xi_2, \Xi_3, \Xi_4) = (\text{RIGHT}, \text{LEFT}, \text{DOWN}, \text{UP})$
+</div>
+<div style={{ fontFamily: "monospace", fontSize: "1.2em", lineHeight: "1.5" }}>
+  <span style={{ color: "#ffd54f" }}>L</span> = <span className="direction-icon">➡️</span><span style={{ color: "#ffd54f", fontWeight: "bold" }}>RIGHT</span> | 
+  <span style={{ color: "#64b5f6" }}>O</span> = <span className="direction-icon">⬅️</span><span style={{ color: "#64b5f6", fontWeight: "bold" }}>LEFT</span> | 
+  <span style={{ color: "#81c784" }}>V</span> = <span className="direction-icon">⬇️</span><span style={{ color: "#81c784", fontWeight: "bold" }}>DOWN</span> | 
+  <span style={{ color: "#e57373" }}>E</span> = <span className="direction-icon">⬆️</span><span style={{ color: "#e57373", fontWeight: "bold" }}>UP</span>
+</div>
++ The final witness sequence $\Xi$ encapsulates the bearing directions for each subkey, derived from the hyperplane mappings and QOTP rotations. This sequence is visually represented with color-coded characters and direction icons, ensuring clarity and alignment with the cryptographic process.
+
+### Step 7: Verification
+The verifier confirms each response using the commitments and witnesses, ensuring zero-knowledge properties via:
+<div className="equation">
+  $\Theta(\text{Comm}_i, e_i, s_i) \quad \text{for} \quad i = 1 \text{ to } 4$
+</div>
++ The verification function $\Theta$ evaluates the commitments $\text{Comm}_i$, challenges $e_i$, and responses $s_i$ for each round, leveraging zero-knowledge proof principles. This ensures that the observer’s knowledge of $\Omega_i$ and $\Psi$ remains confidential, with no leakage of sensitive information, even under quantum attacks.
+
+---
+<img src="/logo/png-color-splash.png" alt="CoinFi Wallet" style={{ marginBottom: "2rem" }} />
+
+
+## Summary of Equations Used
+
+This section consolidates the mathematical foundations of the QOTP-ENIGMA system, providing a clear, rigorous framework for understanding its cryptographic operations.
+
+1. **Universal Language:**  
+<div className="equation">
+  $\Lambda = \lbrace c_1, c_2, \ldots, c_{40} \rbrace$
+</div>
++ The universal language $\Lambda$ defines a 40-character alphabet, encompassing letters, digits, and symbols, forming the foundation for key generation and mapping. This expansive set maximizes entropy, ensuring robust cryptographic strength.
+
+2. **Private Key:**  
+<div className="equation">
+  $\Omega = (\Omega_1, \Omega_2, \ldots, \Omega_n), \quad \Omega_i \in \Lambda$
+</div>
++ The private key $\Omega$ is an ordered sequence of subkeys $\Omega_i$, each drawn from $\Lambda$. This structure allows for flexible, dynamic key generation, with each subkey’s position in the QOTP pad determining its cryptographic role.
+
+3. **Secret Synonym Mapping (Holographic Morphism):**  
+<div className="equation">
+  $\Psi: \Gamma_i \rightarrow \Xi_i$
+</div>
++ The mapping $\Psi$ is a private, static function that associates each hyperplane $\Gamma_i$ with a bearing direction $\Xi_i$. This mapping, known only to the observer, aligns with QOTP’s color-coded system, ensuring that each subkey’s direction is both visually intuitive and cryptographically secure.
+
+4. **Commitment:**  
+<div className="equation">
+  $\Gamma = H(\Omega \parallel H(\Psi))$
+</div>
++ The commitment $\Gamma$ binds the private key $\Omega$ and the hashed mapping $H(\Psi)$ using a quantum-resistant hash function $H$ (e.g., SHAKE256). The `\parallel` operator denotes concatenation, ensuring that any alteration to $\Omega$ or $\Psi$ invalidates $\Gamma$, providing integrity and authenticity.
+
+5. **$\Sigma$-Interactive Protocol Steps (Per Round):**  
+<div className="equation">
+  $\begin{aligned}
+    & \text{Commitment:} \quad \text{Comm}_i = H(\Omega_i \parallel \Xi_i \parallel r_i) \\
+    & \text{Response:} \quad s_i = f(\Omega_i, \Xi_i, e_i, r_i) \\
+    & \text{Verification:} \quad \Theta(\text{Comm}_i, s_i, e_i)
+  \end{aligned}$
+</div>
++  
+  - **Commitment:** Hashes the subkey $\Omega_i$, witness $\Xi_i$, and nonce $r_i$ using $H$, creating a secure, verifiable commitment.  
+  - **Response:** Computes $s_i$ based on $\Omega_i$, $\Xi_i$, challenge $e_i$, and $r_i$, ensuring the observer’s knowledge is verifiable without revealing secrets.  
+  - **Verification:** Uses $\Theta$ to validate the commitment, response, and challenge, enforcing zero-knowledge properties and ensuring no information leakage.
+
+6. **Witness Sequence:**  
+<div className="equation">
+  $\Xi = (\Xi_1, \Xi_2, \ldots, \Xi_n)$
+</div>
++ The witness sequence $\Xi$ encapsulates the bearing directions for each subkey, derived from hyperplane mappings and QOTP rotations. This sequence is the final output of the authentication process, ensuring alignment with the cryptographic framework.
+
+*Conclusion:* These equations form the mathematical backbone of the QOTP-ENIGMA system, integrating entropy-driven rotations with zero-knowledge proofs. The use of `\parallel` for concatenation, aligned equations, and rigorous notation ensures clarity, security, and quantum resistance.
+
+---
+<img src="/logo/300x100-coin-wallet.png" alt="CoinFi Wallet" style={{ marginBottom: "2rem" }} />
+
+## Symbol Definitions
+
+<table className="table">
+  <thead>
+    <tr>
+      <th>Symbol</th>
+      <th>Definition</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>$\Lambda$</td>
+      <td>Universal Language (Set of symbols forming the alphabet)</td>
+    </tr>
+    <tr>
+      <td>$\Omega$</td>
+      <td>Private Key (Ordered sequence of subkeys)</td>
+    </tr>
+    <tr>
+      <td>$\Omega_i$</td>
+      <td>Subkey (Element of the private key, drawn from $\Lambda$)</td>
+    </tr>
+    <tr>
+      <td>$\Gamma_i$</td>
+      <td>Hyperplanes (Abstract layers in the holographic manifold)</td>
+    </tr>
+    <tr>
+      <td>$\Xi_i$</td>
+      <td>Bearing Directions (UP, DOWN, LEFT, RIGHT, mapped from hyperplanes)</td>
+    </tr>
+    <tr>
+      <td>$\Psi$</td>
+      <td>Secret Synonym Mapping (Private function linking hyperplanes to directions)</td>
+    </tr>
+    <tr>
+      <td>$\Pi_i$</td>
+      <td>Projective Alphabet (Subset of $\Lambda$ for each round)</td>
+    </tr>
+    <tr>
+      <td>$\Pi$</td>
+      <td>Distribution Function (Assigns $\Pi_i$ to $\Gamma_i$)</td>
+    </tr>
+    <tr>
+      <td>$\Gamma$</td>
+      <td>Commitment Hash (Binds $\Omega$ and $\Psi$ for integrity)</td>
+    </tr>
+    <tr>
+      <td>$\Theta$</td>
+      <td>Verification Function (Validates commitments and responses)</td>
+    </tr>
+    <tr>
+      <td>$r_i$</td>
+      <td>Random Nonce (Unique value for each round, enhancing security)</td>
+    </tr>
+    <tr>
+      <td>$e_i$</td>
+      <td>Challenge (Verifier’s query in each round)</td>
+    </tr>
+    <tr>
+      <td>$s_i$</td>
+      <td>Response (Observer’s answer to the challenge, proving knowledge)</td>
+    </tr>
+    <tr>
+      <td>$f$</td>
+      <td>Response Function (Computes $s_i$ from inputs)</td>
+    </tr>
+    <tr>
+      <td>$\mathrm{H}$</td>
+      <td>Quantum-Resistant Hash Function (e.g., SHAKE256, ensuring security)</td>
+    </tr>
+    <tr>
+      <td>$\parallel$</td>
+      <td>Concatenation Operator (Combines inputs for hashing)</td>
+    </tr>
+  </tbody>
+</table>

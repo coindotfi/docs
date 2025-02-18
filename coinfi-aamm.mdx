@@ -1,180 +1,588 @@
 ---
 title: "Quantum One-Time Atomic Swap Contracts"
-description: "A fast cross-chain trading platform using advanced quantum one-time passkeys and zero-knowledge proof account abstractions, providing an intuitive and user-friendly experience for all token orders."
+description: "A comprehensive guide to an advanced cross-chain trading platform using quantum-resistant cryptography and zero-knowledge proofs for secure, efficient asset swaps."
 sidebarTitle: "Automated Atomic Market Maker"
----
-import ImageCard from '/snippets/components/ImageCard';
-
-{/*
-Hero Section
-*/}
-<section className="hero-banner" style={{ backgroundImage: "url('/logo/300x100-coin-chain.png')" }}>
-  <div className="hero-content">
-    <h1>CoinFi Automated Atomic Market Maker</h1>
-    <p>
-      Welcome to the next generation of cross-chain trading. Enjoy secure, fast, and straightforward asset swaps.
-    </p>
-    <div className="cta-buttons">
-      <a href="https://coin.fi/manifesto" className="btn-primary">Learn More</a>
-      <a href="https://coin.fi/manifesto" className="btn-secondary">Join Our Community</a>
-    </div>
-  </div>
-</section>
-
+icon: "atom"
 ---
 
+<style>{`
+  :root {
+    --card-border-radius: 10px;
+    --card-padding: 20px;
+    --card-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    --equation-bg: #f5f5f5;
+    --table-border: #ddd;
+    --table-header-bg: #1976d2;
+    --text-light: #fff;
+    --text-dark: #212121;
+    --blue-bg: #007bff;
+    --gray-bg: #6c757d;
+    --card-bg: #f8f9fa;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --card-box-shadow: 0 2px 5px rgba(255, 255, 255, 0.1);
+      --equation-bg: #333;
+      --table-border: #444;
+      --table-header-bg: #90caf9;
+      --text-light: #333;
+      --text-dark: #e0e0e0;
+      --blue-bg: #0056b3;
+      --gray-bg: #5a6268;
+      --card-bg: #444;
+    }
+  }
+  .hero-banner {
+    background-color: #333;
+    padding: 40px;
+    text-align: center;
+    color: var(--text-light);
+    min-height: 200px;
+  }
+  .hero-content h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+  }
+  .hero-content p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .btn-primary {
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-block;
+    color: var(--text-light);
+    background-color: var(--blue-bg);
+  }
+  .btn-secondary {
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-block;
+    color: var(--text-light);
+    background-color: var(--gray-bg);
+  }
+  .btn-lg {
+    padding: 15px 30px;
+    font-size: 1.2rem;
+  }
+  .section {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    box-sizing: border-box;
+  }
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin: 20px 0;
+  }
+  .card {
+    background-color: var(--card-bg);
+    padding: var(--card-padding);
+    border-radius: var(--card-border-radius);
+    box-shadow: var(--card-box-shadow);
+    text-align: center;
+  }
+  .card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: var(--text-dark);
+  }
+  .join-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 30px 0;
+    flex-wrap: wrap;
+  }
+  .equation {
+    font-family: "Times New Roman", serif;
+    font-style: italic;
+    display: block;
+    text-align: center;
+    margin: 10px 0;
+    padding: 10px;
+    background-color: var(--equation-bg);
+    border-left: 4px solid var(--blue-bg);
+  }
+  .tooltip {
+    position: relative;
+    display: inline-block;
+    cursor: help;
+    border-bottom: 1px dotted #666;
+  }
+  .tooltip:hover::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 4px;
+    white-space: nowrap;
+    z-index: 10;
+  }
+  @media (max-width: 768px) {
+    .hero-content h1 {
+      font-size: 2rem;
+    }
+    .hero-content p {
+      font-size: 1rem;
+    }
+    .btn-primary, .btn-secondary {
+      padding: 8px 16px;
+    }
+    .btn-lg {
+      padding: 12px 24px;
+      font-size: 1rem;
+    }
+    .section {
+      padding: 15px;
+    }
+  }
+`}</style>
 
-## Overview
+<div style={{ display: "flex", justifyContent: "center", marginBottom: "2rem" }}>
+  <img 
+    id="toggleImage" 
+    src="/logo/png-coinfi-blue.png" 
+    alt="CoinFi Wallet" 
+    onClick={() => {
+      const img = document.getElementById('toggleImage');
+      img.src = img.src.includes('/logo/png-color-splash.png') ? '/logo/300x100-colorwheel.png' : '/logo/png-coinfi-blue.png';
+    }} 
+  />
+</div>
 
-CoinFi AAMM transforms the way you trade by combining top-notch security with an easy-to-use interface. Whether you're trading large volumes or just starting out, our system processes your orders every 5 seconds—ensuring you always get a fair deal with low fees.
+# Quantum One-Time Atomic Swap Contracts
 
-> **Why CoinFi?**  
-> Trade confidently knowing your transactions are transparent, secure, and efficient.
+## Introduction
+
+The **CoinFi Automated Atomic Market Maker (AAMM)** introduces a revolutionary approach to cross-chain trading in the decentralized finance (DeFi) ecosystem. By integrating quantum-resistant cryptography, zero-knowledge proofs, and dynamic pricing strategies, this platform addresses key challenges like transaction costs, slippage, and security against quantum computing threats. Here's a detailed look at how AAMM revolutionizes DeFi trading:
+
+- **Quantum Security:** Utilizes zkHPNG, Fullmen, and RWP protocols to ensure transactions are secure against both classical and quantum cryptographic attacks.
+- **Efficiency:** Processes trades in high-frequency 5-second rounds, distinguishing between large and small orders for optimized matching and minimal slippage.
+- **Flexibility:** Features an innovative exit queue system allowing unmatched orders to retry up to <div className="equation">$\nu$</div> rounds (default 3), significantly reducing the need for expensive bridging actions.
+- **Economic Benefits:** Offers a fee structure that incentivizes liquidity provision with an estimated annual ROI of 8-12% for liquidity providers.
+
+### Key Features
+
+- **Adaptive Matching:** Employs algorithms to categorize and match orders based on size, enhancing liquidity and trade execution.
+- **Zero-Knowledge Proofs:** Ensures privacy and integrity of transactions through cryptographic commitments and proofs.
+- **Dynamic AMM Pricing:** Adjusts liquidity pool pricing to real-time market conditions, optimizing trade execution and minimizing costs.
 
 ---
 
-## A Simple, Smart Trading Experience
+## Core Mechanism
 
-Our platform makes trading effortless by guiding you through every step:
+### Quantum One-Time Atomic Swaps
 
-1. **Easy Order Entry**  
-   Choose the tokens you want to trade and simply enter the amount. Our clear, step‑by‑step process helps prevent errors.
+The core of AAMM is built on:
 
-2. **Lightning-Fast 5‑Second Rounds**  
-   Orders are processed every 5 seconds, so you quickly get the best available market price.
+- **Quantum One-Time Pad (QOTP):** A 40-character key used for each transaction, ensuring no key reuse and maximum security.
+- **ENIGMA Cipher System:** Combines with QOTP for additional layers of encryption, making the system resilient to quantum decryption efforts.
 
-3. **Intelligent Order Matching**  
-   If your order isn't completely filled, the remainder is automatically queued for a better match—all while keeping costs low.
+#### Process Overview:
 
-4. **Instant Confirmation**  
-   As soon as your order is matched, it's immediately recorded on the blockchain, giving you real-time peace of mind.
+1. **Order Submission:** Users generate unique quantum keys, submit trade orders with these keys.
+2. **Matching:** Orders are matched using an adaptive algorithm, prioritizing efficiency and liquidity.
+3. **Exit Queue:** If unmatched, orders enter an exit queue for potential rematching in subsequent rounds.
+4. **Settlement:** Successfully matched orders are settled on-chain, with unmatched orders potentially bridged after <div className="equation">$\nu$</div> rounds.
 
----
+### Mathematical and Cryptographic Foundations
 
-## How It Works
+<div className="section">
+  <h2>Core Equations</h2>
+  <ul>
+    <li>
+      <strong>Constant Product Market Maker:</strong>
+      <div className="equation">$x \cdot y = k$</div>
+      <p>
+        *Explanation:* Ensures liquidity balance by maintaining $k$ constant for token pairs $x$ and $y$, enabling fair pricing and liquidity stability.
+      </p>
+    </li>
+    <li>
+      <strong>Bridging Efficiency:</strong>
+      <div className="equation">$\alpha_{\text{bridge}} = (1 - \eta)(1 - \eta_e)^\nu$</div>
+      <p>
+        *Explanation:* Reduces bridging fees by optimizing direct matches ($\eta \approx 95\%$) and exit queue efficiency ($\eta_e$), with $\nu$ rounds (default 3) before forced bridging, minimizing collateral usage.
+      </p>
+    </li>
+    <li>
+      <strong>Groth16 Verification:</strong>
+      <div className="equation">$e(a, b) = e([\alpha \beta], [T]) \cdot e(\text{Prod}[A, b], [\gamma]) \cdot e(c, [\delta])$</div>
+      <p>
+        *Explanation:* Ensures zero-knowledge proof validity, verifying transaction integrity without revealing sensitive data, critical for trustless swaps.
+      </p>
+    </li>
+    <li>
+      <strong>Holy Prime Generation:</strong>
+      <div className="equation">$\text{Prime}(P) \land \text{Prime}(2P + 1)$</div>
+      <p>
+        *Explanation:* Ensures quantum-resistant key generation by requiring both $P$ and $2P + 1$ to be prime, leveraging zkHPNG for secure prime generation.
+      </p>
+    </li>
+    <li>
+      <strong>Merkle Root Commitment:</strong>
+      <div className="equation">$C_r = \text{MerkleRoot}(C_1, \ldots, C_n)$</div>
+      <p>
+        *Explanation:* Aggregates commitments $C_i = H(P \parallel E \parallel pk)$ into a tamper-evident Merkle root, ensuring transaction integrity.
+      </p>
+    </li>
+    <li>
+      <strong>Exit-Queue Collateral Calculation:</strong>
+      <div className="equation">$L_{\text{bridge}} = \max(0, \sum_{o \in U_{\text{left}}} u(o) - \Delta)$</div>
+      <p>
+        *Explanation:* Manages leftover volume for bridging minimization, optimizing liquidity by reducing unnecessary cross-chain transfers.
+      </p>
+    </li>
+  </ul>
 
-We use proven, straightforward math to keep trades fair and efficient:
-
-### Maintaining Balance with a Classic Formula
-
-Our order matching is based on a constant-product model:
-
-$$
-x \times y = k
-$$
-
-- **\(x\)** and **\(y\):** Token amounts in the liquidity pool  
-- **\(k\):** A fixed constant that keeps the pool balanced
-
-### Managing Unfilled Orders
-
-When part of your order isn't matched immediately, we re‑attempt matching in future rounds. If the order remains unmatched after several rounds, it's bridged using:
-
-$$
-\alpha_{\text{bridge}} = (1 - \eta)\,\bigl(1 - \eta_e\bigr)^\nu
-$$
-
-- **\(\eta\):** Efficiency of a direct match  
-- **\(\eta_e\):** Efficiency during additional matching rounds  
-- **\(\nu\):** Number of extra rounds before bridging is forced
-
-This approach, as detailed in the **Quantum One-Time Atomic Swap Contracts** paper, can reduce bridging fees by up to 95% compared to legacy methods.
-
----
-
-## Technology at a Glance
-
-Our platform is built on solid technology that's both powerful and easy to understand:
-
-- **Top-Grade Security:**  
-  Quantum-secure proofs (e.g., zkHPNG, Fullmen commitments, and RWP) keep your trades private and verifiable.
-  
-- **Speed & Transparency:**  
-  Essential data is stored on-chain for transparency while heavy computations run off‑chain for speed.
-
-- **Smart Matching:**  
-  Orders are intelligently grouped to boost liquidity and minimize slippage.
-
-- **User-Friendly Design:**  
-  With live dashboards, clear charts, and intuitive navigation, tracking and managing your trades is effortless.
-
-*Stay tuned for new interactive features that will make your trading experience even more engaging!*
-
----
-
-## Enjoy an Intuitive Interface
-
-Our design puts you first:
-
-- **Live, Easy-to-Read Dashboards:**  
-  See market trends, account balances, and trade history in clear, visual formats.
-  
-- **Guided Trading Steps:**  
-  Follow simple, step-by-step instructions from order entry to confirmation.
-
-- **Clear Analytics:**  
-  Complex data is presented using color-coded charts and real-time updates.
-
-- **Accessible for Everyone:**  
-  Whether you're a seasoned trader or just starting out, our interface is designed for clarity and ease.
-
----
-
-## Key Benefits
-
-<div className="card-grid">
-  <div className="card">
-    <h3>Minimal Price Slippage</h3>
-    <p>Our smart matching system ensures your trades are executed at nearly perfect prices.</p>
-  </div>
-  <div className="card">
-    <h3>Low Trading Fees</h3>
-    <p>Intelligent queuing keeps your costs minimal, even when orders are partially filled.</p>
-  </div>
-  <div className="card">
-    <h3>Rapid Order Processing</h3>
-    <p>Experience the speed of orders being matched every 5 seconds.</p>
-  </div>
-  <div className="card">
-    <h3>Enhanced Security</h3>
-    <p>Advanced, quantum-secure protocols protect your trading data at every step.</p>
-  </div>
+  <h2>Core Axioms</h2>
+  <ol>
+    <li>
+      <strong>Atomic Execution:</strong> All or nothing transaction completion, ensuring no partial trades compromise integrity.
+    </li>
+    <li>
+      <strong>Zero-Knowledge Soundness:</strong> Valid proofs only from legitimate witnesses, preventing forgery via Groth16 zk-SNARK proofs.
+    </li>
+    <li>
+      <strong>Quantum Resistance:</strong> Primes used in transactions satisfy the holy prime condition, protecting against quantum attacks.
+    </li>
+    <li>
+      <strong>Commitment Integrity:</strong> Merkle-based commitments ensure data integrity, using Fullmen to bind public parameters.
+    </li>
+    <li>
+      <strong>Proof Aggregation:</strong> Recursive proofs (RWP) enable scalable verification, linking individual proofs securely.
+    </li>
+    <li>
+      <strong>Exit-Queue Consistency:</strong> Manages leftover volumes to prevent stalling, with options to bridge or retry for <div className="equation">$\nu$</div> rounds.
+    </li>
+  </ol>
+  <p>
+    *Explanation:* These equations and axioms form the mathematical backbone of CoinFi AAMM, ensuring secure, efficient, and quantum-resistant swaps. The constant product formula balances liquidity, while Groth16 and RWP enforce zero-knowledge security, and the exit queue optimizes economic efficiency.
+  </p>
 </div>
 
 ---
 
-## Looking Ahead
+## Technology Overview
 
-CoinFi AAMM is always evolving:
+<div className="section">
+  <h2>Security Layer</h2>
+  <ul>
+    <li>
+      <strong>zkHPNG:</strong> Generates primes in a zero-knowledge context for secure key material, ensuring quantum resistance.
+    </li>
+    <li>
+      <strong>Fullmen Commitments:</strong> Ensures public parameters are tamper-evident through Merkle roots, preventing alteration.
+    </li>
+    <li>
+      <strong>RWP:</strong> Provides a flexible challenge-response for proof verification, supporting automatic, interactive, or stealth modes.
+    </li>
+    <li>
+      <strong>Zero-Knowledge Commitments:</strong> Conceal order details until execution, mitigating front-running and MEV attacks.
+    </li>
+  </ul>
+  <p>
+    *Explanation:* The security layer leverages advanced cryptography to protect transactions, with zkHPNG ensuring quantum resistance, Fullmen providing integrity, and RWP enabling flexible verification, all while maintaining user privacy.
+  </p>
 
-- **Continuous Improvement:** We constantly refine our technology and interface to offer you the best trading experience.  
-- **Community-Driven Updates:** Your feedback shapes our future features.  
-- **Exciting New Tools:** Look forward to enhanced mobile experiences, interactive analytics, and more powerful features coming soon.
+  <h2>Efficiency & Scalability</h2>
+  <ul>
+    <li>
+      <strong>On-Chain Settlement:</strong> Uses Cosmos SDK and CometBFT for millisecond block finality, minimizing on-chain data and enhancing scalability.
+    </li>
+    <li>
+      <strong>Off-Chain Operations:</strong> Proof generation and aggregation reduce on-chain load, enabling high-frequency trading.
+    </li>
+    <li>
+      <strong>Adaptive Matching:</strong> Optimizes for both large and small trade sizes, reducing slippage and gas costs.
+    </li>
+  </ul>
+  <p>
+    *Explanation:* Efficiency is achieved through optimized on-chain/off-chain operations, with CometBFT ensuring rapid finality and adaptive matching reducing slippage, making CoinFi AAMM scalable for millions of daily trades.
+  </p>
+
+  <h2>User Experience</h2>
+  <ul>
+    <li>
+      <strong>Real-Time Dashboards:</strong> Provides insights into trades, liquidity, and market conditions with color-coded visuals for clarity.
+    </li>
+    <li>
+      <strong>Guided Trading:</strong> Simplifies complex transactions for all user levels, with step-by-step instructions for order submission and confirmation.
+    </li>
+  </ul>
+  <p>
+    *Explanation:* The user-centric design ensures accessibility, with real-time feedback and intuitive interfaces empowering traders to navigate complex DeFi operations confidently.
+  </p>
+</div>
 
 ---
 
-## Get Started Today
+## Economic Analysis
 
-Join the future of cross-chain trading:
-- **Trade Securely:** Enjoy a system that's both fast and secure.
-- **Join Our Community:** Connect with fellow traders and receive the latest updates.
+<div className="section">
+  <h2>Fee Structure</h2>
+  <ul>
+    <li>
+      <strong>Swap Fee:</strong> 0.3% on matched trades, ensuring cost-effective trading.
+    </li>
+    <li>
+      <strong>Bridging Fee:</strong> 1% if forced bridging occurs, minimizing unnecessary costs.
+    </li>
+    <li>
+      <strong>Carry-Forward Fee:</strong> Optional fee per exit round to encourage efficiency, set at <div className="equation">$\alpha\%$</div>.
+    </li>
+  </ul>
+  <p>
+    *Explanation:* The fee model balances affordability and efficiency, with low swap fees encouraging trading and minimal bridging fees reducing liquidity costs.
+  </p>
+
+  <h2>Performance Metrics</h2>
+  <ul>
+    <li>
+      <strong>Matching Speed:</strong> Near-instantaneous with <div className="equation">$O(N \log N)$</div> complexity for approximately 1000 orders per round.
+    </li>
+    <li>
+      <strong>Throughput:</strong> Potential for millions of transactions per day with sub-second finality via Tendermint (CometBFT).
+    </li>
+  </ul>
+  <p>
+    *Explanation:* Performance is optimized for high-frequency trading, with efficient algorithms and blockchain infrastructure ensuring scalability and responsiveness.
+  </p>
+
+  <h2>ROI for Liquidity Providers</h2>
+  <p>Estimated at 8-12% per annum, reflecting the platform's efficiency in utilizing liquidity and reducing transaction costs.</p>
+  <p>
+    *Explanation:* The high ROI reflects the platform's economic efficiency, incentivizing liquidity provision and ensuring sustainable growth.
+  </p>
+</div>
+
+---
+
+## Security Considerations
+
+<div className="section">
+  <ul>
+    <li>
+      <strong>Front-Running Prevention:</strong> Time-boxed rounds and zero-knowledge commitments prevent order reordering, ensuring fairness.
+    </li>
+    <li>
+      <strong>Quantum Security:</strong> Advanced cryptographic protocols protect against future threats, with comprehensive audits planned.
+    </li>
+    <li>
+      <strong>Completeness and Soundness:</strong> Valid witnesses produce verifiable proofs, with deviations resulting in proof failure, ensuring transaction integrity.
+    </li>
+  </ul>
+  <p>
+    *Explanation:* Security is paramount, with advanced protocols mitigating risks and ensuring trustless, secure swaps, even under quantum threats.
+  </p>
+</div>
+
+---
+
+## Future Outlook
+
+<div className="section">
+  <h2>Development Roadmap</h2>
+  <ul>
+    <li>
+      <strong>Q1-Q2 2025:</strong> Research and design phase, finalizing protocol axioms and gathering community feedback.
+    </li>
+    <li>
+      <strong>Q3 2025:</strong> Implementation and testing, including beta launch on testnet.
+    </li>
+    <li>
+      <strong>Q4 2025:</strong> Audits and optimizations, focusing on gas costs and matching algorithms.
+    </li>
+    <li>
+      <strong>Q1 2026:</strong> Mainnet launch and ecosystem integration, including bridge provider partnerships.
+    </li>
+  </ul>
+  <p>
+    *Explanation:* The roadmap outlines a strategic path to deployment, ensuring rigorous testing and community involvement for a robust launch.
+  </p>
+
+  <h2>Future Enhancements</h2>
+  <ul>
+    <li>
+      <strong>Expanded Support:</strong> Increase token pair coverage and enhance mobile experiences.
+    </li>
+    <li>
+      <strong>Community-Driven Features:</strong> Integrate user feedback to refine and expand platform capabilities.
+    </li>
+  </ul>
+  <p>
+    *Explanation:* Future enhancements will focus on scalability and user engagement, ensuring CoinFi AAMM remains at the forefront of DeFi innovation.
+  </p>
+</div>
+
+---
+
+## Conclusion
+
+CoinFi AAMM represents a significant leap forward in DeFi trading, combining quantum security with economic efficiency. This document outlines the technical and economic aspects, providing a foundation for traders, developers, and investors to understand and engage with the platform.
+
+---
+
+## Comprehensive Financial Analysis
+
+<div className="section">
+  <h2>Financial Model Validation</h2>
+  <p>The financial analysis of the AAMM system, when compared to the protocol's assumptions and operational mechanics outlined in the white paper, holds up robustly. The model incorporates:</p>
+  <ul>
+    <li>
+      <strong>Real-World Data Integration:</strong> Our analysis uses current market trends, integrating multiple cryptocurrencies' data as of February 17, 2025. This includes market cap, trading volume, and transaction fees, providing a grounded perspective on AAMM's economic performance.
+    </li>
+    <li>
+      <strong>Dynamic Transaction Volume Models:</strong> We adopted a piecewise growth/regression model similar to the GOAT Sequencer Network, which aligns with AAMM's adaptive matching strategy and exit queue system, ensuring the financial model reflects real market dynamics.
+    </li>
+    <li>
+      <strong>Fee and ROI Adjustments:</strong> The fee structure (0.3% swap, 1% bridging, 0.5% carry-forward) directly correlates with the operational model, with ROI projections for liquidity providers (LPs) ranging from 0.36% to 7.21% in year one, scaling up to 2-12% over five years, contingent on network growth and liquidity pool size.
+    </li>
+  </ul>
+
+  <h2>Implications for Users</h2>
+  <ul>
+    <li>
+      <strong>Cost Efficiency:</strong> Users benefit from reduced transaction costs due to the low swap fee and efficient use of the exit queue, which minimizes forced bridging and associated fees.
+    </li>
+    <li>
+      <strong>Liquidity and Trading Opportunities:</strong> The adaptive matching algorithm ensures better liquidity utilization, potentially increasing the success rate of trades, thus providing users with more trading opportunities with less slippage.
+    </li>
+    <li>
+      <strong>ROI Expectations:</strong> Small LPs might initially require subsidies for profitability, but as the system matures, the ROI becomes competitive, encouraging more users to provide liquidity.
+    </li>
+  </ul>
+
+  <h2>Benefits for Blockchain Validators</h2>
+  <ul>
+    <li>
+      <strong>Incentive Alignment:</strong> The financial model incentivizes honest and active participation by rewarding efficiency and penalizing inactivity, ensuring a healthy network operation.
+    </li>
+    <li>
+      <strong>Network Health:</strong> High-frequency, low-latency trade execution supports network throughput, reducing congestion and enhancing the validator's role in maintaining an efficient blockchain.
+    </li>
+    <li>
+      <strong>Sustainability:</strong> By maintaining a system where profitability for LPs is tied to network performance, validators are motivated to support system enhancements and security measures.
+    </li>
+  </ul>
+
+  <h2>Impact on Bridge Providers</h2>
+  <ul>
+    <li>
+      <strong>Reduced Bridging Frequency:</strong> The exit queue mechanism significantly reduces the need for bridging, which lowers the operational load on bridge providers while maintaining cross-chain interoperability.
+    </li>
+    <li>
+      <strong>Fee Model:</strong> The bridging fee model ensures that bridge providers are compensated adequately when bridging is necessary, balancing their operational costs with the network's need for inter-chain transfers.
+    </li>
+    <li>
+      <strong>Scalability:</strong> As the network scales, the financial model supports an increase in bridge transactions without proportional cost increases, thanks to dynamic fee adjustments, making bridge services more viable and attractive.
+    </li>
+  </ul>
+
+  <h2>Conclusion</h2>
+  <p>This financial analysis confirms the AAMM's design as both economically viable and strategically sound for all stakeholders:</p>
+  <ul>
+    <li><strong>For Users:</strong> AAMM offers a cost-effective, secure, and efficient platform for cross-chain trading.</li>
+    <li><strong>For Validators:</strong> The system provides clear incentives for maintaining network integrity and performance.</li>
+    <li><strong>For Bridge Providers:</strong> The protocol reduces unnecessary bridging while ensuring fair compensation for services rendered.</li>
+  </ul>
+  <p>By integrating these insights into the AAMM system, we ensure that the financial model not only supports the operational protocols but also drives the ecosystem towards sustainable growth and widespread adoption.</p>
+</div>
+
+---
+
+## Generalized Financial Analysis Framework
+
+<div className="section">
+  <h2>Framework for Economic Assessment</h2>
+  <p>This section outlines a generalized framework for evaluating AAMM's economic performance under varying future economic conditions, providing the mathematical assumptions, axioms, corollaries, postulates, and definitions necessary for analysis.</p>
+
+  <h3>Definitions</h3>
+  <ul>
+    <li><strong>$T_{\text{fees}}$:</strong> Swap fee rate (fraction of transaction value).</li>
+    <li><strong>$V_{\text{transactions}}(t)$:</strong> Daily transaction volume, modeled as a piecewise function of growth and regression phases.</li>
+    <li><strong>$L_{\text{locked}}$:</strong> Liquidity provided by an LP, in base currency equivalent.</li>
+    <li><strong>$L_{\text{total}}$:</strong> Total liquidity in the system.</li>
+    <li><strong>$\eta_{\text{efficiency}}$:</strong> Matching efficiency (0 < $\eta_{\text{efficiency}} \leq 1$).</li>
+    <li><strong>$p_{\text{inactive}}$:</strong> Probability of LP inactivity (0 ≤ $p_{\text{inactive}} \leq 1$).</li>
+    <li><strong>$C_{\text{op}}$:</strong> Annual operational cost per LP, in USD.</li>
+    <li><strong>$P_{\text{base}}$:</strong> Price of the base currency (e.g., BTC), in USD.</li>
+    <li><strong>$\alpha_{\text{bridge}}$:</strong> Fraction of transactions requiring bridging, influenced by matching efficiency and exit queue.</li>
+  </ul>
+
+  <h3>Axioms</h3>
+  <ol>
+    <li><strong>Proportional Yield:</strong> LP yield is proportional to their share of total liquidity, adjusted for efficiency: $R_{\text{daily}}(t) = (T_{\text{fees}} \cdot V_{\text{transactions}}(t)) \cdot \frac{L_{\text{locked}}}{L_{\text{total}}} \cdot \eta_{\text{efficiency}}$.</li>
+    <li><strong>Dynamic Volume:</strong> Transaction volume follows a piecewise model with growth and regression phases, adjusted for market volatility: $V_{\text{transactions}}(t) = f_{\text{growth}}(t) + f_{\text{regression}}(t) \cdot (1 \pm \epsilon)$, where $\epsilon$ is a fluctuation factor.</li>
+    <li><strong>Inactivity Penalty:</strong> Effective yield accounts for inactivity: $R_{\text{adjusted}}(t) = R_{\text{daily}}(t) \cdot (1 - p_{\text{inactive}})$.</li>
+    <li><strong>Bridging Efficiency:</strong> Bridging fraction is minimized by matching and exit queue efficiency: $\alpha_{\text{bridge}} = (1 - \eta)(1 - \eta_e)^\nu$, where $\nu$ is the number of exit rounds.</li>
+  </ol>
+
+  <h3>Corollaries</h3>
+  <ul>
+    <li><strong>Yield Scaling:</strong> As $L_{\text{total}}$ increases, individual LP yields decrease unless $V_{\text{transactions}}(t)$ grows proportionally.</li>
+    <li><strong>Bridging Cost Reduction:</strong> Higher $\eta_{\text{efficiency}}$ reduces $\alpha_{\text{bridge}}$, lowering bridging costs and enhancing LP profitability.</li>
+    <li><strong>Elasticity Impact:</strong> Changes in $P_{\text{base}}$ affect $V_{\text{transactions}}(t)$ via $\Delta V_{\text{transactions}} = E_{\text{adoption}} \cdot \Delta P_{\text{base}}$, where $E_{\text{adoption}}$ is the elasticity coefficient.</li>
+  </ul>
+
+  <h3>Postulates</h3>
+  <ul>
+    <li><strong>Fee Dynamics:</strong> $T_{\text{fees}}(t)$ may increase linearly with network maturity: $T_{\text{fees}}(t) = T_{\text{initial}} + k \cdot t$, where $k$ is a small constant.</li>
+    <li><strong>Subsidies for Early Adoption:</strong> Early LPs receive subsidies $I_{\text{subsidy}} = \frac{\text{Target ROI} \cdot C_{\text{op}}}{1 - \text{Target ROI}}$, phasing out as $V_{\text{transactions}}(t)$ exceeds a threshold.</li>
+  </ul>
+
+  <h3>Input Lemmas</h3>
+  <ul>
+    <li><strong>Transaction Value Estimation:</strong> Determine average transaction value in USD, converted to base currency, using market data for supported tokens.</li>
+    <li><strong>Volume Modeling:</strong> Use piecewise functions to model $V_{\text{transactions}}(t)$, adjusted for market volatility and $P_{\text{base}}$ elasticity.</li>
+    <li><strong>Yield Calculation:</strong> Compute $R_{\text{daily}}(t)$, $R_{\text{adjusted}}(t)$, and $R_{\text{yearly}}$, accounting for $\alpha_{\text{bridge}}$ and $p_{\text{inactive}}$.</li>
+    <li><strong>ROI Projection:</strong> Calculate $\text{ROI}(y)$ and $\overline{\text{ROI}}$ over $Y$ years, factoring in $C_{\text{op}}$, $P_{\text{base}}$, and dynamic $T_{\text{fees}}(t)$.</li>
+  </ul>
+
+  <h3>Analysis Process</h3>
+  <ol>
+    <li>Input current market data for $P_{\text{base}}$, token transaction fees, and trading volumes.</li>
+    <li>Model $V_{\text{transactions}}(t)$ using growth/regression phases and volatility adjustments.</li>
+    <li>Calculate $R_{\text{daily}}(t)$ and $R_{\text{adjusted}}(t)$ for various $L_{\text{locked}}$ and $L_{\text{total}}$ scenarios.</li>
+    <li>Apply $\alpha_{\text{bridge}}$ to adjust for bridging costs, and factor in $p_{\text{inactive}}$ for yield reduction.</li>
+    <li>Compute $\text{ROI}(y)$ and $\overline{\text{ROI}}$, incorporating subsidies and dynamic $T_{\text{fees}}(t)$.</li>
+    <li>Assess sustainability for LPs, validators, and bridge providers based on ROI, network throughput, and bridging frequency.</li>
+  </ol>
+
+  <p>This framework enables flexible analysis under any economic conditions, ensuring AAMM's economic viability can be assessed dynamically as market parameters evolve.</p>
+</div>
+
+---
+
+## Get Involved
+
+Explore how you can benefit from or contribute to CoinFi AAMM:
 
 <div className="join-container">
   <a href="https://coin.fi/manifesto" className="btn-primary btn-lg">Get Started</a>
-  <a href="https://coin.fi/manifesto" className="btn-secondary btn-lg">Join Our Community</a>
+  <a href="https://coin.fi/manifesto" className="btn-secondary">Join Our Community</a>
 </div>
 
----
+For further technical details or to stay updated on developments, visit our:
 
-{/* Interactive diagram showcasing our trade matching process */}
-<ImageCard 
-  src="/logo/300x100-coin-chain.png" 
-  alt="Trade Matching Diagram" 
-  caption="See how our system smartly matches your orders for efficient trading." 
-/>
-
----
-
-*For more details on our technology and the math behind it, please refer to our full documentation. We have aligned this content with the **Quantum One-Time Atomic Swap Contracts** paper to ensure both accuracy and clarity.*
-
-[**Learn More About Our Technology**](https://coin.fi/manifesto)&nbsp;&nbsp;|&nbsp;&nbsp;[**Subscribe for Updates**](https://coin.fi/manifesto)
+- [Technical Documentation](https://coin.fi/manifesto)
+- [Subscribe for Updates](https://coin.fi/manifesto)

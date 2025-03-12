@@ -1,5 +1,5 @@
 {
-  "$schema": "https://mintlify.com/docs.json",
+  "$schema": "https://mintlify.com/docs.json", 
   "theme": "palm",
   "name": "CoinFi Documentation",
   "colors": {
